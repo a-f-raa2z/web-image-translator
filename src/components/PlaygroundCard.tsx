@@ -27,10 +27,10 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
         />
       </div>
       
-      <div className="p-6 h-full flex flex-col justify-center relative z-10">
+      <div className="p-6 h-full flex flex-col relative z-10">
         <h3 className="text-lg font-medium text-white/90 mb-1">Playground</h3>
         
-        <div className="w-full">
+        <div className="flex-grow flex flex-col justify-center w-full">
           <p className="text-sm font-medium text-white/90 mb-1 leading-normal">{subtitle}</p>
           <p className="text-2xl font-bold text-white mb-3 leading-normal" style={{ lineHeight: '2' }}>{title}</p>
           <div className="w-full">

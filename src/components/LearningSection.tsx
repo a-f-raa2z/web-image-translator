@@ -23,7 +23,7 @@ const LearningSection: React.FC = () => {
       duration: '2:04'
     },
     {
-      id: 'g9oESGzcA84',
+      id: '5yeJ03crTrI',
       title: 'Unsupervised Learning',
       duration: '1:45'
     },
@@ -33,7 +33,7 @@ const LearningSection: React.FC = () => {
       duration: '2:30'
     },
     {
-      id: 'g9oESGzcA84',
+      id: 'l_kGsoV52Kw',
       title: 'What is Reinforcement Learning',
       duration: '3:15'
     },
