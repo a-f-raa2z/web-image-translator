@@ -128,7 +128,7 @@ const Index = () => {
             <div className="col-span-1 md:col-span-3">
               <PlaygroundCard
                 subtitle="You've unlocked"
-                title="Paint 'n' Play"
+                title="Whisk"
                 image="https://cdn.pixabay.com/photo/2024/01/19/16/47/ai-generated-8518797_1280.png"
               />
             </div>
@@ -228,7 +228,7 @@ const Index = () => {
             <CommunityCard 
               title="TUMO AI for Teens"
               description="TUMO AI offers innovative workshops and resources for teens interested in artificial intelligence and machine learning."
-              image="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+              image="https://images.unsplash.com/photo-1462331940025-4aa32003c11a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
               link="https://tumo.ai/teens"
             />
           </div>
@@ -438,4 +438,3 @@ const Index = () => {
 };
 
 export default Index;
-
