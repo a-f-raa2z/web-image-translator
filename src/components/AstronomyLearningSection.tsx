@@ -8,6 +8,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import AstronomyActivitiesSection from './AstronomyActivitiesSection';
 import AstronomyExploreSection from './AstronomyExploreSection';
 import AstronomyCommunitySection from './AstronomyCommunitySection';
+import ChallengeCard2 from './ChallengeCard2';
+import PlaygroundCard2 from './PlaygroundCard2';
 
 const AstronomyLearningSection: React.FC = () => {
   const [selectedIntroVideoIndex, setSelectedIntroVideoIndex] = useState(0);
@@ -35,8 +37,8 @@ const AstronomyLearningSection: React.FC = () => {
   ];
 
   const marsVideos = [
-    { id: 'ZW3aV7U-aik', title: 'Black Holes', duration: '2:45' },
-    { id: 'N7d_RWyOv20', title: 'Dark Matter', duration: '3:10' }
+    { id: 'E-PuUs25rJA', title: 'Mars 101', duration: '3:45' },
+    { id: 'wFTGP7-n3J8', title: 'What They Didnt Teach You in School About Mars', duration: '18:10' }
   ];
 
   const handleThumbnailClick = (index: number, tab: 'intro' | 'earth' | 'moon') => {
@@ -54,8 +56,9 @@ const AstronomyLearningSection: React.FC = () => {
   };
 
   const handleTabChange = (value: string) => {
-    setSelectedTab(value); // Update the selected tab state
+    setSelectedTab(value); // Update the selected tab state but don't refresh the video
   };
+  
 
   const handlePrevious = () => {
     setStartIndex(Math.max(0, startIndex - 1));
@@ -68,6 +71,9 @@ const AstronomyLearningSection: React.FC = () => {
   useEffect(() => {
     console.log("LearningSection component mounted");
   }, []);
+
+  const isPlanetsVideoSelected = introVideos[selectedIntroVideoIndex].title === 'Solar System 101';
+  const isInnerPlanetsVideoSelected = introVideos[selectedIntroVideoIndex].title === 'The Inner Planets';
 
   return (
     <section className="mb-10">
@@ -91,27 +97,49 @@ const AstronomyLearningSection: React.FC = () => {
           </div>
         </div>
         
-        <div className="col-span-1 md:col-span-3">
-          <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
-            <AstronomyChallengeCard 
-              title="Star Life Cycle"
-              description="Watch this video and explain the complete life cycle of a star"
-              descriptionClassName="text-sm"
-              className="h-full"
-            />
-          </div>
-        </div>
-        
-        <div className="col-span-1 md:col-span-3">
-          <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
-            <AstronomyPlaygroundCard
-              subtitle="You've unlocked"
-              title="Sunrise on Mars"
-              className="h-full"
-              image="/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg"
-            />
-          </div>
-        </div>
+        {isPlanetsVideoSelected && (
+          <>
+            <div className="col-span-12 md:col-span-3">
+              <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
+                <AstronomyChallengeCard 
+                  title="🎬 The Planets In Our Solar System"
+                  description="Watch this and tell the story of the complete life cycle of a star"
+                  descriptionClassName="text-sm"
+                  className="h-full"
+                />
+              </div>
+            </div>
+            
+            <div className="col-span-12 md:col-span-3">
+              <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
+                <AstronomyPlaygroundCard
+                  subtitle="Sneak Peak"
+                  title="Solar System | NASA"
+                  className="h-full"
+                  image="/lovable-uploads/solar.png"
+                />
+              </div>
+            </div>
+          </>
+        )}
+
+        {isInnerPlanetsVideoSelected && (
+          <>
+            <div className="col-span-12 md:col-span-3">
+              <ChallengeCard2 
+                title="🎬 Movie: Interstellar"
+                description="Hold a Movie Nicht and Dive deep into the Innerspace."
+              />
+            </div>
+            {/* <div className="col-span-12 md:col-span-3">
+              <PlaygroundCard2 
+                title="Inner Planets Exploration"
+                subtitle="Interactive Learning"
+                image="/lovable-uploads/interstellar.jepg"
+              />
+            </div> */}
+          </>
+        )}
       </div>
 
       <div className="mt-6 bg-purple-100 rounded-2xl p-0 md:p-0">
@@ -321,7 +349,7 @@ const AstronomyLearningSection: React.FC = () => {
           </Tabs>
         </div>
       </div>
-
+<br></br>
       <div className="col-span-1 md:col-span-12">
         <AstronomyActivitiesSection />
       </div>

@@ -15,24 +15,24 @@ const AstronomyActivitiesSection: React.FC = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <AstronomyActivityCard 
-          title="Global AI Office Hours - April 2025"
-          date="April 15, 2025"
-          location="Global AI Community"
-          image="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
+          title="Partial Solar Eclipse"
+          location="A partial solar eclipse takes place across Europe and the northeastern corner of North America."
+          date="March 19, 2025"
+          image="https://c.tadst.com/gfx/190x126/partial-solar-eclipse-sunrise.jpg?1"
         />
         
         <AstronomyActivityCard 
-          title="PIE & AI: New York - LLM Repetitive Task Automation"
-          date="March 25, 2025"
-          location="New York, NY"
-          image="https://images.unsplash.com/photo-1677442135073-18da40bc2b7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
+          title="Super New Moon"
+          date="March 29, 2025"
+          location="Dark nights a few days before and after the Moon reaches its New Moon phase at 10:57 UTC UTC on March 29"
+          image="https://c.tadst.com/gfx/190x126/starry-night-sky.jpg?1"
         />
         
         <AstronomyActivityCard 
-          title="A Worker's Guide to AI in Public Services"
+          title="NASA’s Office of STEM Engagement (OSTEM) is Open"
           date="March 28, 2025"
           location="London, UK"
-          image="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
+          image="https://www.nasa.gov/wp-content/uploads/2023/01/nasa-interns-hs-worm.jpg"
         />
       </div>
     </section>
