@@ -141,8 +141,9 @@ export default {
                 'scale-in': 'scale-in 0.3s ease-out'
 			},
             fontFamily: {
-                'sans': ['Montserrat', 'sans-serif'],
+                'sans': ['Poppins', 'sans-serif'],
                 'heading': ['Poppins', 'sans-serif'],
+                'poppins': ['Poppins', 'sans-serif'],
             }
 		}
 	},

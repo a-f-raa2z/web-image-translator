@@ -59,8 +59,8 @@ const LearningSection: React.FC = () => {
           <ChallengeCard 
             title="Challenge" 
             description="Explain AI in your own words"
-            image="/lovable-uploads/5af8b6f3-9d9a-421c-b233-3c4dee64857d.png"
-            descriptionClassName="text-sm" // Added a smaller text class here
+            image="/lovable-uploads/476601ed-362d-4cd8-8c62-4b8047535094.png"
+            descriptionClassName="text-sm" // Keeping the smaller text class
           />
         </div>
         

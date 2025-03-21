@@ -8,6 +8,7 @@ interface ChallengeCardProps {
   image?: string;
   color?: string;
   className?: string;
+  descriptionClassName?: string;
 }
 
 const ChallengeCard: React.FC<ChallengeCardProps> = ({
@@ -15,7 +16,8 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
   description,
   image,
   color = "bg-art-yellow",
-  className
+  className,
+  descriptionClassName
 }) => {
   return (
     <div className={cn("art-card overflow-hidden h-full relative", color, className)}>
@@ -33,7 +35,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         <h3 className="text-sm font-medium text-black/70 mb-1">{title}</h3>
         
         <div className="mt-auto w-full">
-          <p className="text-3xl font-bold text-black mb-3">{description}</p>
+          <p className={cn("text-3xl font-bold text-black mb-3", descriptionClassName)}>{description}</p>
           <div className="w-full">
             <input
               type="text"
