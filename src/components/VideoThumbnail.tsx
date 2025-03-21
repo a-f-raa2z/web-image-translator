@@ -16,6 +16,9 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
   isSelected = false,
   onClick 
 }) => {
+  // Generate YouTube thumbnail URL
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+
   return (
     <div 
       className={cn(
@@ -31,12 +34,10 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
         )}
       >
         <AspectRatio ratio={16/9}>
-          <iframe 
-            src={`https://www.youtube.com/embed/${videoId}`}
-            title={title}
+          <img 
+            src={thumbnailUrl}
+            alt={title}
             className="w-full h-full object-cover"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            style={{ border: 'none' }}
           />
         </AspectRatio>
       </div>

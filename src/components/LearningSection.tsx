@@ -44,6 +44,11 @@ const LearningSection: React.FC = () => {
     }
   ];
 
+  // Handle thumbnail click to update the main video
+  const handleThumbnailClick = (index: number) => {
+    setSelectedVideoIndex(index);
+  };
+
   return (
     <section className="mb-10">
       <h2 className="text-xl font-bold mb-4">My Learning</h2>
@@ -94,7 +99,7 @@ const LearningSection: React.FC = () => {
                   videoId={video.id}
                   title={video.title}
                   isSelected={selectedVideoIndex === index}
-                  onClick={() => setSelectedVideoIndex(index)}
+                  onClick={() => handleThumbnailClick(index)}
                 />
               </CarouselItem>
             ))}
