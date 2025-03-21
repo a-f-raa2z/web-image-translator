@@ -11,74 +11,50 @@ import AstronomyCommunitySection from './AstronomyCommunitySection';
 
 const AstronomyLearningSection: React.FC = () => {
   const [selectedIntroVideoIndex, setSelectedIntroVideoIndex] = useState(0);
-  const [selectedNeighboringVideoIndex, setSelectedNeighboringVideoIndex] = useState(0);
+  const [selectedEarthVideoIndex, setSelectedEarthVideoIndex] = useState(0);
+  const [selectedMoonVideoIndex, setSelectedMoonVideoIndex] = useState(0); // Added moon video index state
   const [startIndex, setStartIndex] = useState(0);
   const [animate, setAnimate] = useState(false);
-  
+  const [selectedTab, setSelectedTab] = useState('intro'); // State for selected tab
+
   const introVideos = [
-    {
-      id: 'libKVRa01L8',
-      title: 'Solar System 101',
-      duration: '4:10'
-    },
-    {
-      id: '05E1uMh15QQ',
-      title: 'The Inner Planets',
-      duration: '2:12'
-    },
-
+    { id: 'libKVRa01L8', title: 'Solar System 101', duration: '4:10' },
+    { id: '05E1uMh15QQ', title: 'The Inner Planets', duration: '2:12' },
   ];
 
-  const neighboringVideos = [
-    {
-      id: 'HCDVN7DCzYE',
-      title: 'Earth 101',
-      duration: '3:32'
-    },
-    {
-      id: 'mrYjJ9Jl9dA',
-      title: 'What They Didnt Teach You',
-      duration: '19:18'
-    }
+  const earthVideos = [
+    { id: 'HCDVN7DCzYE', title: 'Earth 101', duration: '3:32' },
+    { id: 'mrYjJ9Jl9dA', title: 'What They Didnt Teach You', duration: '19:18' }
   ];
 
-  const extraVideos = [
-    {
-      id: 'ZW3aV7U-aik',
-      title: 'Black Holes',
-      duration: '2:45'
-    },
-    {
-      id: 'N7d_RWyOv20',
-      title: 'Dark Matter',
-      duration: '3:10'
-    }
+  const moonVideos = [
+    { id: '6AviDjR9mmo', title: 'Moon 101', duration: '3:05' },
+    { id: 'lhKMQIRdaeo', title: 'What is a Supermoon', duration: '2:14' },
+    { id: 'VW2xRR75lKE', title: 'Lunar Eclipse 101', duration: '2:14' },
+    { id: 'cxrLRbkOwKs', title: 'Solar Eclipse 101', duration: '2:14' }
   ];
 
   const marsVideos = [
-    {
-      id: 'ZW3aV7U-aik',
-      title: 'Black Holes',
-      duration: '2:45'
-    },
-    {
-      id: 'N7d_RWyOv20',
-      title: 'Dark Matter',
-      duration: '3:10'
-    }
+    { id: 'ZW3aV7U-aik', title: 'Black Holes', duration: '2:45' },
+    { id: 'N7d_RWyOv20', title: 'Dark Matter', duration: '3:10' }
   ];
 
-  const handleThumbnailClick = (index: number, tab: 'intro' | 'neighboring') => {
+  const handleThumbnailClick = (index: number, tab: 'intro' | 'earth' | 'moon') => {
     setAnimate(true);
     if (tab === 'intro') {
       setSelectedIntroVideoIndex(index);
-    } else {
-      setSelectedNeighboringVideoIndex(index);
+    } else if (tab === 'earth') {
+      setSelectedEarthVideoIndex(index);
+    } else if (tab === 'moon') {
+      setSelectedMoonVideoIndex(index); // Ensure the moon tab updates the correct index
     }
-    
     setTimeout(() => {
       setAnimate(false);
     }, 500);
+  };
+
+  const handleTabChange = (value: string) => {
+    setSelectedTab(value); // Update the selected tab state
   };
 
   const handlePrevious = () => {
@@ -100,15 +76,23 @@ const AstronomyLearningSection: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         <div className="col-span-1 md:col-span-6">
           <div className="h-full rounded-xl overflow-hidden shadow-md bg-black transition-all duration-300 animate-scale-in">
-            <VideoPlayer videoId={introVideos[selectedIntroVideoIndex].id} />
+            {/* Refresh the video player based on the selected video */}
+            <VideoPlayer
+              videoId={
+                selectedTab === 'intro'
+                  ? introVideos[selectedIntroVideoIndex].id
+                  : selectedTab === 'earth'
+                  ? earthVideos[selectedEarthVideoIndex].id
+                  : selectedTab === 'moon'
+                  ? moonVideos[selectedMoonVideoIndex].id // Handling for the moon tab
+                  : marsVideos[0].id // Default to first video if something goes wrong
+              }
+            />
           </div>
         </div>
         
         <div className="col-span-1 md:col-span-3">
-          <div className={cn(
-            "h-full transition-all duration-500",
-            animate && "animate-bounce-in"
-          )}>
+          <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
             <AstronomyChallengeCard 
               title="Star Life Cycle"
               description="Watch this video and explain the complete life cycle of a star"
@@ -119,10 +103,7 @@ const AstronomyLearningSection: React.FC = () => {
         </div>
         
         <div className="col-span-1 md:col-span-3">
-          <div className={cn(
-            "h-full transition-all duration-500",
-            animate && "animate-bounce-in"
-          )}>
+          <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
             <AstronomyPlaygroundCard
               subtitle="You've unlocked"
               title="Sunrise on Mars"
@@ -135,38 +116,33 @@ const AstronomyLearningSection: React.FC = () => {
 
       <div className="mt-6 bg-purple-100 rounded-2xl p-0 md:p-0">
         <div className="p-6">
-          <Tabs defaultValue="intro">
-          <TabsList className="mb-4 bg-transparent p-0 shadow-none space-x-4">
-  <TabsTrigger 
-    value="intro" 
-    className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
-  >
-    Intro to the Neighbors
-  </TabsTrigger>
-  <TabsTrigger 
-    value="neighboring" 
-    className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
-  >
-    Earch
-  </TabsTrigger>
-  <TabsTrigger 
-    value="moon" 
-    className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
-  >
-    Moon
-  </TabsTrigger>
-  <TabsTrigger 
-    value="mars" 
-    className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
-  >
-    Mars
-  </TabsTrigger>
-</TabsList>
-
-
-
-
-
+          <Tabs defaultValue="intro" onValueChange={handleTabChange}>
+            <TabsList className="mb-4 bg-transparent p-0 shadow-none space-x-4">
+              <TabsTrigger 
+                value="intro" 
+                className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+              >
+                Intro to the Neighbors
+              </TabsTrigger>
+              <TabsTrigger 
+                value="earth" 
+                className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+              >
+                Earth
+              </TabsTrigger>
+              <TabsTrigger 
+                value="moon" 
+                className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+              >
+                Moon
+              </TabsTrigger>
+              <TabsTrigger 
+                value="mars" 
+                className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+              >
+                Mars
+              </TabsTrigger>
+            </TabsList>
 
             <TabsContent value="intro" className="mt-0">
               <div className="grid grid-cols-12 gap-4">
@@ -226,26 +202,26 @@ const AstronomyLearningSection: React.FC = () => {
               </div>
             </TabsContent>
 
-            <TabsContent value="neighboring" className="mt-0">
+            <TabsContent value="earth" className="mt-0">
               <div className="grid grid-cols-12 gap-4">
                 <div className="col-span-12 md:col-span-3">
-                  <h3 className="text-lg font-semibold text-purple-900 mb-2">
-                    Explore Our Neighbors
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    Explore Earth!
                   </h3>
-                  <p className="text-purple-600 text-sm">
-                    Discover the fascinating worlds in our solar system. From the rings of Saturn to the storms of Jupiter, each planet has its own unique story.
+                  <p className="text-gray-600 text-sm">
+                    Learn about Earth, our home planet, and the many exciting aspects of its geography, history, and ecology.
                   </p>
                 </div>
 
                 <div className="col-span-12 md:col-span-9">
                   <div className="grid grid-cols-4 gap-4">
-                    {neighboringVideos.map((video, index) => (
+                    {earthVideos.map((video, index) => (
                       <button
                         key={video.id}
-                        onClick={() => handleThumbnailClick(index, 'neighboring')}
+                        onClick={() => handleThumbnailClick(index, 'earth')}
                         className={cn(
                           "relative rounded-lg overflow-hidden aspect-video bg-gray-100 hover:ring-2 hover:ring-purple-400 transition-all",
-                          index === selectedNeighboringVideoIndex && "ring-2 ring-purple-500"
+                          index === selectedEarthVideoIndex && "ring-2 ring-purple-500"
                         )}
                       >
                         <img
@@ -265,25 +241,26 @@ const AstronomyLearningSection: React.FC = () => {
             </TabsContent>
 
             <TabsContent value="moon" className="mt-0">
+              {/* Video thumbnails for the moon tab */}
               <div className="grid grid-cols-12 gap-4">
                 <div className="col-span-12 md:col-span-3">
-                  <h3 className="text-lg font-semibold text-purple-900 mb-2">
-                    Advanced Concepts
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    Explore Moon!
                   </h3>
-                  <p className="text-purple-600 text-sm">
-                    Dive deep into the most mysterious phenomena of our universe. Explore black holes, dark matter, and the fabric of spacetime itself.
+                  <p className="text-gray-600 text-sm">
+                    Learn about Earth, our home planet, and the many exciting aspects of its geography, history, and ecology.
                   </p>
                 </div>
 
                 <div className="col-span-12 md:col-span-9">
                   <div className="grid grid-cols-4 gap-4">
-                    {extraVideos.map((video, index) => (
+                    {moonVideos.map((video, index) => (
                       <button
                         key={video.id}
-                        onClick={() => handleThumbnailClick(index, 'intro')}
+                        onClick={() => handleThumbnailClick(index, 'moon')}
                         className={cn(
                           "relative rounded-lg overflow-hidden aspect-video bg-gray-100 hover:ring-2 hover:ring-purple-400 transition-all",
-                          index === selectedIntroVideoIndex && "ring-2 ring-purple-500"
+                          index === selectedMoonVideoIndex && "ring-2 ring-purple-500"
                         )}
                       >
                         <img
@@ -301,26 +278,28 @@ const AstronomyLearningSection: React.FC = () => {
                 </div>
               </div>
             </TabsContent>
+
             <TabsContent value="mars" className="mt-0">
+              {/* Video thumbnails for the mars tab */}
               <div className="grid grid-cols-12 gap-4">
                 <div className="col-span-12 md:col-span-3">
-                  <h3 className="text-lg font-semibold text-purple-900 mb-2">
-                    Advanced Concepts
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    Mars or Martians?
                   </h3>
-                  <p className="text-purple-600 text-sm">
-                    Dive deep into the most mysterious phenomena of our universe. Explore black holes, dark matter, and the fabric of spacetime itself.
+                  <p className="text-gray-600 text-sm">
+                    Learn about Earth, our home planet, and the many exciting aspects of its geography, history, and ecology.
                   </p>
                 </div>
 
                 <div className="col-span-12 md:col-span-9">
                   <div className="grid grid-cols-4 gap-4">
-                    {extraVideos.map((video, index) => (
+                    {marsVideos.map((video, index) => (
                       <button
                         key={video.id}
-                        onClick={() => handleThumbnailClick(index, 'intro')}
+                        onClick={() => handleThumbnailClick(index, 'mars')}
                         className={cn(
                           "relative rounded-lg overflow-hidden aspect-video bg-gray-100 hover:ring-2 hover:ring-purple-400 transition-all",
-                          index === selectedIntroVideoIndex && "ring-2 ring-purple-500"
+                          index === selectedEarthVideoIndex && "ring-2 ring-purple-500"
                         )}
                       >
                         <img
@@ -338,10 +317,11 @@ const AstronomyLearningSection: React.FC = () => {
                 </div>
               </div>
             </TabsContent>
+
           </Tabs>
         </div>
       </div>
-<br></br>
+
       <div className="col-span-1 md:col-span-12">
         <AstronomyActivitiesSection />
       </div>
@@ -355,4 +335,4 @@ const AstronomyLearningSection: React.FC = () => {
   );
 };
 
-export default AstronomyLearningSection; 
+export default AstronomyLearningSection;
