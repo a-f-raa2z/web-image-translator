@@ -15,11 +15,10 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 import Sidebar from '@/components/Sidebar';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Hash, Book, Gamepad, MapPin, Heart, User } from 'lucide-react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import { useNavigate } from 'react-router-dom';
 
 // Custom node component for main topics
 const TopicNode = ({ data, isConnectable }: NodeProps) => {
@@ -100,18 +99,21 @@ const initialNodes: Node[] = [
     type: 'topic',
     data: { label: 'What is AI (10 mins)', type: 'node' },
     position: { x: -100, y: 0 },
+    hidden: true, // Hidden by default
   },
   {
     id: 'how-ai-works',
     type: 'topic',
     data: { label: 'How AI Works (40 mins)', type: 'node' },
     position: { x: -100, y: 50 },
+    hidden: true, // Hidden by default
   },
   {
     id: 'machine-learning',
     type: 'topic',
     data: { label: 'Machine Learning (25 mins)', type: 'node' },
     position: { x: -100, y: 100 },
+    hidden: true, // Hidden by default
   },
   
   // Sub-node for Generative AI
@@ -120,6 +122,7 @@ const initialNodes: Node[] = [
     type: 'topic',
     data: { label: 'Generative AI Intro (15 mins)', type: 'node' },
     position: { x: 900, y: 50 },
+    hidden: true, // Hidden by default
   },
   
   // Sub-node for Chatbots
@@ -128,6 +131,7 @@ const initialNodes: Node[] = [
     type: 'topic',
     data: { label: 'Chatbots (15 mins)', type: 'node' },
     position: { x: 900, y: 200 },
+    hidden: true, // Hidden by default
   },
   
   // Sub-nodes for Robots
@@ -136,12 +140,14 @@ const initialNodes: Node[] = [
     type: 'topic',
     data: { label: 'Nvidia CEO Unveils Robot (5 mins)', type: 'node' },
     position: { x: 900, y: 320 },
+    hidden: true, // Hidden by default
   },
   {
     id: 'advanced-robots',
     type: 'topic',
     data: { label: '9 Most Advanced AI Robots', type: 'node' },
     position: { x: 900, y: 380 },
+    hidden: true, // Hidden by default
   },
   
   // Sub-node for Automation
@@ -150,6 +156,7 @@ const initialNodes: Node[] = [
     type: 'topic',
     data: { label: 'Automation', type: 'node' },
     position: { x: 400, y: 500 },
+    hidden: true, // Hidden by default
   },
   
   // Sub-node for Emerging Industries
@@ -158,6 +165,7 @@ const initialNodes: Node[] = [
     type: 'topic',
     data: { label: 'AI in Emerging Industries', type: 'node' },
     position: { x: 100, y: 500 },
+    hidden: true, // Hidden by default
   },
   
   // Sub-nodes for AI for X
@@ -166,24 +174,28 @@ const initialNodes: Node[] = [
     type: 'topic',
     data: { label: 'AI for Ocean Research', type: 'node' },
     position: { x: -100, y: 150 },
+    hidden: true, // Hidden by default
   },
   {
     id: 'ai-music',
     type: 'topic',
     data: { label: 'AI + Music', type: 'node' },
     position: { x: -100, y: 200 },
+    hidden: true, // Hidden by default
   },
   {
     id: 'ai-arts',
     type: 'topic',
     data: { label: 'AI + Arts', type: 'node' },
     position: { x: -100, y: 250 },
+    hidden: true, // Hidden by default
   },
   {
     id: 'ai-art-explained',
     type: 'topic',
     data: { label: 'AI Art Explained', type: 'node' },
     position: { x: -100, y: 300 },
+    hidden: true, // Hidden by default
   },
 ];
 
@@ -198,26 +210,26 @@ const initialEdges: Edge[] = [
   { id: 'ai-to-emerging', source: 'ai', target: 'emerging-industries', type: 'default', animated: true, markerEnd: { type: MarkerType.ArrowClosed } },
   { id: 'ai-to-ai-for-x', source: 'ai', target: 'ai-for-x', type: 'default', animated: true, markerEnd: { type: MarkerType.ArrowClosed } },
   
-  // Connecting courses to their sub-nodes
-  { id: 'intro-to-what', source: 'ai-intro', target: 'what-is-ai', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'intro-to-how', source: 'ai-intro', target: 'how-ai-works', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'intro-to-ml', source: 'ai-intro', target: 'machine-learning', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
+  // Connecting courses to their sub-nodes (initially hidden)
+  { id: 'intro-to-what', source: 'ai-intro', target: 'what-is-ai', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
+  { id: 'intro-to-how', source: 'ai-intro', target: 'how-ai-works', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
+  { id: 'intro-to-ml', source: 'ai-intro', target: 'machine-learning', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
   
-  { id: 'gen-to-intro', source: 'generative-ai', target: 'gen-ai-intro', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'gen-to-intro', source: 'generative-ai', target: 'gen-ai-intro', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
   
-  { id: 'chatbots-to-intro', source: 'chatbots', target: 'chatbots-intro', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'chatbots-to-intro', source: 'chatbots', target: 'chatbots-intro', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
   
-  { id: 'robots-to-nvidia', source: 'robots', target: 'nvidia-robot', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'robots-to-advanced', source: 'robots', target: 'advanced-robots', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'robots-to-nvidia', source: 'robots', target: 'nvidia-robot', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
+  { id: 'robots-to-advanced', source: 'robots', target: 'advanced-robots', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
   
-  { id: 'automation-to-intro', source: 'automation', target: 'automation-intro', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'automation-to-intro', source: 'automation', target: 'automation-intro', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
   
-  { id: 'emerging-to-role', source: 'emerging-industries', target: 'ai-emerging-industry', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'emerging-to-role', source: 'emerging-industries', target: 'ai-emerging-industry', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
   
-  { id: 'ai-x-to-ocean', source: 'ai-for-x', target: 'ai-ocean', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-x-to-music', source: 'ai-for-x', target: 'ai-music', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-x-to-arts', source: 'ai-for-x', target: 'ai-arts', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-x-to-art-explained', source: 'ai-for-x', target: 'ai-art-explained', type: 'default', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'ai-x-to-ocean', source: 'ai-for-x', target: 'ai-ocean', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
+  { id: 'ai-x-to-music', source: 'ai-for-x', target: 'ai-music', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
+  { id: 'ai-x-to-arts', source: 'ai-for-x', target: 'ai-arts', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
+  { id: 'ai-x-to-art-explained', source: 'ai-for-x', target: 'ai-art-explained', type: 'default', markerEnd: { type: MarkerType.ArrowClosed }, hidden: true },
 ];
 
 type NodeData = {
@@ -346,11 +358,71 @@ const KnowledgeMap = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  // Handle node click to show details
+  // Function to determine if a node is a course node
+  const isCourseNode = (nodeId: string) => {
+    const courseNodeIds = [
+      'ai-intro', 'generative-ai', 'chatbots', 'robots', 
+      'automation', 'emerging-industries', 'ai-for-x'
+    ];
+    return courseNodeIds.includes(nodeId);
+  };
+
+  // Handle node click to show details and expand nodes
   const onNodeClick = useCallback((event: React.MouseEvent, node: Node) => {
     setSelectedNode(node.id);
-  }, []);
+    
+    // If it's a course node, show its child nodes
+    if (isCourseNode(node.id)) {
+      setNodes((prevNodes) => 
+        prevNodes.map((n) => {
+          // For all nodes, hide them if they're not directly connected to the clicked course
+          if (n.id !== node.id && n.id !== 'ai' && !n.id.startsWith(node.id) && 
+              !['what-is-ai', 'how-ai-works', 'machine-learning'].includes(n.id) && 
+              !['gen-ai-intro'].includes(n.id) && 
+              !['chatbots-intro'].includes(n.id) && 
+              !['nvidia-robot', 'advanced-robots'].includes(n.id) && 
+              !['automation-intro'].includes(n.id) && 
+              !['ai-emerging-industry'].includes(n.id) && 
+              !['ai-ocean', 'ai-music', 'ai-arts', 'ai-art-explained'].includes(n.id)) {
+            return { ...n, hidden: true };
+          }
+          
+          // Based on which course is clicked, show its specific child nodes
+          if (node.id === 'ai-intro' && ['what-is-ai', 'how-ai-works', 'machine-learning'].includes(n.id)) {
+            return { ...n, hidden: false };
+          } else if (node.id === 'generative-ai' && ['gen-ai-intro'].includes(n.id)) {
+            return { ...n, hidden: false };
+          } else if (node.id === 'chatbots' && ['chatbots-intro'].includes(n.id)) {
+            return { ...n, hidden: false };
+          } else if (node.id === 'robots' && ['nvidia-robot', 'advanced-robots'].includes(n.id)) {
+            return { ...n, hidden: false };
+          } else if (node.id === 'automation' && ['automation-intro'].includes(n.id)) {
+            return { ...n, hidden: false };
+          } else if (node.id === 'emerging-industries' && ['ai-emerging-industry'].includes(n.id)) {
+            return { ...n, hidden: false };
+          } else if (node.id === 'ai-for-x' && ['ai-ocean', 'ai-music', 'ai-arts', 'ai-art-explained'].includes(n.id)) {
+            return { ...n, hidden: false };
+          }
+          
+          return n;
+        })
+      );
+      
+      // Show edges connected to the selected course
+      setEdges((prevEdges) => 
+        prevEdges.map((edge) => {
+          if (edge.source === node.id) {
+            return { ...edge, hidden: false };
+          } else if (edge.source !== 'ai') {
+            return { ...edge, hidden: true };
+          }
+          return edge;
+        })
+      );
+    }
+  }, [setNodes, setEdges]);
   
   return (
     <div className="min-h-screen bg-gray-50">
@@ -358,18 +430,6 @@ const KnowledgeMap = () => {
       
       <div className="ml-16 p-6 animate-fade-in">
         <header className="mb-8">
-          <Breadcrumb className="mb-3">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="#" className="text-gray-500 hover:text-gray-700">AI</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="#" className="font-medium">Knowledge Map</BreadcrumbLink>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
               <div className="flex gap-1">
@@ -386,8 +446,7 @@ const KnowledgeMap = () => {
             
             <div className="flex items-center gap-3 ml-auto">
               <div className="flex items-center gap-1 bg-white py-1 px-3 rounded-full shadow-sm">
-                <Heart size={16} className="text-red-400" />
-                <span className="font-semibold">Save</span>
+                <span className="font-semibold">AI</span>
               </div>
               
               <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden">
@@ -401,136 +460,69 @@ const KnowledgeMap = () => {
           </div>
         </header>
         
-        <Tabs defaultValue="map" className="w-full">
-          <TabsList className="mb-4 bg-transparent h-auto p-0 w-full flex justify-start border-b">
-            <TabsTrigger 
-              value="channel" 
-              className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-            >
-              <Hash size={16} />
-              Channel
-            </TabsTrigger>
-            <TabsTrigger 
-              value="resource" 
-              className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-            >
-              <Book size={16} />
-              Resource
-            </TabsTrigger>
-            <TabsTrigger 
-              value="playground" 
-              className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-            >
-              <Gamepad size={16} />
-              Playground
-            </TabsTrigger>
-            <TabsTrigger 
-              value="map" 
-              className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-            >
-              <MapPin size={16} />
-              Knowledge Map
-            </TabsTrigger>
-            <TabsTrigger 
-              value="favorites" 
-              className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-            >
-              <Heart size={16} />
-              Favorites
-            </TabsTrigger>
-            <TabsTrigger 
-              value="profile" 
-              className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-            >
-              <User size={16} />
-              Profile
-            </TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="map" className="mt-4 h-[calc(100vh-220px)]">
-            <div className="flex h-full">
-              {/* Flow diagram takes 70% width */}
-              <div className="w-[70%] h-full">
-                <ReactFlow
-                  nodes={nodes}
-                  edges={edges}
-                  onNodesChange={onNodesChange}
-                  onEdgesChange={onEdgesChange}
-                  onNodeClick={onNodeClick}
-                  nodeTypes={nodeTypes}
-                  fitView
-                  connectionLineType={ConnectionLineType.SmoothStep}
-                  defaultViewport={{ x: 0, y: 0, zoom: 1 }}
-                >
-                  <Controls />
-                  <Background color="#f5f5f5" gap={16} />
-                </ReactFlow>
-              </div>
-              
-              {/* Content panel takes 30% width */}
-              <div className="w-[30%] h-full border-l border-gray-200 p-4 overflow-y-auto">
-                {selectedNode ? (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>{courseData[selectedNode]?.title || 'Select a topic'}</CardTitle>
-                      {courseData[selectedNode]?.duration && (
-                        <CardDescription>Duration: {courseData[selectedNode].duration}</CardDescription>
-                      )}
-                    </CardHeader>
-                    <CardContent>
-                      <p>{courseData[selectedNode]?.description || 'No description available'}</p>
-                      <div className="mt-4">
-                        <p className="text-sm text-muted-foreground">
-                          Click on different nodes in the knowledge map to explore AI topics and courses.
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>AI Knowledge Map</CardTitle>
-                      <CardDescription>Explore AI topics and courses</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p>Click on any node in the knowledge map to view details about that topic or course.</p>
-                    </CardContent>
-                  </Card>
-                )}
-              </div>
+        <div className="h-[calc(100vh-220px)]">
+          <div className="flex h-full">
+            {/* Flow diagram takes 70% width */}
+            <div className="w-[70%] h-full">
+              <ReactFlow
+                nodes={nodes}
+                edges={edges}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onNodeClick={onNodeClick}
+                nodeTypes={nodeTypes}
+                fitView
+                connectionLineType={ConnectionLineType.SmoothStep}
+                defaultViewport={{ x: 0, y: 0, zoom: 1 }}
+              >
+                <Controls />
+                <Background color="#f5f5f5" gap={16} />
+              </ReactFlow>
             </div>
-          </TabsContent>
-          
-          <TabsContent value="channel" className="mt-4">
-            <div className="flex justify-center items-center h-[50vh]">
-              <p className="text-gray-500">Channel content will be displayed here.</p>
+            
+            {/* Content panel takes 30% width */}
+            <div className="w-[30%] h-full border-l border-gray-200 p-4 overflow-y-auto">
+              {selectedNode ? (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>{courseData[selectedNode]?.title || 'Select a topic'}</CardTitle>
+                    {courseData[selectedNode]?.duration && (
+                      <CardDescription>Duration: {courseData[selectedNode].duration}</CardDescription>
+                    )}
+                  </CardHeader>
+                  <CardContent>
+                    <p>{courseData[selectedNode]?.description || 'No description available'}</p>
+                    <div className="mt-4">
+                      <p className="text-sm text-muted-foreground">
+                        Click on different nodes in the knowledge map to explore AI topics and courses.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ) : (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>AI Knowledge Map</CardTitle>
+                    <CardDescription>Explore AI topics and courses</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p>Click on any node in the knowledge map to view details about that topic or course.</p>
+                  </CardContent>
+                </Card>
+              )}
             </div>
-          </TabsContent>
+          </div>
           
-          <TabsContent value="resource" className="mt-4">
-            <div className="flex justify-center items-center h-[50vh]">
-              <p className="text-gray-500">Resource content will be displayed here.</p>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="playground" className="mt-4">
-            <div className="flex justify-center items-center h-[50vh]">
-              <p className="text-gray-500">Playground content will be displayed here.</p>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="favorites" className="mt-4">
-            <div className="flex justify-center items-center h-[50vh]">
-              <p className="text-gray-500">Favorites content will be displayed here.</p>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="profile" className="mt-4">
-            <div className="flex justify-center items-center h-[50vh]">
-              <p className="text-gray-500">Profile content will be displayed here.</p>
-            </div>
-          </TabsContent>
-        </Tabs>
+          {/* Enter Channel button at the bottom */}
+          <div className="flex justify-center mt-6 mb-4">
+            <Button
+              onClick={() => navigate('/')}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-2"
+            >
+              Enter Channel
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
