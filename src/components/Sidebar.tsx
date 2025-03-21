@@ -2,8 +2,11 @@
 import React from 'react';
 import { Hash, Book, Gamepad, MapPin, Heart, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Link, useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
+  const location = useLocation();
+  
   return (
     <div className="w-16 bg-art-dark fixed left-0 top-0 h-full flex flex-col items-center py-5 z-50 border-r border-gray-800 animate-slide-in">
       <div className="mb-8">
@@ -17,12 +20,42 @@ const Sidebar = () => {
       </div>
       
       <nav className="flex-1 w-full">
-        <SidebarItem icon={<Hash size={20} />} label="Channel" active />
-        <SidebarItem icon={<Book size={20} />} label="Resource" />
-        <SidebarItem icon={<Gamepad size={20} />} label="Playground" />
-        <SidebarItem icon={<MapPin size={20} />} label="Knowledge Map" />
-        <SidebarItem icon={<Heart size={20} />} label="Favorites" />
-        <SidebarItem icon={<User size={20} />} label="Profile" />
+        <SidebarItem 
+          icon={<Hash size={20} />} 
+          label="Channel" 
+          to="/" 
+          active={location.pathname === '/'} 
+        />
+        <SidebarItem 
+          icon={<Book size={20} />} 
+          label="Resource" 
+          to="/resources"
+          active={location.pathname === '/resources'} 
+        />
+        <SidebarItem 
+          icon={<Gamepad size={20} />} 
+          label="Playground" 
+          to="/playground"
+          active={location.pathname === '/playground'} 
+        />
+        <SidebarItem 
+          icon={<MapPin size={20} />} 
+          label="Knowledge Map" 
+          to="/knowledge-map"
+          active={location.pathname === '/knowledge-map'} 
+        />
+        <SidebarItem 
+          icon={<Heart size={20} />} 
+          label="Favorites" 
+          to="/favorites"
+          active={location.pathname === '/favorites'} 
+        />
+        <SidebarItem 
+          icon={<User size={20} />} 
+          label="Profile" 
+          to="/profile"
+          active={location.pathname === '/profile'} 
+        />
       </nav>
       
       <div className="mt-auto pt-5">
@@ -41,12 +74,14 @@ const Sidebar = () => {
 type SidebarItemProps = {
   icon: React.ReactNode;
   label: string;
+  to: string;
   active?: boolean;
 };
 
-const SidebarItem = ({ icon, label, active = false }: SidebarItemProps) => {
+const SidebarItem = ({ icon, label, to, active = false }: SidebarItemProps) => {
   return (
-    <div 
+    <Link 
+      to={to}
       className={cn(
         "w-full flex flex-col items-center py-3 text-gray-400 hover:text-white cursor-pointer relative",
         active && "text-white"
@@ -57,7 +92,7 @@ const SidebarItem = ({ icon, label, active = false }: SidebarItemProps) => {
       )}
       {icon}
       <span className="text-[9px] mt-1">{label}</span>
-    </div>
+    </Link>
   );
 };
 
