@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface CommunityCardProps {
   title: string;
@@ -18,11 +19,13 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
   return (
     <div className={cn("art-card overflow-hidden", className)}>
       <div className="p-5">
-        <img 
-          src={image} 
-          alt={title} 
-          className="w-full h-36 object-cover rounded-lg"
-        />
+        <AspectRatio ratio={4/3}>
+          <img 
+            src={image} 
+            alt={title} 
+            className="w-full h-full object-cover rounded-lg"
+          />
+        </AspectRatio>
         
         <h3 className="text-sm font-bold mt-4">{title}</h3>
         <p className="text-xs text-gray-600 mt-1 line-clamp-3">{description}</p>

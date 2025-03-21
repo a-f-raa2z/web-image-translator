@@ -56,16 +56,17 @@ const Index = () => {
         <section className="mb-10">
           <h2 className="text-xl font-bold mb-4">My Learning</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="col-span-1 md:col-span-1">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div className="col-span-1 md:col-span-6">
               <ArtLearningCard 
                 title="How to look at art" 
                 image="https://images.unsplash.com/photo-1523554888454-84137e72c3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
                 isVideo={true}
+                className="h-full"
               />
             </div>
             
-            <div>
+            <div className="col-span-1 md:col-span-3">
               <ChallengeCard 
                 title="Challenge" 
                 description="Try to Name 1 painting mentioned in the video."
@@ -73,7 +74,7 @@ const Index = () => {
               />
             </div>
             
-            <div>
+            <div className="col-span-1 md:col-span-3">
               <PlaygroundCard
                 subtitle="You've unlocked"
                 title="Paint 'n' Play"
