@@ -13,7 +13,7 @@ const PageHeader: React.FC = () => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="#" className="font-medium">Intro to Artificial Intelligence</BreadcrumbLink>
+            <BreadcrumbLink href="#" className="font-medium">Artificial Intelligence</BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
