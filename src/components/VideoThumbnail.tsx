@@ -30,7 +30,9 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
       <div 
         className={cn(
           "w-full overflow-hidden rounded-lg transition-all duration-300",
-          isSelected ? "ring-4 ring-blue-500 ring-offset-2 scale-105" : "ring-1 ring-gray-200"
+          isSelected 
+            ? "ring-4 ring-blue-500 ring-offset-2 scale-105 shadow-lg" 
+            : "ring-1 ring-gray-200 hover:ring-2 hover:ring-blue-300"
         )}
       >
         <AspectRatio ratio={16/9}>

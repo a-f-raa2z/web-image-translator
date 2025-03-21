@@ -55,7 +55,7 @@ const LearningSection: React.FC = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         <div className="col-span-1 md:col-span-6">
-          <div className="h-full rounded-xl overflow-hidden shadow-md bg-black">
+          <div className="h-full rounded-xl overflow-hidden shadow-md bg-black transition-all duration-300 animate-scale-in">
             <VideoPlayer videoId={videos[selectedVideoIndex].id} />
           </div>
         </div>

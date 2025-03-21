@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { cn } from '@/lib/utils';
 
 interface VideoPlayerProps {
   videoId: string;
@@ -25,7 +26,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId }) => {
   }, [videoId]);
 
   return (
-    <div className="w-full overflow-hidden rounded-xl bg-black">
+    <div className={cn(
+      "w-full overflow-hidden rounded-xl bg-black transition-all duration-500",
+      isChanging ? "scale-95 opacity-80" : "scale-100 opacity-100"
+    )}>
       <AspectRatio ratio={16/9}>
         <div className={`w-full h-full transition-opacity duration-300 ${isChanging ? 'opacity-0' : 'opacity-100'}`}>
           <iframe 
