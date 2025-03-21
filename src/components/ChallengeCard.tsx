@@ -20,7 +20,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
   return (
     <div className={cn("art-card overflow-hidden h-full relative", color, className)}>
       {image && (
-        <div className="absolute bottom-0 right-0 z-0 opacity-90">
+        <div className="absolute top-0 right-0 z-0 opacity-90">
           <img 
             src={image} 
             alt={title} 
