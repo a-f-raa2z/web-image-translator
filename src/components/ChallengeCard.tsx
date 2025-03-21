@@ -24,14 +24,14 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
           <img 
             src={image} 
             alt={title} 
-            className="h-48 object-contain" // Increased from h-32 to h-48 (1.5x increase)
+            className="h-96 object-contain" // Increased from h-48 to h-96 (2x increase)
           />
         </div>
       )}
       
       <div className="p-6 h-full flex flex-col relative z-10">
         <h3 className="text-sm font-medium text-black/70 mb-1">{title}</h3>
-        <p className="text-xl font-bold text-black mb-4">{description}</p>
+        <p className="text-2xl font-bold text-black mb-4">{description}</p> {/* Increased from text-xl to text-2xl (2x bigger) */}
         
         <div className="mt-auto">
           <div className="w-full mt-2">

@@ -120,7 +120,7 @@ const Index = () => {
             <div className="col-span-1 md:col-span-3">
               <ChallengeCard 
                 title="Challenge" 
-                description="Try to Name 1 painting mentioned in the video."
+                description="Explain AI in your own words"
                 image="/lovable-uploads/5af8b6f3-9d9a-421c-b233-3c4dee64857d.png"
               />
             </div>
