@@ -129,7 +129,6 @@ const Index = () => {
               <PlaygroundCard
                 subtitle="You've unlocked"
                 title="Whisk"
-                image="https://cdn.pixabay.com/photo/2024/01/19/16/47/ai-generated-8518797_1280.png"
               />
             </div>
           </div>
