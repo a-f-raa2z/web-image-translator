@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -130,6 +129,24 @@ export default {
                         transform: 'scale(1)',
                         opacity: '1'
                     }
+                },
+                "bounce-in": {
+                    "0%": { 
+                        transform: "scale(0.3)",
+                        opacity: "0"
+                    },
+                    "50%": {
+                        transform: "scale(1.05)",
+                        opacity: "0.8"
+                    },
+                    "70%": { 
+                        transform: "scale(0.9)",
+                        opacity: "0.9"
+                    },
+                    "100%": { 
+                        transform: "scale(1)",
+                        opacity: "1"
+                    }
                 }
 			},
 			animation: {
@@ -138,7 +155,8 @@ export default {
                 'fade-in': 'fade-in 0.5s ease-out',
                 'pulse-light': 'pulse-light 3s infinite ease-in-out',
                 'slide-in': 'slide-in 0.4s ease-out',
-                'scale-in': 'scale-in 0.3s ease-out'
+                'scale-in': 'scale-in 0.3s ease-out',
+                "bounce-in": "bounce-in 0.5s ease-out forwards"
 			},
             fontFamily: {
                 'sans': ['Poppins', 'sans-serif'],

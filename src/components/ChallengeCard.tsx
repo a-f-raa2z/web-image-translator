@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
@@ -21,13 +20,17 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
   descriptionClassName
 }) => {
   return (
-    <div className={cn("art-card overflow-hidden h-full relative", color, className)}>
+    <div className={cn(
+      "art-card overflow-hidden h-full relative",
+      color,
+      className
+    )}>
       {image && (
-        <div className="absolute bottom-0 right-0 z-0 opacity-90">
+        <div className="absolute bottom-0 right-0 z-0 opacity-100">
           <img 
             src={image} 
             alt={title} 
-            className="h-40 object-contain" 
+            className="h-60 object-contain" 
           />
         </div>
       )}
@@ -38,7 +41,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         <div className="flex-grow flex flex-col justify-center w-full">
           <p 
             className={cn("text-4xl font-bold text-black mb-3 text-left leading-normal", descriptionClassName)} 
-            style={{ fontSize: '1.5rem', lineHeight: '2' }}
+            style={{ fontSize: '1.5rem', lineHeight: '1.5' }}
           >
             {description}
           </p>
