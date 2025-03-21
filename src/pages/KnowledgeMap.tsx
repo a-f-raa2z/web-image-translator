@@ -17,6 +17,7 @@ import 'reactflow/dist/style.css';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
+import Sidebar from '@/components/Sidebar';
 
 // Custom node component for main topics
 const TopicNode = ({ data, isConnectable }: NodeProps) => {
@@ -184,43 +185,43 @@ const initialNodes: Node[] = [
   },
 ];
 
-// Initial edges connecting nodes
+// Initial edges connecting nodes with enhanced styling
 const initialEdges: Edge[] = [
-  // Connect main AI node to course nodes
-  { id: 'ai-to-intro', source: 'ai', target: 'ai-intro', type: 'smoothstep', animated: true, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-gen', source: 'ai', target: 'generative-ai', type: 'smoothstep', animated: true, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-chatbots', source: 'ai', target: 'chatbots', type: 'smoothstep', animated: true, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-robots', source: 'ai', target: 'robots', type: 'smoothstep', animated: true, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-automation', source: 'ai', target: 'automation', type: 'smoothstep', animated: true, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-emerging', source: 'ai', target: 'emerging-industries', type: 'smoothstep', animated: true, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-for-x', source: 'ai', target: 'ai-for-x', type: 'smoothstep', animated: true, markerEnd: { type: MarkerType.ArrowClosed } },
+  // Connect main AI node to course nodes with more visible edges
+  { id: 'ai-to-intro', source: 'ai', target: 'ai-intro', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'ai-to-gen', source: 'ai', target: 'generative-ai', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'ai-to-chatbots', source: 'ai', target: 'chatbots', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'ai-to-robots', source: 'ai', target: 'robots', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'ai-to-automation', source: 'ai', target: 'automation', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'ai-to-emerging', source: 'ai', target: 'emerging-industries', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'ai-to-for-x', source: 'ai', target: 'ai-for-x', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
   
-  // Connect AI Intro to its topics
-  { id: 'intro-to-what', source: 'ai-intro', target: 'what-is-ai', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'intro-to-how', source: 'ai-intro', target: 'how-ai-works', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'intro-to-ml', source: 'ai-intro', target: 'machine-learning', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
+  // Connect course nodes to their topics with more visible edges
+  { id: 'intro-to-what', source: 'ai-intro', target: 'what-is-ai', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'intro-to-how', source: 'ai-intro', target: 'how-ai-works', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'intro-to-ml', source: 'ai-intro', target: 'machine-learning', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
   
   // Connect Generative AI to its topics
-  { id: 'gen-to-intro', source: 'generative-ai', target: 'gen-ai-intro', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'gen-to-intro', source: 'generative-ai', target: 'gen-ai-intro', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
   
   // Connect Chatbots to its topics
-  { id: 'chatbots-to-intro', source: 'chatbots', target: 'chatbots-intro', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'chatbots-to-intro', source: 'chatbots', target: 'chatbots-intro', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
   
   // Connect Robots to its topics
-  { id: 'robots-to-nvidia', source: 'robots', target: 'nvidia-robot', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'robots-to-advanced', source: 'robots', target: 'advanced-robots', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'robots-to-nvidia', source: 'robots', target: 'nvidia-robot', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'robots-to-advanced', source: 'robots', target: 'advanced-robots', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
   
   // Connect Automation to its topics
-  { id: 'automation-to-intro', source: 'automation', target: 'automation-intro', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'automation-to-intro', source: 'automation', target: 'automation-intro', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
   
   // Connect Emerging Industries to its topics
-  { id: 'emerging-to-industry', source: 'emerging-industries', target: 'ai-emerging-industry', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'emerging-to-industry', source: 'emerging-industries', target: 'ai-emerging-industry', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
   
   // Connect AI for X to its topics
-  { id: 'for-x-to-ocean', source: 'ai-for-x', target: 'ai-ocean', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'for-x-to-music', source: 'ai-for-x', target: 'ai-music', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'for-x-to-arts', source: 'ai-for-x', target: 'ai-arts', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'arts-to-explained', source: 'ai-arts', target: 'ai-art-explained', type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'for-x-to-ocean', source: 'ai-for-x', target: 'ai-ocean', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'for-x-to-music', source: 'ai-for-x', target: 'ai-music', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'for-x-to-arts', source: 'ai-for-x', target: 'ai-arts', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'arts-to-explained', source: 'ai-arts', target: 'ai-art-explained', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
 ];
 
 type NodeData = {
@@ -392,63 +393,68 @@ const KnowledgeMap = () => {
   }, [edges, setNodes]);
   
   return (
-    <div className="w-full h-screen flex flex-col">
-      <div className="flex-1 flex">
-        {/* Flow diagram takes 70% width */}
-        <div className="w-[70%] h-full">
-          <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onNodeClick={onNodeClick}
-            nodeTypes={nodeTypes}
-            fitView
-            connectionLineType={ConnectionLineType.SmoothStep}
-            defaultViewport={{ x: 0, y: 0, zoom: 1 }}
-          >
-            <Controls />
-            <Background color="#f5f5f5" gap={16} />
-          </ReactFlow>
+    <div className="w-full h-screen flex">
+      {/* Add Sidebar back */}
+      <Sidebar />
+      
+      <div className="flex-1 flex flex-col ml-16">
+        <div className="flex-1 flex">
+          {/* Flow diagram takes 70% width */}
+          <div className="w-[70%] h-full">
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onNodeClick={onNodeClick}
+              nodeTypes={nodeTypes}
+              fitView
+              connectionLineType={ConnectionLineType.SmoothStep}
+              defaultViewport={{ x: 0, y: 0, zoom: 1 }}
+            >
+              <Controls />
+              <Background color="#f5f5f5" gap={16} />
+            </ReactFlow>
+          </div>
+          
+          {/* Content panel takes 30% width */}
+          <div className="w-[30%] h-full border-l border-gray-200 p-4 overflow-y-auto">
+            {selectedNode ? (
+              <Card>
+                <CardHeader>
+                  <CardTitle>{courseData[selectedNode]?.title || 'Select a topic'}</CardTitle>
+                  {courseData[selectedNode]?.duration && (
+                    <CardDescription>Duration: {courseData[selectedNode].duration}</CardDescription>
+                  )}
+                </CardHeader>
+                <CardContent>
+                  <p>{courseData[selectedNode]?.description || 'No description available'}</p>
+                  <div className="mt-4">
+                    <p className="text-sm text-muted-foreground">
+                      Click on different nodes in the knowledge map to explore AI topics and courses.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card>
+                <CardHeader>
+                  <CardTitle>AI Knowledge Map</CardTitle>
+                  <CardDescription>Explore AI topics and courses</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p>Click on any node in the knowledge map to view details about that topic or course.</p>
+                </CardContent>
+              </Card>
+            )}
+          </div>
         </div>
         
-        {/* Content panel takes 30% width */}
-        <div className="w-[30%] h-full border-l border-gray-200 p-4 overflow-y-auto">
-          {selectedNode ? (
-            <Card>
-              <CardHeader>
-                <CardTitle>{courseData[selectedNode]?.title || 'Select a topic'}</CardTitle>
-                {courseData[selectedNode]?.duration && (
-                  <CardDescription>Duration: {courseData[selectedNode].duration}</CardDescription>
-                )}
-              </CardHeader>
-              <CardContent>
-                <p>{courseData[selectedNode]?.description || 'No description available'}</p>
-                <div className="mt-4">
-                  <p className="text-sm text-muted-foreground">
-                    Click on different nodes in the knowledge map to explore AI topics and courses.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          ) : (
-            <Card>
-              <CardHeader>
-                <CardTitle>AI Knowledge Map</CardTitle>
-                <CardDescription>Explore AI topics and courses</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Click on any node in the knowledge map to view details about that topic or course.</p>
-              </CardContent>
-            </Card>
-          )}
+        <div className="p-4 flex justify-center">
+          <Link to="/">
+            <Button size="lg" variant="default">Enter Channel</Button>
+          </Link>
         </div>
-      </div>
-      
-      <div className="p-4 flex justify-center">
-        <Link to="/">
-          <Button size="lg" variant="default">Enter Channel</Button>
-        </Link>
       </div>
     </div>
   );
