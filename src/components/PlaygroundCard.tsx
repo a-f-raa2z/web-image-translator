@@ -20,7 +20,7 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
   return (
     <div className={cn("art-card overflow-hidden h-full relative", color, className)}>
       <div className="p-6 h-full flex flex-col relative z-10">
-        <h3 className="text-sm font-medium text-white/90 mb-1">Playground</h3>
+        <h3 className="text-lg font-medium text-white/90 mb-1">Playground</h3>
         
         <div className="mt-auto w-full">
           <p className="text-sm font-medium text-white/90 mb-1">{subtitle}</p>
