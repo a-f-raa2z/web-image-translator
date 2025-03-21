@@ -324,7 +324,7 @@ const courseData: Record<string, NodeData> = {
   'ai-music': {
     id: 'ai-music',
     title: 'AI + Music',
-    description: 'AI Music simply explained, featuring perspectives from Grimes and Spotify's CEO.'
+    description: 'AI Music simply explained, featuring perspectives from Grimes and Spotify\'s CEO.'
   },
   'ai-arts': {
     id: 'ai-arts',
