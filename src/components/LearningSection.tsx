@@ -60,6 +60,7 @@ const LearningSection: React.FC = () => {
             title="Challenge" 
             description="Explain AI in your own words"
             image="/lovable-uploads/5af8b6f3-9d9a-421c-b233-3c4dee64857d.png"
+            descriptionClassName="text-sm" // Added a smaller text class here
           />
         </div>
         
