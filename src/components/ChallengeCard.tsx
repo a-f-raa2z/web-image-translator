@@ -36,12 +36,12 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         <h3 className="text-lg font-medium text-black/70 mb-1">{title}</h3>
         
         <div className="mt-auto w-full">
-          <p className={cn("text-4xl font-bold text-black mb-3 text-left", descriptionClassName)}>{description}</p>
+          <p className={cn("text-4xl font-bold text-black mb-3 text-left", descriptionClassName)} style={{ fontSize: '1.5rem' }}>{description}</p>
           <div className="w-4/5">
             <Input
               type="text"
               placeholder="Answer..."
-              className="w-full py-3 px-4 bg-white/80 backdrop-blur-sm rounded-xl border-none focus:outline-none focus:ring-2 focus:ring-black/10"
+              className="w-full py-3 px-4 bg-white/80 backdrop-blur-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-black/10"
             />
           </div>
         </div>
