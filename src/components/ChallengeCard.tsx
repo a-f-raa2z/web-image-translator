@@ -18,8 +18,18 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
   className
 }) => {
   return (
-    <div className={cn("art-card overflow-hidden h-full", color, className)}>
-      <div className="p-6 h-full flex flex-col">
+    <div className={cn("art-card overflow-hidden h-full relative", color, className)}>
+      {image && (
+        <div className="absolute bottom-0 right-0 z-0 opacity-90">
+          <img 
+            src={image} 
+            alt={title} 
+            className="h-32 object-contain"
+          />
+        </div>
+      )}
+      
+      <div className="p-6 h-full flex flex-col relative z-10">
         <h3 className="text-sm font-medium text-black/70 mb-1">{title}</h3>
         <p className="text-xl font-bold text-black mb-4">{description}</p>
         
@@ -32,16 +42,6 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
             />
           </div>
         </div>
-        
-        {image && (
-          <div className="mt-4 flex justify-end">
-            <img 
-              src={image} 
-              alt={title} 
-              className="h-24 object-contain"
-            />
-          </div>
-        )}
       </div>
     </div>
   );
