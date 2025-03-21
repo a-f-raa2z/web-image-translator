@@ -108,10 +108,6 @@ const Index = () => {
             <div className="col-span-1 md:col-span-6">
               <div className="h-full rounded-xl overflow-hidden shadow-md bg-black">
                 <VideoPlayer videoId={videos[selectedVideoIndex].id} />
-                <div className="flex items-center justify-between p-4">
-                  <h3 className="text-2xl font-bold text-gray-800">{videos[selectedVideoIndex].title}</h3>
-                  <span className="text-sm text-gray-500">{videos[selectedVideoIndex].duration}</span>
-                </div>
               </div>
             </div>
             
