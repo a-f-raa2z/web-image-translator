@@ -24,7 +24,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
           <img 
             src={image} 
             alt={title} 
-            className="h-32 object-contain"
+            className="h-48 object-contain" // Increased from h-32 to h-48 (1.5x increase)
           />
         </div>
       )}
