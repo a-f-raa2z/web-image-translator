@@ -92,9 +92,9 @@ const LearningSection: React.FC = () => {
       
       <div className="mt-6">
         <Carousel className="w-full">
-          <CarouselContent>
+          <CarouselContent className="-ml-2 md:-ml-4">
             {videos.map((video, index) => (
-              <CarouselItem key={index} className="basis-1/4">
+              <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/5 md:basis-1/5">
                 <VideoThumbnail
                   videoId={video.id}
                   title={video.title}

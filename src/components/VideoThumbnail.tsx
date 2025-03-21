@@ -22,15 +22,15 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
   return (
     <div 
       className={cn(
-        "p-2 cursor-pointer transition-all duration-200",
+        "p-1 cursor-pointer transition-all duration-200",
         "hover:opacity-90"
       )}
       onClick={onClick}
     >
       <div 
         className={cn(
-          "w-full overflow-hidden rounded-lg",
-          isSelected ? "ring-4 ring-blue-500 ring-offset-2" : "ring-1 ring-gray-200"
+          "w-full overflow-hidden rounded-lg transition-all duration-300",
+          isSelected ? "ring-4 ring-blue-500 ring-offset-2 scale-105" : "ring-1 ring-gray-200"
         )}
       >
         <AspectRatio ratio={16/9}>
@@ -41,7 +41,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
           />
         </AspectRatio>
       </div>
-      <p className="text-xs mt-2 font-medium truncate">{title}</p>
+      <p className="text-xs mt-1 font-medium truncate">{title}</p>
     </div>
   );
 };
