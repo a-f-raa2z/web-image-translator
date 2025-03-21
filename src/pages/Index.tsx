@@ -73,12 +73,26 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             <div className="col-span-1 md:col-span-6">
-              <ArtLearningCard 
-                title="How to look at art" 
-                image="https://images.unsplash.com/photo-1523554888454-84137e72c3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-                isVideo={true}
-                className="h-full"
-              />
+              <div className="h-full rounded-xl overflow-hidden shadow-md">
+                <iframe 
+                  src="https://www.youtube.com/embed/J4RqCSD--Dg?si=xLzBOi0P5CcoYJiY" 
+                  title="How to look at art" 
+                  className="w-full aspect-video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen>
+                </iframe>
+                <div className="p-5 bg-white">
+                  <div className="flex items-center mb-2">
+                    <div className="bg-art-green text-xs rounded-full px-3 py-1 font-medium text-white">
+                      <span className="flex items-center gap-1">
+                        <span className="w-5 h-5 rounded-full bg-art-orange text-white flex items-center justify-center text-[10px] font-bold">CC</span>
+                        Art History
+                      </span>
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800">How to look at art</h3>
+                </div>
+              </div>
             </div>
             
             <div className="col-span-1 md:col-span-3">
@@ -113,39 +127,51 @@ const Index = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-6">
             <div className="art-card p-2">
-              <img 
-                src="https://images.unsplash.com/photo-1523554888454-84137e72c3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
-                alt="How to look at art" 
-                className="w-full h-24 object-cover rounded-lg"
-              />
+              <div className="w-full h-24 rounded-lg overflow-hidden">
+                <iframe 
+                  src="https://www.youtube.com/embed/J4RqCSD--Dg?si=xLzBOi0P5CcoYJiY" 
+                  title="How to look at art" 
+                  className="w-full h-full object-cover"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                </iframe>
+              </div>
               <p className="text-xs mt-2 font-medium">How to look at art</p>
             </div>
             
             <div className="art-card p-2">
-              <img 
-                src="https://images.unsplash.com/photo-1523554888454-84137e72c3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
-                alt="How to look at art" 
-                className="w-full h-24 object-cover rounded-lg"
-              />
-              <p className="text-xs mt-2 font-medium">How to look at art</p>
+              <div className="w-full h-24 rounded-lg overflow-hidden">
+                <iframe 
+                  src="https://www.youtube.com/embed/g9oESGzcA84?si=LittbVcT5tNXS2pW" 
+                  title="Art history video" 
+                  className="w-full h-full object-cover"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                </iframe>
+              </div>
+              <p className="text-xs mt-2 font-medium">Color Theory in Art</p>
             </div>
             
             <div className="art-card p-2">
-              <img 
-                src="https://images.unsplash.com/photo-1523554888454-84137e72c3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
-                alt="How to look at art" 
-                className="w-full h-24 object-cover rounded-lg"
-              />
-              <p className="text-xs mt-2 font-medium">How to look at art</p>
+              <div className="w-full h-24 rounded-lg overflow-hidden">
+                <iframe 
+                  src="https://www.youtube.com/embed/g9oESGzcA84?si=-2Vqk181nT3u8dqS" 
+                  title="Art history video" 
+                  className="w-full h-full object-cover"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                </iframe>
+              </div>
+              <p className="text-xs mt-2 font-medium">Composition Techniques</p>
             </div>
             
             <div className="art-card p-2">
-              <img 
-                src="https://images.unsplash.com/photo-1523554888454-84137e72c3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
-                alt="How to look at art" 
-                className="w-full h-24 object-cover rounded-lg"
-              />
-              <p className="text-xs mt-2 font-medium">How to look at art</p>
+              <div className="w-full h-24 rounded-lg overflow-hidden">
+                <iframe 
+                  src="https://www.youtube.com/embed/l_kGsoV52Kw?si=qu1nx7jhm_WqYpw5" 
+                  title="Art history video" 
+                  className="w-full h-full object-cover"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                </iframe>
+              </div>
+              <p className="text-xs mt-2 font-medium">Art History Overview</p>
             </div>
           </div>
         </section>
@@ -289,7 +315,7 @@ const Index = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
                 <ExploreCard 
                   title="Art History Resources"
-                  image="https://images.unsplash.com/photo-1544967082-d9d25d867d66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+                  image="https://images.unsplash.com/photo-1544967082-d9d25d86be57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
                 />
                 
                 <ExploreCard 
@@ -417,3 +443,4 @@ const Index = () => {
 };
 
 export default Index;
+
