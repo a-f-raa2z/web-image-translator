@@ -19,6 +19,14 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
 }) => {
   return (
     <div className={cn("art-card overflow-hidden h-full relative", color, className)}>
+      <div className="absolute bottom-0 right-0 z-0 opacity-90">
+        <img 
+          src="/lovable-uploads/c4500211-2818-4d37-bb9c-aee9fd4c7e9c.png" 
+          alt="Character" 
+          className="h-40 object-contain" 
+        />
+      </div>
+      
       <div className="p-6 h-full flex flex-col relative z-10">
         <h3 className="text-lg font-medium text-white/90 mb-1">Playground</h3>
         

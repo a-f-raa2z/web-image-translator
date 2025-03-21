@@ -27,7 +27,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
           <img 
             src={image} 
             alt={title} 
-            className="h-40 object-contain" // Reduced to half size (from h-86)
+            className="h-40 object-contain" 
           />
         </div>
       )}
@@ -36,7 +36,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         <h3 className="text-lg font-medium text-black/70 mb-1">{title}</h3>
         
         <div className="mt-auto w-full">
-          <p className={cn("text-2xl font-bold text-black mb-3 text-left", descriptionClassName)}>{description}</p>
+          <p className={cn("text-4xl font-bold text-black mb-3 text-left", descriptionClassName)}>{description}</p>
           <div className="w-4/5">
             <Input
               type="text"
