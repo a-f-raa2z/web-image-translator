@@ -30,7 +30,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
           isSelected ? "ring-4 ring-blue-500 ring-offset-2" : "ring-1 ring-gray-200"
         )}
       >
-        <AspectRatio ratio={4/3}>
+        <AspectRatio ratio={16/9}>
           <iframe 
             src={`https://www.youtube.com/embed/${videoId}`}
             title={title}
