@@ -23,16 +23,6 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         <h3 className="text-sm font-medium text-black/70 mb-1">{title}</h3>
         <p className="text-xl font-bold text-black mb-4">{description}</p>
         
-        {image && (
-          <div className="mt-auto">
-            <img 
-              src={image} 
-              alt={title} 
-              className="h-24 object-contain ml-auto"
-            />
-          </div>
-        )}
-        
         <div className="mt-auto">
           <div className="w-full mt-2">
             <input
@@ -42,6 +32,16 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
             />
           </div>
         </div>
+        
+        {image && (
+          <div className="mt-4 flex justify-end">
+            <img 
+              src={image} 
+              alt={title} 
+              className="h-24 object-contain"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -121,7 +121,7 @@ const Index = () => {
               <ChallengeCard 
                 title="Challenge" 
                 description="Try to Name 1 painting mentioned in the video."
-                image="https://cdn.pixabay.com/photo/2020/01/10/19/46/beaver-4756339_1280.png"
+                image="/lovable-uploads/5af8b6f3-9d9a-421c-b233-3c4dee64857d.png"
               />
             </div>
             
@@ -438,3 +438,4 @@ const Index = () => {
 };
 
 export default Index;
+
