@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '@/components/Sidebar';
 import ArtLearningCard from '@/components/ArtLearningCard';
 import ChallengeCard from '@/components/ChallengeCard';
@@ -9,8 +9,41 @@ import ExploreCard from '@/components/ExploreCard';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Edit, Map, Award, Diamond, Hash, Book, Gamepad, MapPin, Heart, User } from 'lucide-react';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import VideoPlayer from '@/components/VideoPlayer';
+import VideoThumbnail from '@/components/VideoThumbnail';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 const Index = () => {
+  const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
+  
+  const videos = [
+    {
+      id: 'J4RqCSD--Dg',
+      title: 'What is AI?',
+      duration: '2:04'
+    },
+    {
+      id: 'g9oESGzcA84',
+      title: 'Unsupervised Learning',
+      duration: '1:45'
+    },
+    {
+      id: 'g9oESGzcA84',
+      title: 'Supervised Learning',
+      duration: '2:30'
+    },
+    {
+      id: 'g9oESGzcA84',
+      title: 'What is Reinforcement Learning',
+      duration: '3:15'
+    },
+    {
+      id: 'l_kGsoV52Kw',
+      title: 'What is Machine Learning',
+      duration: '2:20'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
@@ -74,23 +107,12 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             <div className="col-span-1 md:col-span-6">
               <div className="h-full rounded-xl overflow-hidden shadow-md">
-                <iframe 
-                  src="https://www.youtube.com/embed/J4RqCSD--Dg?si=xLzBOi0P5CcoYJiY" 
-                  title="How to look at art" 
-                  className="w-full aspect-video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen>
-                </iframe>
+                <VideoPlayer videoId={videos[selectedVideoIndex].id} />
                 <div className="p-5 bg-white">
-                  <div className="flex items-center mb-2">
-                    <div className="bg-art-green text-xs rounded-full px-3 py-1 font-medium text-white">
-                      <span className="flex items-center gap-1">
-                        <span className="w-5 h-5 rounded-full bg-art-orange text-white flex items-center justify-center text-[10px] font-bold">CC</span>
-                        Art History
-                      </span>
-                    </div>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-2xl font-bold text-gray-800">{videos[selectedVideoIndex].title}</h3>
+                    <span className="text-sm text-gray-500">{videos[selectedVideoIndex].duration}</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800">How to look at art</h3>
                 </div>
               </div>
             </div>
@@ -125,54 +147,23 @@ const Index = () => {
             </button>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-6">
-            <div className="art-card p-2">
-              <div className="w-full h-24 rounded-lg overflow-hidden">
-                <iframe 
-                  src="https://www.youtube.com/embed/J4RqCSD--Dg?si=xLzBOi0P5CcoYJiY" 
-                  title="How to look at art" 
-                  className="w-full h-full object-cover"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-                </iframe>
-              </div>
-              <p className="text-xs mt-2 font-medium">How to look at art</p>
-            </div>
-            
-            <div className="art-card p-2">
-              <div className="w-full h-24 rounded-lg overflow-hidden">
-                <iframe 
-                  src="https://www.youtube.com/embed/g9oESGzcA84?si=LittbVcT5tNXS2pW" 
-                  title="Art history video" 
-                  className="w-full h-full object-cover"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-                </iframe>
-              </div>
-              <p className="text-xs mt-2 font-medium">Color Theory in Art</p>
-            </div>
-            
-            <div className="art-card p-2">
-              <div className="w-full h-24 rounded-lg overflow-hidden">
-                <iframe 
-                  src="https://www.youtube.com/embed/g9oESGzcA84?si=-2Vqk181nT3u8dqS" 
-                  title="Art history video" 
-                  className="w-full h-full object-cover"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-                </iframe>
-              </div>
-              <p className="text-xs mt-2 font-medium">Composition Techniques</p>
-            </div>
-            
-            <div className="art-card p-2">
-              <div className="w-full h-24 rounded-lg overflow-hidden">
-                <iframe 
-                  src="https://www.youtube.com/embed/l_kGsoV52Kw?si=qu1nx7jhm_WqYpw5" 
-                  title="Art history video" 
-                  className="w-full h-full object-cover"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-                </iframe>
-              </div>
-              <p className="text-xs mt-2 font-medium">Art History Overview</p>
-            </div>
+          <div className="mt-6">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {videos.map((video, index) => (
+                  <CarouselItem key={index} className="basis-1/4">
+                    <VideoThumbnail
+                      videoId={video.id}
+                      title={video.title}
+                      isSelected={selectedVideoIndex === index}
+                      onClick={() => setSelectedVideoIndex(index)}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-0 bg-white" />
+              <CarouselNext className="right-0 bg-white" />
+            </Carousel>
           </div>
         </section>
         
@@ -443,4 +434,3 @@ const Index = () => {
 };
 
 export default Index;
-
