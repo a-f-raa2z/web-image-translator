@@ -4,7 +4,6 @@ import Sidebar from './components/Sidebar';
 import './App.css';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
-import KnowledgeMap from './pages/KnowledgeMap';
 import { Toaster } from './components/ui/toaster';
 
 function App() {
@@ -15,7 +14,6 @@ function App() {
         <main className="flex-1 pl-16">
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/knowledge-map" element={<KnowledgeMap />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Toaster />
