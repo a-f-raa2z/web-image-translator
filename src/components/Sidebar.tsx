@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Home, BookOpen, Video, PenTool, Users, Star, Grid, Compass } from 'lucide-react';
+import { Hash, Book, Gamepad, MapPin, Heart, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Sidebar = () => {
@@ -17,17 +17,15 @@ const Sidebar = () => {
       </div>
       
       <nav className="flex-1 w-full">
-        <SidebarItem icon={<Home size={20} />} label="Home" active />
-        <SidebarItem icon={<PenTool size={20} />} label="Art" />
-        <SidebarItem icon={<Video size={20} />} label="Videos" />
-        <SidebarItem icon={<BookOpen size={20} />} label="Learn" />
-        <SidebarItem icon={<Users size={20} />} label="Community" />
-        <SidebarItem icon={<Compass size={20} />} label="Playground" />
-        <SidebarItem icon={<Grid size={20} />} label="Gallery" />
+        <SidebarItem icon={<Hash size={20} />} label="Channel" active />
+        <SidebarItem icon={<Book size={20} />} label="Resource" />
+        <SidebarItem icon={<Gamepad size={20} />} label="Playground" />
+        <SidebarItem icon={<MapPin size={20} />} label="Knowledge Map" />
+        <SidebarItem icon={<Heart size={20} />} label="Favorites" />
+        <SidebarItem icon={<User size={20} />} label="Profile" />
       </nav>
       
       <div className="mt-auto pt-5">
-        <SidebarItem icon={<Star size={20} />} label="Premium" />
         <div className="w-8 h-8 rounded-full bg-gray-200 mt-5 overflow-hidden">
           <img 
             src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
