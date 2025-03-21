@@ -1,11 +1,11 @@
 
 import React from 'react';
 import Sidebar from '@/components/Sidebar';
-import PageHeader from '@/components/PageHeader';
 import LearningSection from '@/components/LearningSection';
 import ActivitiesSection from '@/components/ActivitiesSection';
 import CommunitySection from '@/components/CommunitySection';
 import ExploreSection from '@/components/ExploreSection';
+import AstronomyPageHeader from '@/components/AstronomyPageHeader';
 
 const Index = () => {
   return (
@@ -13,7 +13,7 @@ const Index = () => {
       <Sidebar />
       
       <div className="ml-16 p-6 animate-fade-in">
-        <PageHeader />
+        <AstronomyPageHeaderPageHeader />
         <LearningSection />
         <ActivitiesSection />
         <CommunitySection />

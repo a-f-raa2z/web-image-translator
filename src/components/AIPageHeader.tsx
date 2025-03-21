@@ -7,16 +7,16 @@ interface BreadcrumbItem {
   href: string;
 }
 
-interface PageHeaderProps {
+interface AIPageHeaderProps {
   title?: string;
   breadcrumbs?: BreadcrumbItem[];
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ 
-  title = "The Neighbor Worlds",
+const AIPageHeader: React.FC<AIPageHeaderProps> = ({ 
+  title = "Generative AI and Chatbots",
   breadcrumbs = [
-    { label: "Astronomy", href: "#" },
-    { label: "The Neighbor Worlds", href: "#" }
+    { label: "AI", href: "#" },
+    { label: "Generative AI and Chatbots", href: "#" }
   ]
 }) => {
   return (
@@ -80,4 +80,4 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   );
 };
 
-export default PageHeader;
+export default AIPageHeader;

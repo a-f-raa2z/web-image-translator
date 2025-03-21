@@ -5,7 +5,6 @@ import PlaygroundCard from '@/components/PlaygroundCard';
 import VideoPlayer from '@/components/VideoPlayer';
 import VideoThumbnail from '@/components/VideoThumbnail';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { cn } from '@/lib/utils';
 
 interface Video {
   id: string;
@@ -13,9 +12,14 @@ interface Video {
   duration: string;
 }
 
+interface ExploreCardProps {
+  title: string;
+  image: string;
+  description: string;
+}
+
 const LearningSection: React.FC = () => {
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
-  const [animate, setAnimate] = useState(false);
   
   const videos: Video[] = [
     {
@@ -45,15 +49,9 @@ const LearningSection: React.FC = () => {
     }
   ];
 
+  // Handle thumbnail click to update the main video
   const handleThumbnailClick = (index: number) => {
-    if (index !== selectedVideoIndex) {
-      setAnimate(true);
-      setSelectedVideoIndex(index);
-      
-      setTimeout(() => {
-        setAnimate(false);
-      }, 500);
-    }
+    setSelectedVideoIndex(index);
   };
 
   return (
@@ -67,32 +65,20 @@ const LearningSection: React.FC = () => {
           </div>
         </div>
         
-        <div className="col-span-1 md:col-span-3 h-full">
-          <div className={cn(
-            "h-full transition-all duration-500",
-            animate && "animate-bounce-in"
-          )}>
-            <ChallengeCard 
-              title="Challenge" 
-              description="Explain AI in your own words"
-              image="/lovable-uploads/476601ed-362d-4cd8-8c62-4b8047535094.png"
-              descriptionClassName="text-sm"
-              className="h-full"
-            />
-          </div>
+        <div className="col-span-1 md:col-span-3">
+          <ChallengeCard 
+            title="Challenge" 
+            description="Explain AI in your own words"
+            image="/lovable-uploads/476601ed-362d-4cd8-8c62-4b8047535094.png"
+            descriptionClassName="text-sm" // Keeping the smaller text class
+          />
         </div>
         
-        <div className="col-span-1 md:col-span-3 h-full">
-          <div className={cn(
-            "h-full transition-all duration-500",
-            animate && "animate-bounce-in"
-          )}>
-            <PlaygroundCard
-              subtitle="You've unlocked"
-              title="Whisk"
-              className="h-full"
-            />
-          </div>
+        <div className="col-span-1 md:col-span-3">
+          <PlaygroundCard
+            subtitle="You've unlocked"
+            title="Whisk"
+          />
         </div>
       </div>
       

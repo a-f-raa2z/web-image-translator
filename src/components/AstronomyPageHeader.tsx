@@ -7,16 +7,16 @@ interface BreadcrumbItem {
   href: string;
 }
 
-interface PageHeaderProps {
+interface AstronomyPageHeaderProps {
   title?: string;
   breadcrumbs?: BreadcrumbItem[];
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ 
-  title = "The Neighbor Worlds",
+const AstronomyPageHeader: React.FC<AstronomyPageHeaderProps> = ({ 
+  title = "Intro to Astronomy",
   breadcrumbs = [
     { label: "Astronomy", href: "#" },
-    { label: "The Neighbor Worlds", href: "#" }
+    { label: "Intro to Astronomy", href: "#" }
   ]
 }) => {
   return (
@@ -44,7 +44,17 @@ const PageHeader: React.FC<PageHeaderProps> = ({
           <div className="flex gap-1">
             <span className="w-6 h-6">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 22V12H15V22M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="#FF8A65" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                {/* Telescope icon */}
+                <path d="M21.9 8.9L20.2 9.9L16.2 3L17.9 2C18.2 1.8 18.6 1.9 18.8 2.2L22.2 7.9C22.4 8.2 22.2 8.7 21.9 8.9Z" stroke="#4299E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M16.2 3L14.5 4L18.5 10.9L20.2 9.9L16.2 3Z" stroke="#4299E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M14.5 4L12.8 5L16.8 11.9L18.5 10.9L14.5 4Z" stroke="#4299E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12.8 5L11.1 6L15.1 12.9L16.8 11.9L12.8 5Z" stroke="#4299E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M11.1 6L9.4 7L13.4 13.9L15.1 12.9L11.1 6Z" stroke="#4299E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.4 7L7.7 8L11.7 14.9L13.4 13.9L9.4 7Z" stroke="#4299E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M7.7 8L6 9L10 15.9L11.7 14.9L7.7 8Z" stroke="#4299E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6 9L4.3 10L8.3 16.9L10 15.9L6 9Z" stroke="#4299E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M4.3 10L2.6 11L6.6 17.9L8.3 16.9L4.3 10Z" stroke="#4299E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M2.6 11L1 12L5 18.9L6.6 17.9L2.6 11Z" stroke="#4299E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </span>
             <h1 className="text-2xl font-bold flex items-center">
@@ -59,17 +69,17 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         <div className="flex items-center gap-3 ml-auto">
           <div className="flex items-center gap-1 bg-white py-1 px-3 rounded-full shadow-sm">
             <Diamond size={16} className="text-blue-400" />
-            <span className="font-semibold">123</span>
+            <span className="font-semibold">87</span>
           </div>
           
           <div className="flex items-center gap-1 bg-white py-1 px-3 rounded-full shadow-sm">
             <Award size={16} className="text-yellow-400" />
-            <span className="font-semibold">6</span>
+            <span className="font-semibold">4</span>
           </div>
           
           <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+              src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
               alt="Profile" 
               className="w-full h-full object-cover"
             />
@@ -80,4 +90,4 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   );
 };
 
-export default PageHeader;
+export default AstronomyPageHeader; 

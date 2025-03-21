@@ -1,78 +1,14 @@
-
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Hash, Book, Gamepad, MapPin, Heart, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar = () => {
-  const location = useLocation();
-  
-  return (
-    <div className="w-16 bg-art-dark fixed left-0 top-0 h-full flex flex-col items-center py-5 z-50 border-r border-gray-800 animate-slide-in">
-      <div className="mb-8">
-        <div className="w-8 h-8 flex items-center justify-center">
-          <img 
-            src="/lovable-uploads/3dc8af34-b172-4695-9e52-39b72b959ce2.png" 
-            alt="Logo" 
-            className="w-7 h-7 object-contain opacity-85"
-          />
-        </div>
-      </div>
-      
-      <nav className="flex-1 w-full">
-        <SidebarItem 
-          icon={<Hash size={20} />} 
-          label="Channel" 
-          to="/"
-          active={location.pathname === '/'}
-        />
-        <SidebarItem 
-          icon={<Book size={20} />} 
-          label="Resource" 
-          to="/"
-        />
-        <SidebarItem 
-          icon={<Gamepad size={20} />} 
-          label="Playground" 
-          to="/"
-        />
-        <SidebarItem 
-          icon={<MapPin size={20} />} 
-          label="Knowledge Map" 
-          to="/knowledge-map"
-          active={location.pathname === '/knowledge-map'}
-        />
-        <SidebarItem 
-          icon={<Heart size={20} />} 
-          label="Favorites" 
-          to="/"
-        />
-        <SidebarItem 
-          icon={<User size={20} />} 
-          label="Profile" 
-          to="/"
-        />
-      </nav>
-      
-      <div className="mt-auto pt-5">
-        <div className="w-8 h-8 rounded-full bg-gray-200 mt-5 overflow-hidden">
-          <img 
-            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
-            alt="Profile" 
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-type SidebarItemProps = {
+interface SidebarItemProps {
   icon: React.ReactNode;
   label: string;
   to: string;
   active?: boolean;
-};
+}
 
 const SidebarItem = ({ icon, label, to, active = false }: SidebarItemProps) => {
   return (
@@ -89,6 +25,63 @@ const SidebarItem = ({ icon, label, to, active = false }: SidebarItemProps) => {
       {icon}
       <span className="text-[9px] mt-1">{label}</span>
     </Link>
+  );
+};
+
+const Sidebar = () => {
+  const location = useLocation();
+
+  return (
+    <div className="fixed left-0 top-0 h-screen w-16 bg-sidebar flex flex-col items-center py-4 z-50">
+      <div className="w-8 h-8 mb-6">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+      
+      <nav className="flex-1 w-full">
+        <SidebarItem 
+          icon={<Hash size={20} />} 
+          label="Astronomy" 
+          to="/"
+          active={location.pathname === '/'}
+        />
+        <SidebarItem 
+          icon={<Hash size={20} />} 
+          label="AI" 
+          to="/ai"
+          active={location.pathname === '/ai'}
+        />
+        <SidebarItem 
+          icon={<Book size={20} />} 
+          label="Resource" 
+          to="/resource"
+        />
+        <SidebarItem 
+          icon={<Gamepad size={20} />} 
+          label="Playground" 
+          to="/playground"
+        />
+        <SidebarItem 
+          icon={<MapPin size={20} />} 
+          label="Knowledge Map" 
+          to="/knowledge-map"
+          active={location.pathname === '/knowledge-map'}
+        />
+        <SidebarItem 
+          icon={<Heart size={20} />} 
+          label="Favorites" 
+          to="/favorites"
+        />
+        <SidebarItem 
+          icon={<User size={20} />} 
+          label="Profile" 
+          to="/profile"
+        />
+      </nav>
+    </div>
   );
 };
 
