@@ -18,20 +18,17 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
   className
 }) => {
   return (
-    <div className={cn("flex bg-white rounded-xl shadow-sm p-3 gap-4", className)}>
+    <div className={cn("flex bg-white rounded-xl shadow-sm p-3 gap-4 hover:shadow-md transition-all duration-300", className)}>
       <div className="flex-shrink-0 w-24 h-24 overflow-hidden rounded-lg">
         <img 
           src={image} 
           alt={title} 
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-1 left-1 bg-white text-black text-xs font-semibold py-1 px-2 rounded">
-          Tue
-        </div>
       </div>
       
       <div className="flex-1">
-        <h3 className="text-base font-bold">{title}</h3>
+        <h3 className="text-base font-bold line-clamp-2">{title}</h3>
         <p className="text-xs text-gray-500 mt-1">{date}</p>
         <p className="text-xs text-gray-500">{location}</p>
         

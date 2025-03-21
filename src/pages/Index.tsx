@@ -106,7 +106,7 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             <div className="col-span-1 md:col-span-6">
-              <div className="h-full rounded-xl overflow-hidden shadow-md">
+              <div className="h-full rounded-xl overflow-hidden shadow-md bg-black">
                 <VideoPlayer videoId={videos[selectedVideoIndex].id} />
                 <div className="p-5 bg-white">
                   <div className="flex items-center justify-between mb-2">
@@ -178,24 +178,24 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <ActivityCard 
-              title="Mobile Makeart: Lighthouse for the Blind"
-              date="Tuesday, March 18"
-              location="Museum of Craft and Design"
-              image="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+              title="Global AI Office Hours - April 2025"
+              date="April 15, 2025"
+              location="Global AI Community"
+              image="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
             />
             
             <ActivityCard 
-              title="Mobile Makeart: Lighthouse for the Blind"
-              date="Tuesday, March 18"
-              location="Museum of Craft and Design"
-              image="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+              title="PIE & AI: New York - LLM Repetitive Task Automation"
+              date="March 25, 2025"
+              location="New York, NY"
+              image="https://images.unsplash.com/photo-1677442135073-18da40bc2b7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
             />
             
             <ActivityCard 
-              title="Mobile Makeart: Lighthouse for the Blind"
-              date="Tuesday, March 18"
-              location="Museum of Craft and Design"
-              image="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+              title="A Worker's Guide to AI in Public Services"
+              date="March 28, 2025"
+              location="London, UK"
+              image="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
             />
           </div>
         </section>

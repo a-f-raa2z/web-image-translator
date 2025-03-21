@@ -34,6 +34,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
           title={title}
           className="w-full h-full object-cover"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          style={{ border: 'none' }}
         />
       </div>
       <p className="text-xs mt-2 font-medium truncate">{title}</p>
