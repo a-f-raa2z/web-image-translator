@@ -8,13 +8,15 @@ interface CommunityCardProps {
   description: string;
   image: string;
   className?: string;
+  link?: string;
 }
 
 const CommunityCard: React.FC<CommunityCardProps> = ({
   title,
   description,
   image,
-  className
+  className,
+  link = "#"
 }) => {
   return (
     <div className={cn("art-card overflow-hidden", className)}>
@@ -30,9 +32,16 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
         <h3 className="text-sm font-bold mt-4">{title}</h3>
         <p className="text-xs text-gray-600 mt-1 line-clamp-3">{description}</p>
         
-        <button className="bg-gray-800 text-white text-xs font-medium py-2 px-4 rounded-lg mt-3 hover:bg-black w-full">
-          Learn More
-        </button>
+        <a 
+          href={link} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="block"
+        >
+          <button className="bg-gray-800 text-white text-xs font-medium py-2 px-4 rounded-lg mt-3 hover:bg-black w-full">
+            Learn More
+          </button>
+        </a>
       </div>
     </div>
   );
