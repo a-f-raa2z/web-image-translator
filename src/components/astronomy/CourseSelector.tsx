@@ -39,6 +39,7 @@ const CourseSelector: React.FC<CourseSelectorProps> = ({ selectedTab }) => {
             className="flex items-center gap-2 px-4 py-1.5 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-colors"
           >
             <span>The Neighbor Worlds</span>
+            <Progress value={66} className="h-1.5 w-16" />
             <ArrowRightLeft size={16} />
           </button>
         </PopoverTrigger>
