@@ -1,10 +1,11 @@
+
 import React from 'react';
 import Sidebar from '@/components/Sidebar';
 import AIPageHeader from '@/components/AIPageHeader';
 import AILearningSection from '@/components/AILearningSection';
 import AIActivitiesSection from '@/components/AIActivitiesSection';
-import AICommunitySection from '@/components/AICommunitySection';
 import AIExploreSection from '@/components/AIExploreSection';
+// Removed the incorrect import for AICommunitySection as it doesn't exist
 
 const Channel2Page = () => {
   return (
@@ -15,7 +16,7 @@ const Channel2Page = () => {
         <AIPageHeader />
         <AILearningSection />
         <AIActivitiesSection />
-        <AICommunitySection />
+        {/* Removed AICommunitySection as it doesn't exist */}
         <AIExploreSection />
       </div>
     </div>

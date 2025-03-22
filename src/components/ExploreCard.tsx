@@ -7,6 +7,7 @@ interface ExploreCardProps {
   title?: string;
   image: string;
   badge?: string;
+  description?: string;
   className?: string;
 }
 
@@ -14,6 +15,7 @@ const ExploreCard: React.FC<ExploreCardProps> = ({
   title,
   image,
   badge,
+  description,
   className
 }) => {
   return (
@@ -33,11 +35,10 @@ const ExploreCard: React.FC<ExploreCardProps> = ({
         )}
       </div>
       
-      {title && (
-        <div className="p-3">
-          <h3 className="text-sm font-medium">{title}</h3>
-        </div>
-      )}
+      <div className="p-3">
+        {title && <h3 className="text-sm font-medium">{title}</h3>}
+        {description && <p className="text-xs text-gray-500 mt-1">{description}</p>}
+      </div>
     </div>
   );
 };

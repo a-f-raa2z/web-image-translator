@@ -13,7 +13,7 @@ const Index = () => {
       <Sidebar />
       
       <div className="ml-16 p-6 animate-fade-in">
-        <AstronomyPageHeaderPageHeader />
+        <AstronomyPageHeader />
         <LearningSection />
         <ActivitiesSection />
         <CommunitySection />
