@@ -3,6 +3,7 @@ import React from 'react';
 import { cn } from "@/lib/utils";
 import { VideoItem, VideoCategory } from './types';
 import CardTypeIndicator, { CardType } from './CardTypeIndicator';
+import { Images } from 'lucide-react';
 
 interface VideoTabThumbnailProps {
   video: VideoItem;
@@ -25,6 +26,9 @@ const VideoTabThumbnail: React.FC<VideoTabThumbnailProps> = ({
     }
     return `https://img.youtube.com/vi/${video.id}/mqdefault.jpg`;
   };
+  
+  // Check if video has gallery content
+  const hasGallery = video.cardTypes?.includes('gallerycard');
   
   return (
     <button
@@ -52,6 +56,13 @@ const VideoTabThumbnail: React.FC<VideoTabThumbnailProps> = ({
           />
         ))}
       </div>
+      
+      {/* Gallery icon indicator */}
+      {hasGallery && (
+        <div className="absolute top-1 left-1 bg-black/60 rounded-md p-1">
+          <Images size={16} className="text-white" />
+        </div>
+      )}
       
       <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-black/80 to-transparent">
         <p className="text-white text-xs font-medium truncate">{video.title}</p>

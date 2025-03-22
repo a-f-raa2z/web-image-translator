@@ -13,7 +13,7 @@ export const useCourseVideoData = (): VideoData => {
       { id: 'mrYjJ9Jl9dA', title: 'What Earth', duration: '19:18', cardTypes: ['questioncard', 'playgroundcard'] }
     ],
     moon: [
-      { id: '6AviDjR9mmo', title: 'Moon 101', duration: '3:05', cardTypes: ['challengecard'] },
+      { id: '6AviDjR9mmo', title: 'Moon 101', duration: '3:05', cardTypes: ['challengecard', 'gallerycard'] },
       { 
         id: 'TkBtN6jes8U', 
         title: 'Amazing Timelapse Supermoon', 
