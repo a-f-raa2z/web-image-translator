@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { VideoCategory, VideoData, VideoItem } from './types';
 import { cn } from "@/lib/utils";
@@ -34,7 +33,6 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
       );
     }
     
-    // Handle YouTube shorts format
     const videoUrl = video.id.startsWith('http') 
       ? video.id 
       : `https://www.youtube.com/embed/${video.id}?autoplay=0`;
@@ -52,7 +50,7 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
 
   return (
     <div className="grid grid-cols-12 gap-4 mb-6">
-      <div className="col-span-12 md:col-span-6">
+      <div className="col-span-12 md:col-span-7">
         <div className={cn(
           "bg-black rounded-xl overflow-hidden transition-all duration-500",
           animate && "transform scale-95"
@@ -61,7 +59,6 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
             {renderVideo(selectedVideo)}
           </div>
         </div>
-        {/* Removed the h3 tag that displayed the video title */}
       </div>
       
       <VideoContentCards 
