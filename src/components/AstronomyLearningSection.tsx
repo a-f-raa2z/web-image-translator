@@ -71,7 +71,10 @@ const AstronomyLearningSection: React.FC = () => {
   return (
     <section className="mb-10">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold">My Learning</h2>
+        <div className="flex items-center gap-4">
+          <h2 className="text-xl font-semibold">My Learning</h2>
+          <span className="text-gray-600 font-medium">Current Course: The Neighbor Worlds</span>
+        </div>
         <div className="flex items-center gap-2 w-48">
           <Progress value={getProgressValue()} className="h-2" />
           <span className="text-sm text-gray-500">{getProgressValue()}%</span>
