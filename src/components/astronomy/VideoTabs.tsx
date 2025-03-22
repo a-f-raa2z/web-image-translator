@@ -54,68 +54,87 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
     return `https://img.youtube.com/vi/${video.id}/mqdefault.jpg`;
   };
   
-  // Determine card type and icon for each video
-  const getCardDetails = (videoTitle: string, tabName: VideoCategory) => {
+  // Generate card types and icons for videos
+  const getCardIcons = (video: VideoItem, tabName: VideoCategory) => {
+    const icons = [];
+    
+    // Return the cardTypes if already defined
+    if (video.cardTypes && video.cardTypes.length > 0) {
+      return video.cardTypes.map(type => {
+        switch(type) {
+          case 'challengecard':
+            return { 
+              type: 'challengecard', 
+              icon: <Trophy size={18} className="text-orange-500" />,
+              bgColor: 'bg-orange-500/10'
+            };
+          case 'questioncard':
+            return { 
+              type: 'questioncard', 
+              icon: <HelpCircle size={18} className="text-blue-500" />,
+              bgColor: 'bg-blue-500/10'
+            };
+          case 'playgroundcard':
+            return { 
+              type: 'playgroundcard', 
+              icon: <PenTool size={18} className="text-purple-500" />,
+              bgColor: 'bg-purple-500/10'
+            };
+          default:
+            return null;
+        }
+      }).filter(Boolean);
+    }
+    
+    // Legacy code for backward compatibility
     // For intro tab
     if (tabName === 'intro') {
-      if (videoTitle === 'Solar System 101') {
-        return { 
+      if (video.title === 'Solar System 101' || video.title === 'The Inner Planets') {
+        icons.push({ 
           type: 'challengecard', 
           icon: <Trophy size={18} className="text-orange-500" />,
           bgColor: 'bg-orange-500/10'
-        };
-      }
-      if (videoTitle === 'The Inner Planets') {
-        return { 
-          type: 'challengecard', 
-          icon: <Trophy size={18} className="text-orange-500" />,
-          bgColor: 'bg-orange-500/10'
-        };
+        });
       }
     }
     
     // For earth tab
     if (tabName === 'earth') {
-      if (videoTitle === 'Earth 101') {
-        return { 
+      if (video.title === 'Earth 101') {
+        icons.push({ 
           type: 'challengecard', 
           icon: <Trophy size={18} className="text-orange-500" />,
           bgColor: 'bg-orange-500/10'
-        };
+        });
       }
-      if (videoTitle === 'What Earth') {
-        return { 
+      if (video.title === 'What Earth') {
+        icons.push({ 
           type: 'questioncard', 
           icon: <HelpCircle size={18} className="text-blue-500" />,
           bgColor: 'bg-blue-500/10'
-        };
+        });
       }
     }
     
     // For moon tab
     if (tabName === 'moon') {
-      if (videoTitle === 'Moon 101' || videoTitle === 'Amazing Timelapse Supermoon') {
-        return { 
+      if (video.title === 'Moon 101' || video.title === 'Amazing Timelapse Supermoon') {
+        icons.push({ 
           type: 'challengecard', 
           icon: <Trophy size={18} className="text-orange-500" />,
           bgColor: 'bg-orange-500/10'
-        };
+        });
       }
-      if (videoTitle === 'Lunar Eclipse 101' || videoTitle === 'Solar Eclipse 101') {
-        return { 
+      if (video.title === 'Lunar Eclipse 101' || video.title === 'Solar Eclipse 101') {
+        icons.push({ 
           type: 'playgroundcard', 
           icon: <PenTool size={18} className="text-purple-500" />,
           bgColor: 'bg-purple-500/10'
-        };
+        });
       }
     }
     
-    // Default
-    return { 
-      type: 'playgroundcard', 
-      icon: <PenTool size={18} className="text-purple-500" />,
-      bgColor: 'bg-purple-500/10'
-    };
+    return icons;
   };
   
   return (
@@ -134,7 +153,7 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
           <div className="relative">
             <div className="grid grid-cols-4 gap-2">
               {videos.map((video, index) => {
-                const cardDetails = getCardDetails(video.title, tabName);
+                const cardIcons = getCardIcons(video, tabName);
                 
                 return (
                   <button
@@ -152,13 +171,22 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
                       alt={video.title}
                       className="w-full h-full object-cover"
                     />
-                    {/* Card type indicator */}
-                    <div className={cn(
-                      "absolute top-1 right-1 p-1 rounded-md",
-                      cardDetails.bgColor
-                    )}>
-                      {cardDetails.icon}
+                    
+                    {/* Card type indicators */}
+                    <div className="absolute top-1 right-1 flex space-x-1">
+                      {cardIcons.map((card, i) => (
+                        <div 
+                          key={`${card.type}-${i}`}
+                          className={cn(
+                            "p-1 rounded-md",
+                            card.bgColor
+                          )}
+                        >
+                          {card.icon}
+                        </div>
+                      ))}
                     </div>
+                    
                     <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-black/80 to-transparent">
                       <p className="text-white text-xs font-medium truncate">{video.title}</p>
                       <p className="text-white/80 text-[10px]">{video.duration}</p>

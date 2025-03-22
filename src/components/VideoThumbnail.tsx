@@ -9,7 +9,7 @@ interface VideoThumbnailProps {
   title: string;
   isSelected?: boolean;
   onClick?: () => void;
-  cardType?: 'challengecard' | 'playgroundcard' | 'questioncard';
+  cardTypes?: ('challengecard' | 'playgroundcard' | 'questioncard')[];
 }
 
 const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ 
@@ -17,14 +17,14 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
   title, 
   isSelected = false,
   onClick,
-  cardType
+  cardTypes = []
 }) => {
   // Generate YouTube thumbnail URL
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
 
-  // Card type icon and color mapping
-  const getCardDetails = () => {
-    switch (cardType) {
+  // Get icon and color for each card type
+  const getCardDetails = (type: string) => {
+    switch (type) {
       case 'challengecard':
         return { 
           icon: <Trophy size={16} className="text-orange-500" />,
@@ -44,8 +44,6 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
         return null;
     }
   };
-
-  const cardDetails = cardType ? getCardDetails() : null;
 
   return (
     <div 
@@ -71,15 +69,25 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
           />
         </AspectRatio>
         
-        {/* Card type indicator */}
-        {cardDetails && (
-          <div className={cn(
-            "absolute top-1 right-1 p-1 rounded-md",
-            cardDetails.bgColor
-          )}>
-            {cardDetails.icon}
-          </div>
-        )}
+        {/* Card type indicators */}
+        <div className="absolute top-1 right-1 flex space-x-1">
+          {cardTypes.map((type, index) => {
+            const details = getCardDetails(type);
+            if (!details) return null;
+            
+            return (
+              <div 
+                key={`${type}-${index}`} 
+                className={cn(
+                  "p-1 rounded-md",
+                  details.bgColor
+                )}
+              >
+                {details.icon}
+              </div>
+            );
+          })}
+        </div>
       </div>
       <p className="text-xs mt-1 font-medium truncate">{title}</p>
     </div>
