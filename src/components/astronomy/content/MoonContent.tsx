@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import { cn } from "@/lib/utils";
 import AstronomyChallengeCard from '../../AstronomyChallengeCard';
 import AstronomyPlaygroundCard from '../../AstronomyPlaygroundCard';
 import GalleryCard from '../GalleryCard';
-import { Dialog, DialogContent, DialogTitle, DialogHeader, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogHeader } from "@/components/ui/dialog";
 import { ExternalLink } from 'lucide-react';
 
 interface MoonContentProps {
@@ -54,9 +53,6 @@ const MoonContent: React.FC<MoonContentProps> = ({
           <DialogContent className="sm:max-w-[90vw] sm:max-h-[90vh]">
             <DialogHeader>
               <DialogTitle>Moon Gallery | NASA</DialogTitle>
-              <DialogDescription>
-                Beautiful images of Earth's natural satellite
-              </DialogDescription>
             </DialogHeader>
             <div className="overflow-hidden rounded-lg">
               <img 
