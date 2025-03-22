@@ -19,7 +19,6 @@ const EarthContent: React.FC<EarthContentProps> = ({
   selectedVideoTitle,
   animate
 }) => {
-  const [showAnswer, setShowAnswer] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   
   const form = useForm({
@@ -41,13 +40,17 @@ const EarthContent: React.FC<EarthContentProps> = ({
           <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
             <AstronomyChallengeCard 
               title="Blue Planet Highlights"
-              description={showAnswer ? "What did you learn from the Blue Planet series?" : "BBC Documentary"}
+              description="What did you learn from the Blue Planet series?"
               videoId="Iyq4U1k5rRc"
-              descriptionClassName={showAnswer ? "text-base mb-3" : "text-sm"}
+              descriptionClassName="text-base mb-3"
               className="h-full"
-              onClick={() => !isSubmitted && setShowAnswer(true)}
             >
-              {showAnswer && (
+              {isSubmitted ? (
+                <div className="bg-green-100 p-2 rounded-md text-xs text-green-800 flex items-center">
+                  <Check size={14} className="mr-1" />
+                  Answer submitted successfully!
+                </div>
+              ) : (
                 <div className="mt-2">
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
@@ -60,27 +63,19 @@ const EarthContent: React.FC<EarthContentProps> = ({
                               <Textarea 
                                 placeholder="Write your answer here..." 
                                 className="bg-orange-100 min-h-[60px] text-black"
-                                disabled={isSubmitted}
                                 {...field}
                               />
                             </FormControl>
                           </FormItem>
                         )}
                       />
-                      {!isSubmitted ? (
-                        <Button 
-                          type="submit" 
-                          className="bg-orange-200 hover:bg-orange-300 text-black/80 w-full"
-                        >
-                          <Send size={16} className="mr-2" />
-                          Submit Answer
-                        </Button>
-                      ) : (
-                        <div className="bg-green-100 p-2 rounded-md text-xs text-green-800 flex items-center">
-                          <Check size={14} className="mr-1" />
-                          Answer submitted successfully!
-                        </div>
-                      )}
+                      <Button 
+                        type="submit" 
+                        className="bg-orange-200 hover:bg-orange-300 text-black/80 w-full"
+                      >
+                        <Send size={16} className="mr-2" />
+                        Submit Answer
+                      </Button>
                     </form>
                   </Form>
                 </div>

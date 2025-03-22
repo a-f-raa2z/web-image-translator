@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Trophy, Play, Send } from 'lucide-react';
+import { Trophy, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
@@ -89,8 +89,7 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
                 variant="secondary" 
                 className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto"
               >
-                <Play size={16} className="mr-2" />
-                <span>Watch Video Series</span>
+                Watch Video Series
               </Button>
             ) : (
               <Form {...form}>

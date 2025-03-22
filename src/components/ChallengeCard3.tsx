@@ -1,12 +1,11 @@
 
 import React from 'react';
-import { Trophy } from 'lucide-react';
+import { Trophy, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
-import { Send } from 'lucide-react';
 
 interface ChallengeCard3Props {
   title: string; 
