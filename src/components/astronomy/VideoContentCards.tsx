@@ -37,17 +37,15 @@ const VideoContentCards: React.FC<VideoContentCardsProps> = ({
           <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
             <div 
               onClick={() => setShowVideosDialog(true)}
-              className="cursor-pointer hover:scale-105 transition-transform duration-300"
+              className="cursor-pointer h-full"
             >
               <AstronomyChallengeCard 
                 title="🎬 The Planets In Our Solar System"
                 description="Watch this playlist to learn about all planets in our solar system"
                 descriptionClassName="text-sm"
-                className="h-full relative"
+                className="h-full"
+                hasVideos={true}
               />
-              <div className="absolute bottom-3 right-3 bg-purple-600 text-white rounded-full p-1.5">
-                <PlayCircle className="h-5 w-5" />
-              </div>
             </div>
           </div>
           
@@ -69,17 +67,15 @@ const VideoContentCards: React.FC<VideoContentCardsProps> = ({
           <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
             <div 
               onClick={() => setShowImageDialog(true)}
-              className="cursor-pointer hover:scale-105 transition-transform duration-300"
+              className="cursor-pointer h-full"
             >
               <AstronomyPlaygroundCard
                 subtitle="Sneak Peak"
                 title="Solar System | NASA"
                 className="h-full"
                 image="/lovable-uploads/solar.png"
+                isExpandable={true}
               />
-              <div className="absolute bottom-3 right-3 bg-white/80 text-purple-600 rounded-full p-1.5">
-                <ExternalLink className="h-5 w-5" />
-              </div>
             </div>
           </div>
           

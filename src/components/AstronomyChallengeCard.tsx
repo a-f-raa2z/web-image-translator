@@ -10,6 +10,7 @@ interface AstronomyChallengeCardProps {
   className?: string;
   videoId?: string;
   onClick?: () => void;
+  hasVideos?: boolean;
 }
 
 const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
@@ -18,7 +19,8 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
   descriptionClassName,
   className,
   videoId = "lcZTcfdZ3Ow",
-  onClick
+  onClick,
+  hasVideos
 }) => {
   return (
     <div 
@@ -58,8 +60,17 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
         
         <div className="mt-auto pt-4">
           <div className="flex items-center gap-2">
-            <Award size={16} className="text-purple-600" />
-            <span className="text-sm text-purple-600">Earn Space Explorer Badge</span>
+            {hasVideos ? (
+              <>
+                <Play size={16} className="text-purple-600" />
+                <span className="text-sm text-purple-600">Watch Video Series</span>
+              </>
+            ) : (
+              <>
+                <Award size={16} className="text-purple-600" />
+                <span className="text-sm text-purple-600">Earn Space Explorer Badge</span>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -67,4 +78,4 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
   );
 };
 
-export default AstronomyChallengeCard; 
+export default AstronomyChallengeCard;
