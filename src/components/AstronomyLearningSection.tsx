@@ -8,7 +8,7 @@ import MainVideoSection from './astronomy/MainVideoSection';
 import VideoTabs from './astronomy/VideoTabs';
 import { VideoCategory, VideoData } from './astronomy/types';
 import { Progress } from "@/components/ui/progress";
-import { ArrowRight, Lock, SwapIcon } from "lucide-react";
+import { ArrowRight, Lock, ArrowRightLeft } from "lucide-react";
 
 const AstronomyLearningSection: React.FC = () => {
   const [selectedIntroVideoIndex, setSelectedIntroVideoIndex] = useState(0);
@@ -76,7 +76,7 @@ const AstronomyLearningSection: React.FC = () => {
             className="flex items-center gap-2 px-4 py-1.5 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-colors"
           >
             <span>The Neighbor Worlds</span>
-            <SwapIcon size={16} />
+            <ArrowRightLeft size={16} />
           </button>
         </div>
         <div className="flex items-center gap-2 w-48">
