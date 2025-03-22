@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import AIActivitiesSection from './AIActivitiesSection';
 import AICommunitiesSection from './AICommunitiesSection';
-import AIExploreSection;
+import AIExploreSection from './AIExploreSection';
 
 const AILearningSection: React.FC = () => {
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
