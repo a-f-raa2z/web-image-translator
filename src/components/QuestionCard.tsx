@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { HelpCircle } from 'lucide-react';
 
 interface QuestionCardProps {
   option1: string;
@@ -22,8 +22,9 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ option1, option2, option3, 
 
   return (
     <div className={`relative rounded-lg overflow-hidden shadow-md ${className}`}>
-      <div className="absolute top-2 left-3 z-10 bg-green-100 px-2 py-1 rounded text-xs font-semibold text-green-700">
-        Question
+      <div className="absolute top-2 left-3 z-10 bg-green-100 px-2 py-1 rounded text-xs font-semibold text-green-700 flex items-center gap-1">
+        <HelpCircle size={14} />
+        <span>Question</span>
       </div>
       
       <img

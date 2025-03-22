@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Star, Award, Play } from 'lucide-react';
+import { Star, Award, Play, Trophy } from 'lucide-react';
 
 interface ChallengeCard2Props {
   title?: string;
@@ -23,8 +23,9 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
       "bg-purple-50 rounded-xl shadow-md overflow-hidden h-full flex flex-col border border-purple-200",
       className
     )}>
-      <div className="absolute top-2 left-3 z-10 bg-yellow-100 px-2 py-1 rounded text-xs font-semibold text-yellow-700">
-        Challenge
+      <div className="absolute top-2 left-3 z-10 bg-yellow-100 px-2 py-1 rounded text-xs font-semibold text-yellow-700 flex items-center gap-1">
+        <Trophy size={14} />
+        <span>Challenge</span>
       </div>
 
       <div className="w-full aspect-video relative group cursor-pointer">

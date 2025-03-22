@@ -2,6 +2,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
+import { Trophy } from 'lucide-react';
 
 interface ChallengeCardProps {
   title: string;
@@ -26,8 +27,9 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
       color,
       className
     )}>
-      <div className="absolute top-2 left-3 z-10 bg-orange-100 px-2 py-1 rounded text-xs font-semibold text-orange-700">
-        Challenge
+      <div className="absolute top-2 left-3 z-10 bg-orange-100 px-2 py-1 rounded text-xs font-semibold text-orange-700 flex items-center gap-1">
+        <Trophy size={14} />
+        <span>Challenge</span>
       </div>
       
       {image && (
