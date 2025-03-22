@@ -22,17 +22,8 @@ const CourseSelector: React.FC<CourseSelectorProps> = ({ selectedTab }) => {
     { id: 5, title: "Space Exploration History", progress: 30, active: false },
   ];
 
-  const getProgressValue = () => {
-    switch(selectedTab) {
-      case 'intro': return 33;
-      case 'earth': return 66;
-      case 'moon': return 100;
-      default: return 33;
-    }
-  };
-
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center">
       <Popover>
         <PopoverTrigger asChild>
           <button 
@@ -68,11 +59,6 @@ const CourseSelector: React.FC<CourseSelectorProps> = ({ selectedTab }) => {
           </div>
         </PopoverContent>
       </Popover>
-      
-      <div className="flex items-center gap-2 w-48">
-        <Progress value={getProgressValue()} className="h-2" />
-        <span className="text-sm text-gray-500">{getProgressValue()}%</span>
-      </div>
     </div>
   );
 };
