@@ -19,15 +19,43 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
 }) => {
   const tabName = selectedTab as VideoCategory;
   
+  // Custom content based on the selected tab
+  const getTabContent = () => {
+    switch(selectedTab) {
+      case 'intro':
+        return {
+          title: "Hello, Neighbors!",
+          description: "Embark on a cosmic journey through the wonders of space. Learn about stars, planets, galaxies, and the mysteries of our universe."
+        };
+      case 'earth':
+        return {
+          title: "Our Home Planet",
+          description: "Explore Earth, the blue marble in space. Discover its unique atmosphere, diverse ecosystems, and the only known world to harbor life in our solar system."
+        };
+      case 'moon':
+        return {
+          title: "Earth's Natural Satellite",
+          description: "Discover the Moon, Earth's faithful companion. Learn about its phases, craters, and the incredible impact it has on our planet's tides and rhythms."
+        };
+      default:
+        return {
+          title: "Hello, Neighbors!",
+          description: "Embark on a cosmic journey through the wonders of space. Learn about stars, planets, galaxies, and the mysteries of our universe."
+        };
+    }
+  };
+
+  const content = getTabContent();
+  
   return (
     <TabsContent value={selectedTab} className="mt-0">
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-12 md:col-span-3">
           <h3 className="text-lg font-semibold text-gray-900 mb-1">
-            Hello, Neighbors!
+            {content.title}
           </h3>
           <p className="text-gray-600 text-xs">
-            Embark on a cosmic journey through the wonders of space. Learn about stars, planets, galaxies, and the mysteries of our universe.
+            {content.description}
           </p>
         </div>
 
