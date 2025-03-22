@@ -21,13 +21,6 @@ export const useCourseVideoData = (): VideoData => {
         source: 'youtube',
         cardTypes: ['challengecard']
       },
-      { 
-        id: '0GZTVDM3b3M', 
-        title: 'Beautiful Moon Phase', 
-        duration: '0:30',
-        source: 'youtube',
-        cardTypes: ['questioncard']
-      },
       { id: 'VW2xRR75lKE', title: 'Lunar Eclipse 101', duration: '2:14', cardTypes: ['playgroundcard'] },
       { id: 'cxrLRbkOwKs', title: 'Solar Eclipse 101', duration: '2:14', cardTypes: ['playgroundcard', 'challengecard'] }
     ]
