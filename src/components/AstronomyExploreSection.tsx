@@ -91,6 +91,69 @@ const AstronomyExploreSection: React.FC = () => {
       source: 'xiaohongshu',
       sourceUrl: 'https://www.xiaohongshu.com/user/profile/67857599000000000803e1c5',
       author: 'CosmicWanderer'
+    },
+    {
+      id: '10',
+      title: 'Jupiter's Great Red Spot: A Shrinking Giant',
+      description: 'Latest observations show changes in Jupiter's famous storm',
+      imageUrl: 'https://astronomy.com/favicon.ico',
+      source: 'astronomy',
+      sourceUrl: 'https://www.astronomy.com/science/jupiters-great-red-spot-update/',
+      author: 'Astronomy.com'
+    },
+    {
+      id: '11',
+      title: 'Perseid Meteor Shower: Peak Viewing Times',
+      description: 'How to catch one of the year's most spectacular meteor showers',
+      imageUrl: 'https://www.nasa.gov/wp-content/themes/nasa/assets/images/favicon-192.png',
+      source: 'nasa',
+      sourceUrl: 'https://science.nasa.gov/solar-system/meteors-meteorites/perseids/',
+      author: 'NASA Science'
+    },
+    {
+      id: '12',
+      title: 'New Images of Distant Galaxies Reveal Universe Secrets',
+      description: 'James Webb Space Telescope captures unprecedented details of early universe',
+      imageUrl: 'https://www.nasa.gov/wp-content/themes/nasa/assets/images/favicon-192.png',
+      source: 'nasa',
+      sourceUrl: 'https://www.nasa.gov/missions/webb/seeing-farther-webb-takes-a-deeper-look-at-ultra-deep-fields/',
+      author: 'NASA Webb'
+    },
+    {
+      id: '13',
+      title: 'Astronaut Shows Daily Life on the ISS',
+      description: 'See what it's like to live in space through astronaut vlogs',
+      imageUrl: 'https://sf16-scmcdn-sg.ibytedtos.com/goofy/tiktok/web/node/_next/static/images/logo-7328701c.svg',
+      source: 'tiktok',
+      sourceUrl: 'https://www.tiktok.com/@nasa/video/7341048538294916398',
+      author: 'NASA'
+    },
+    {
+      id: '14',
+      title: 'The Search for Extraterrestrial Intelligence',
+      description: 'Current projects and methods scientists use to look for alien life',
+      imageUrl: 'https://astronomy.com/favicon.ico',
+      source: 'astronomy',
+      sourceUrl: 'https://www.astronomy.com/science/the-search-for-extraterrestrial-intelligence/',
+      author: 'Astronomy.com'
+    },
+    {
+      id: '15',
+      title: 'Building Your First Telescope: DIY Guide',
+      description: 'Step-by-step instructions for amateur astronomers',
+      imageUrl: 'https://ci.xiaohongshu.com/favicon.ico',
+      source: 'xiaohongshu',
+      sourceUrl: 'https://www.xiaohongshu.com/user/profile/6790a21d000000000802f7a1',
+      author: 'TelescopeMaker'
+    },
+    {
+      id: '16',
+      title: 'Northern Lights: Best Viewing Locations for 2025',
+      description: 'Plan your trip to see the aurora borealis',
+      imageUrl: 'https://ci.xiaohongshu.com/favicon.ico',
+      source: 'xiaohongshu',
+      sourceUrl: 'https://www.xiaohongshu.com/user/profile/6792b31e000000000803d1a2',
+      author: 'AuroraHunter'
     }
   ];
 
