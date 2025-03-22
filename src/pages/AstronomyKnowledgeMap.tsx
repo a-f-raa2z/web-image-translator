@@ -20,98 +20,10 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import { KnowledgeMapNode } from '@/components/astronomy/types';
 
-// Custom geometric node components
-const CourseNode = ({ data }: { data: KnowledgeMapNode }) => {
-  let ShapeComponent;
-  
-  // Base classes for all shapes
-  const baseClasses = `w-64 p-4 shadow-md overflow-hidden border ${
-    data.isCurrent ? 'border-blue-500 border-2' : 'border-gray-200'
-  }`;
-  
-  switch (data.shape) {
-    case 'circle':
-      ShapeComponent = (
-        <div className={`${baseClasses} rounded-full aspect-square flex flex-col justify-center items-center`} style={{ backgroundColor: data.color }}>
-          <div className="p-4 bg-white rounded-full w-[90%] h-[90%] flex flex-col justify-center">
-            <CourseContent data={data} />
-          </div>
-        </div>
-      );
-      break;
-    case 'hexagon':
-      ShapeComponent = (
-        <div className={`${baseClasses} relative`} style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)', backgroundColor: data.color }}>
-          <div className="absolute inset-[10%] bg-white flex flex-col justify-center p-4" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
-            <CourseContent data={data} />
-          </div>
-        </div>
-      );
-      break;
-    case 'diamond':
-      ShapeComponent = (
-        <div className={`${baseClasses} relative`} style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)', backgroundColor: data.color }}>
-          <div className="absolute inset-[10%] bg-white flex flex-col justify-center p-4" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}>
-            <CourseContent data={data} />
-          </div>
-        </div>
-      );
-      break;
-    case 'triangle':
-      ShapeComponent = (
-        <div className={`${baseClasses} relative`} style={{ clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)', backgroundColor: data.color }}>
-          <div className="absolute inset-[10%] bg-white flex flex-col justify-center p-4" style={{ clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)' }}>
-            <CourseContent data={data} />
-          </div>
-        </div>
-      );
-      break;
-    case 'square':
-      ShapeComponent = (
-        <div className={`${baseClasses} relative`} style={{ backgroundColor: data.color }}>
-          <div className="absolute inset-[8%] bg-white flex flex-col justify-center p-4">
-            <CourseContent data={data} />
-          </div>
-        </div>
-      );
-      break;
-    case 'pentagon':
-      ShapeComponent = (
-        <div className={`${baseClasses} relative`} style={{ clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)', backgroundColor: data.color }}>
-          <div className="absolute inset-[10%] bg-white flex flex-col justify-center p-4" style={{ clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' }}>
-            <CourseContent data={data} />
-          </div>
-        </div>
-      );
-      break;
-    case 'octagon':
-      ShapeComponent = (
-        <div className={`${baseClasses} relative`} style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)', backgroundColor: data.color }}>
-          <div className="absolute inset-[10%] bg-white flex flex-col justify-center p-4" style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' }}>
-            <CourseContent data={data} />
-          </div>
-        </div>
-      );
-      break;
-    case 'rectangle':
-    default:
-      ShapeComponent = (
-        <div className={`${baseClasses} relative rounded-xl`} style={{ backgroundColor: data.color }}>
-          <div className="absolute inset-[8%] bg-white rounded-lg flex flex-col justify-center p-4">
-            <CourseContent data={data} />
-          </div>
-        </div>
-      );
-      break;
-  }
-  
-  return ShapeComponent;
-};
-
 // Course content inside the shape
 const CourseContent = ({ data }: { data: KnowledgeMapNode }) => {
   return (
-    <>
+    <div className="p-4 bg-white rounded-lg shadow-md border border-gray-100 w-64">
       <div className="flex items-center justify-between mb-2">
         <h3 className="font-semibold text-lg">{data.label}</h3>
         {data.isCurrent && <Star className="text-blue-500 fill-blue-500" size={18} />}
@@ -133,7 +45,7 @@ const CourseContent = ({ data }: { data: KnowledgeMapNode }) => {
           </Button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
@@ -149,7 +61,7 @@ const TopicNode = ({ data }: { data: KnowledgeMapNode }) => {
 };
 
 const nodeTypes: NodeTypes = {
-  course: CourseNode,
+  course: CourseContent,
   topic: TopicNode,
 };
 
@@ -158,75 +70,67 @@ const AstronomyKnowledgeMap = () => {
   const courseShapes = useMemo(() => [
     {
       id: 'neighbor-worlds',
-      shape: 'circle',
-      color: '#8B5CF6', // Purple
       label: 'The Neighbor Worlds',
       description: 'Explore Earth, Moon, and Mars',
       progress: 64,
       isCurrent: true,
+      color: '#8B5CF6', // Purple
       topics: ['earth', 'moon', 'mars', 'space-travel']
     },
     {
       id: 'solar-system',
-      shape: 'hexagon',
-      color: '#10B981', // Green
       label: 'The Solar System', 
       description: 'The Sun and its planetary system',
       progress: 28,
+      color: '#10B981', // Green
       topics: ['sun', 'inner-planets', 'outer-planets', 'asteroid-belt', 'comets']
     },
     {
       id: 'deep-space',
-      shape: 'diamond',
-      color: '#F97316', // Orange
       label: 'Deep Space Objects', 
       description: 'Nebulae, Black Holes and more',
       progress: 10,
+      color: '#F97316', // Orange
       topics: ['galaxies', 'nebulae', 'black-holes', 'neutron-stars']
     },
     {
       id: 'stellar-evolution',
-      shape: 'triangle',
-      color: '#0EA5E9', // Blue
       label: 'Stellar Evolution', 
       description: 'Birth and death of stars',
       progress: 0,
+      color: '#0EA5E9', // Blue
       topics: ['star-formation', 'main-sequence', 'red-giants', 'supernovae', 'white-dwarfs']
     },
     {
       id: 'cosmology',
-      shape: 'pentagon',
-      color: '#EC4899', // Pink
       label: 'Cosmology', 
       description: 'Study of the universe origin and fate',
       progress: 0,
+      color: '#EC4899', // Pink
       topics: ['big-bang', 'cosmic-microwave', 'dark-matter', 'dark-energy', 'expansion']
     },
     {
       id: 'exoplanets',
-      shape: 'square',
-      color: '#EAB308', // Yellow
       label: 'Exoplanets', 
       description: 'Planets beyond our solar system',
       progress: 0,
+      color: '#EAB308', // Yellow
       topics: ['detection-methods', 'habitable-zone', 'planetary-systems', 'exomoons']
     },
     {
       id: 'space-technology',
-      shape: 'rectangle',
-      color: '#A855F7', // Purple
       label: 'Space Technology', 
       description: 'Telescopes, missions and instruments',
       progress: 5,
+      color: '#A855F7', // Purple
       topics: ['optical-telescopes', 'radio-telescopes', 'space-missions', 'launch-vehicles', 'satellites']
     },
     {
       id: 'astrobiology',
-      shape: 'octagon',
-      color: '#14B8A6', // Teal
       label: 'Astrobiology', 
       description: 'Search for life in the universe',
       progress: 0,
+      color: '#14B8A6', // Teal
       topics: ['origin-of-life', 'extremophiles', 'biosignatures', 'habitability', 'seti']
     },
   ], []);
@@ -255,11 +159,11 @@ const AstronomyKnowledgeMap = () => {
         type: 'course',
         position: coursePositions[index],
         data: { 
+          id: course.id,
           label: course.label, 
           description: course.description,
           progress: course.progress,
           isCurrent: course.isCurrent,
-          shape: course.shape as any,
           color: course.color
         },
         draggable: true,
@@ -285,6 +189,7 @@ const AstronomyKnowledgeMap = () => {
               y: coursePositions[index].y + yOffset 
             },
             data: { 
+              id: `${course.id}-${topic}`,
               label: formatTopicName(topic), 
               color: course.color
             },
@@ -360,7 +265,7 @@ const AstronomyKnowledgeMap = () => {
               <Background color="#f1f5f9" gap={16} />
               <Panel position="top-right" className="bg-white p-3 rounded-md shadow-md">
                 <div className="text-sm text-gray-600">
-                  <h3 className="font-semibold mb-2">Courses by Shape</h3>
+                  <h3 className="font-semibold mb-2">Courses by Color</h3>
                   <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                     {courseShapes.map((course) => (
                       <div key={course.id} className="flex items-center">
