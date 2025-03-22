@@ -3,7 +3,6 @@ import React from 'react';
 import { VideoCategory, VideoData, VideoItem } from './types';
 import { cn } from "@/lib/utils";
 import VideoContentCards from './VideoContentCards';
-import CardTypeIndicator from './CardTypeIndicator';
 
 interface MainVideoSectionProps {
   selectedTab: VideoCategory;
@@ -57,12 +56,7 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
             {renderVideo(selectedVideo)}
           </div>
         </div>
-        <div className="mt-3 flex items-center gap-2">
-          {selectedVideo.cardTypes && selectedVideo.cardTypes.map((type, index) => (
-            <CardTypeIndicator key={`${type}-${index}`} type={type} />
-          ))}
-          <h3 className="text-lg font-semibold">{selectedVideo.title}</h3>
-        </div>
+        <h3 className="mt-3 text-lg font-semibold">{selectedVideo.title}</h3>
       </div>
       
       <VideoContentCards 
