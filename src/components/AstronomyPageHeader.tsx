@@ -55,9 +55,6 @@ const AstronomyPageHeader: React.FC<AstronomyPageHeaderProps> = ({
               </button>
             </h1>
           </div>
-          <Button variant="outline" size="sm" className="ml-2">
-            Change Course
-          </Button>
         </div>
         
         <div className="flex items-center gap-3 ml-auto">
