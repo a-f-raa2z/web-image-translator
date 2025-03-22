@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Hash, Book, Gamepad, MapPin, Heart, User } from 'lucide-react';
+import { Hash, Heart, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SidebarItemProps {
@@ -53,22 +54,6 @@ const Sidebar = () => {
           label="AI" 
           to="/ai"
           active={location.pathname === '/ai'}
-        />
-        <SidebarItem 
-          icon={<Book size={20} />} 
-          label="Resource" 
-          to="/resource"
-        />
-        <SidebarItem 
-          icon={<Gamepad size={20} />} 
-          label="Playground" 
-          to="/playground"
-        />
-        <SidebarItem 
-          icon={<MapPin size={20} />} 
-          label="Knowledge Map" 
-          to="/knowledge-map"
-          active={location.pathname === '/knowledge-map'}
         />
         <SidebarItem 
           icon={<Heart size={20} />} 
