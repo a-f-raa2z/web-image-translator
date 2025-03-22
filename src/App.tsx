@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +7,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import KnowledgeMap from "./pages/KnowledgeMap";
+import AstronomyKnowledgeMap from "./pages/AstronomyKnowledgeMap";
+import AstronomyResource from "./pages/AstronomyResource";
+import AstronomyPlayground from "./pages/AstronomyPlayground";
 import Sidebar from "@/components/Sidebar";
 import PageHeader from "@/components/PageHeader";
 import AIPageHeader from "@/components/AIPageHeader";
@@ -25,7 +29,7 @@ const App = () => (
             <div className="min-h-screen bg-gray-50">
               <Sidebar />
               <div className="ml-16 p-6 animate-fade-in">
-                <PageHeader />
+                <AstronomyPageHeader />
                 <AstronomyLearningSection />
               </div>
             </div>
@@ -39,7 +43,9 @@ const App = () => (
               </div>
             </div>
           } />
-          <Route path="/knowledge-map" element={<KnowledgeMap />} />
+          <Route path="/knowledge-map" element={<AstronomyKnowledgeMap />} />
+          <Route path="/resource" element={<AstronomyResource />} />
+          <Route path="/playground" element={<AstronomyPlayground />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

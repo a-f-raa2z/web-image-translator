@@ -2,7 +2,7 @@
 import React from 'react';
 import { Edit, Diamond, Award, Globe } from 'lucide-react';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
-import { Button } from '@/components/ui/button';
+import TabNavigation from './astronomy/TabNavigation';
 
 interface BreadcrumbItem {
   label: string;
@@ -76,6 +76,10 @@ const AstronomyPageHeader: React.FC<AstronomyPageHeaderProps> = ({
             />
           </div>
         </div>
+      </div>
+      
+      <div className="mt-6">
+        <TabNavigation defaultValue="course" />
       </div>
     </header>
   );
