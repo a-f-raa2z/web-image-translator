@@ -209,6 +209,68 @@ const VideoContentCards: React.FC<VideoContentCardsProps> = ({
     );
   }
 
+  // Amazing Timelapse Supermoon
+  if (selectedTab === 'moon' && selectedVideoTitle === 'Amazing Timelapse Supermoon') {
+    return (
+      <>
+        <div className="col-span-12 md:col-span-3">
+          <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
+            <AstronomyChallengeCard 
+              title="🌓 Moon Phases"
+              description="Learn about the different phases of the moon and how they affect Earth"
+              descriptionClassName="text-sm"
+              className="h-full"
+            />
+          </div>
+        </div>
+        <div className="col-span-12 md:col-span-3">
+          <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
+            <QuestionCard
+              option1="A) 27.3 days"
+              option2="B) 29.5 days"
+              option3="C) 30.4 days" 
+              option4="D) 31 days"
+              title="How long does it take for the Moon to complete one orbit around Earth?"
+              className="h-full"
+              image="/lovable-uploads/moon.png"
+            />
+          </div>
+        </div>
+      </>
+    );
+  }
+  
+  // Beautiful Moon Phase
+  if (selectedTab === 'moon' && selectedVideoTitle === 'Beautiful Moon Phase') {
+    return (
+      <>
+        <div className="col-span-12 md:col-span-3">
+          <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
+            <QuestionCard
+              option1="A) Waxing Crescent"
+              option2="B) First Quarter" 
+              option3="C) Waxing Gibbous"
+              option4="D) Full Moon"
+              title="What phase comes after the New Moon?"
+              className="h-full"
+              image="/lovable-uploads/moon.png"
+            />
+          </div>
+        </div>
+        <div className="col-span-12 md:col-span-3">
+          <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
+            <AstronomyPlaygroundCard
+              subtitle="Interactive Moon Phases"
+              title="🌔 Moon Phase Explorer"
+              className="h-full"
+              image="/lovable-uploads/moon.png"
+            />
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return null;
 };
 
