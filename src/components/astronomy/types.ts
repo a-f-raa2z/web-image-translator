@@ -24,4 +24,7 @@ export interface ExploreContentItem {
   likes?: number;
   saves?: number;
   author?: string;
+  hasVideos?: boolean;
+  isExpandable?: boolean;
+  videos?: VideoItem[];
 }

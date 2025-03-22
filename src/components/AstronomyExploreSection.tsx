@@ -1,13 +1,18 @@
-
 import React, { useState } from 'react';
-import { Search } from 'lucide-react';
+import { Search, PlayCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import PinterestLayout from './astronomy/PinterestLayout';
 import { ExploreContentItem } from './astronomy/types';
+import VideoList from './astronomy/VideoList';
+import ImageViewer from './astronomy/ImageViewer';
 
 const AstronomyExploreSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [showVideoDialog, setShowVideoDialog] = useState(false);
+  const [showImageDialog, setShowImageDialog] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<ExploreContentItem | null>(null);
 
   // Sample data with added favicon/domain images
   const exploreItems: ExploreContentItem[] = [
@@ -36,7 +41,13 @@ const AstronomyExploreSection: React.FC = () => {
       imageUrl: 'https://www.nasa.gov/wp-content/themes/nasa/assets/images/favicon-192.png',
       source: 'nasa',
       sourceUrl: 'https://plus.nasa.gov/playlist/nasa-chill/',
-      author: 'NASA'
+      author: 'NASA',
+      hasVideos: true,
+      videos: [
+        { id: 'tnbSIbsF4t4', title: 'Webb's First Deep Field Image Explained', duration: '2:45' },
+        { id: 'uUZUxTIwzh0', title: 'Webb Captures a Star Going Supernova', duration: '1:56' },
+        { id: 'R1UhP_NJPFk', title: 'Webb Telescope Year One Discoveries', duration: '4:27' }
+      ]
     },
     {
       id: '4',
@@ -117,7 +128,8 @@ const AstronomyExploreSection: React.FC = () => {
       imageUrl: 'https://www.nasa.gov/wp-content/themes/nasa/assets/images/favicon-192.png',
       source: 'nasa',
       sourceUrl: 'https://www.nasa.gov/missions/webb/seeing-farther-webb-takes-a-deeper-look-at-ultra-deep-fields/',
-      author: 'NASA Webb'
+      author: 'NASA Webb',
+      isExpandable: true
     },
     {
       id: '13',
@@ -166,6 +178,15 @@ const AstronomyExploreSection: React.FC = () => {
       )
     : exploreItems;
 
+  const handleCardClick = (item: ExploreContentItem) => {
+    setSelectedItem(item);
+    if (item.hasVideos) {
+      setShowVideoDialog(true);
+    } else if (item.isExpandable) {
+      setShowImageDialog(true);
+    }
+  };
+
   return (
     <section>
       <h2 className="text-xl font-bold mb-4">Explore More</h2>
@@ -193,7 +214,27 @@ const AstronomyExploreSection: React.FC = () => {
         </div>
       </div>
       
-      <PinterestLayout items={filteredItems} />
+      <PinterestLayout items={filteredItems} onCardClick={handleCardClick} />
+
+      {/* Video Dialog */}
+      <Dialog open={showVideoDialog} onOpenChange={setShowVideoDialog}>
+        <DialogContent className="sm:max-w-[680px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <PlayCircle className="h-5 w-5 text-blue-500" />
+              <span>{selectedItem?.title} Videos</span>
+            </DialogTitle>
+          </DialogHeader>
+          {selectedItem?.videos && <VideoList videos={selectedItem.videos} />}
+        </DialogContent>
+      </Dialog>
+
+      {/* Image Dialog */}
+      <Dialog open={showImageDialog} onOpenChange={setShowImageDialog}>
+        <DialogContent className="sm:max-w-[80vw] sm:max-h-[80vh]">
+          {selectedItem && <ImageViewer item={selectedItem} />}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ExternalLink, Heart, Bookmark } from 'lucide-react';
+import { ExternalLink, Heart, Bookmark, Film, Maximize } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import { ExploreContentItem } from './types';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -8,6 +8,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 interface PinterestCardProps {
   item: ExploreContentItem;
   className?: string;
+  onClick?: (item: ExploreContentItem) => void;
 }
 
 // Astronomy placeholder images
@@ -23,7 +24,7 @@ const placeholderImages = [
   "/lovable-uploads/solar.png" // Solar system (from your uploads)
 ];
 
-const PinterestCard: React.FC<PinterestCardProps> = ({ item, className }) => {
+const PinterestCard: React.FC<PinterestCardProps> = ({ item, className, onClick }) => {
   // Get a deterministic but seemingly random placeholder image based on the item id
   const getPlaceholderImage = (id: string) => {
     // Simple hash function to convert id string to a number
@@ -33,7 +34,11 @@ const PinterestCard: React.FC<PinterestCardProps> = ({ item, className }) => {
   };
 
   const handleCardClick = () => {
-    window.open(item.sourceUrl, '_blank');
+    if (onClick && (item.hasVideos || item.isExpandable)) {
+      onClick(item);
+    } else {
+      window.open(item.sourceUrl, '_blank');
+    }
   };
 
   return (
@@ -83,6 +88,7 @@ const PinterestCard: React.FC<PinterestCardProps> = ({ item, className }) => {
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-gray-500 hover:text-purple-500 transition-colors"
+              onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink size={16} />
             </a>
@@ -92,6 +98,20 @@ const PinterestCard: React.FC<PinterestCardProps> = ({ item, className }) => {
         <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded-full">
           {item.source}
         </div>
+
+        {item.hasVideos && (
+          <div className="absolute top-2 left-2 bg-blue-500 bg-opacity-75 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+            <Film size={12} />
+            <span>Videos</span>
+          </div>
+        )}
+
+        {item.isExpandable && (
+          <div className="absolute top-2 left-2 bg-purple-500 bg-opacity-75 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+            <Maximize size={12} />
+            <span>Expand</span>
+          </div>
+        )}
       </div>
     </div>
   );
