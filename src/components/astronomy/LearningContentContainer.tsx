@@ -47,7 +47,7 @@ const LearningContentContainer: React.FC<LearningContentContainerProps> = ({
           onTabChange={onTabChange}
         />
 
-        <div className="bg-white rounded-xl p-4 border border-gray-200">
+        <div className="bg-white rounded-xl p-4 border border-gray-200 mt-4">
           <VideoTabs 
             selectedTab={selectedTab}
             videos={videoData[selectedTab]}

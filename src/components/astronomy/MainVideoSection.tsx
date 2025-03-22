@@ -52,16 +52,15 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
 
   return (
     <div className="grid grid-cols-12 gap-4 mb-6">
-      <div className="col-span-12 md:col-span-6">
+      <div className="col-span-12 md:col-span-6 h-full">
         <div className={cn(
-          "bg-black rounded-xl overflow-hidden transition-all duration-500",
+          "bg-black rounded-xl overflow-hidden transition-all duration-500 h-full flex flex-col",
           animate && "transform scale-95"
         )}>
-          <div className="relative pb-[56.25%] h-0">
+          <div className="relative pb-[56.25%] h-0 w-full flex-grow">
             {renderVideo(selectedVideo)}
           </div>
         </div>
-        {/* Removed the h3 tag that displayed the video title */}
       </div>
       
       <VideoContentCards 

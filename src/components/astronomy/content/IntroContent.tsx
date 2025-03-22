@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { cn } from "@/lib/utils";
 import AstronomyChallengeCard from '../../AstronomyChallengeCard';
 import GalleryCard from '../GalleryCard';
-import { Dialog, DialogContent, DialogTitle, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogHeader, DialogDescription } from "@/components/ui/dialog";
 import { PlayCircle, ExternalLink, Music, PenTool } from 'lucide-react';
 import VideoList from '../VideoList';
 import { Card, CardContent } from "@/components/ui/card";
@@ -35,7 +35,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
   if (selectedVideoTitle === 'Solar System 101') {
     return (
       <>
-        <div className="col-span-12 md:col-span-3">
+        <div className="col-span-12 md:col-span-3 h-full">
           <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
             <div 
               onClick={() => setShowNasaSimulator(true)}
@@ -59,6 +59,9 @@ const IntroContent: React.FC<IntroContentProps> = ({
                   <PenTool className="h-5 w-5 text-purple-500" />
                   <span>NASA's Eye on the Solar System</span>
                 </DialogTitle>
+                <DialogDescription className="text-sm text-gray-500">
+                  An interactive 3D visualization of the solar system from NASA
+                </DialogDescription>
               </DialogHeader>
               <div className="w-full h-[80vh]">
                 <iframe 
@@ -72,7 +75,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
           </Dialog>
         </div>
         
-        <div className="col-span-12 md:col-span-3">
+        <div className="col-span-12 md:col-span-3 h-full">
           <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
             <div 
               onClick={() => setShowImageDialog(true)}
@@ -93,6 +96,9 @@ const IntroContent: React.FC<IntroContentProps> = ({
             <DialogContent className="sm:max-w-[90vw] sm:max-h-[90vh]">
               <DialogHeader>
                 <DialogTitle>Solar System | NASA</DialogTitle>
+                <DialogDescription>
+                  Images and information about our solar system from NASA
+                </DialogDescription>
               </DialogHeader>
               <div className="overflow-hidden rounded-lg">
                 <img 
@@ -125,7 +131,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
   // The Inner Planets
   if (selectedVideoTitle === 'The Inner Planets') {
     return (
-      <div className="col-span-12 md:col-span-3">
+      <div className="col-span-12 md:col-span-3 h-full">
         <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
           <div 
             onClick={() => setShowMovieDialog(true)}
@@ -163,6 +169,9 @@ const IntroContent: React.FC<IntroContentProps> = ({
                 <Music className="h-5 w-5 text-yellow-500" />
                 <span>Movie Night: Interstellar</span>
               </DialogTitle>
+              <DialogDescription>
+                Organize a space-themed movie night with friends
+              </DialogDescription>
             </DialogHeader>
             <div className="p-4">
               <img 

@@ -27,10 +27,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId }) => {
 
   return (
     <div className={cn(
-      "w-full overflow-hidden rounded-xl bg-black transition-all duration-500",
+      "w-full h-full overflow-hidden rounded-xl bg-black transition-all duration-500",
       isChanging ? "scale-95 opacity-80" : "scale-100 opacity-100"
     )}>
-      <AspectRatio ratio={16/9}>
+      <AspectRatio ratio={16/9} className="h-full">
         <div className={`w-full h-full transition-opacity duration-300 ${isChanging ? 'opacity-0' : 'opacity-100'}`}>
           <iframe 
             src={embedUrl}
