@@ -17,7 +17,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
   title,
   description,
   image,
-  color = "bg-orange-500", // Changed from "bg-art-yellow" to "bg-orange-500"
+  color = "bg-orange-500",
   className,
   descriptionClassName
 }) => {
@@ -33,12 +33,14 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
       </div>
       
       {image && (
-        <div className="absolute bottom-0 right-0 z-0 opacity-100">
-          <img 
-            src={image} 
-            alt={title} 
-            className="h-60 object-contain" 
-          />
+        <div className="absolute top-3 right-3 z-10">
+          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md">
+            <img 
+              src={image} 
+              alt={title} 
+              className="w-full h-full object-cover" 
+            />
+          </div>
         </div>
       )}
       
