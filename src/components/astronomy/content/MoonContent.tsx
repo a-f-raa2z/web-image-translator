@@ -1,8 +1,11 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { cn } from "@/lib/utils";
 import AstronomyChallengeCard from '../../AstronomyChallengeCard';
 import AstronomyPlaygroundCard from '../../AstronomyPlaygroundCard';
+import GalleryCard from '../GalleryCard';
+import { Dialog, DialogContent, DialogTitle, DialogHeader, DialogDescription } from "@/components/ui/dialog";
+import { ExternalLink } from 'lucide-react';
 
 interface MoonContentProps {
   selectedVideoTitle: string;
@@ -13,6 +16,8 @@ const MoonContent: React.FC<MoonContentProps> = ({
   selectedVideoTitle,
   animate
 }) => {
+  const [showMoonGalleryDialog, setShowMoonGalleryDialog] = useState(false);
+
   // Moon 101
   if (selectedVideoTitle === 'Moon 101') {
     return (
@@ -29,14 +34,53 @@ const MoonContent: React.FC<MoonContentProps> = ({
         </div>
         <div className="col-span-12 md:col-span-3">
           <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
-            <AstronomyPlaygroundCard
-              title="Hold a movie night and dive deep into the innerspace"
-              subtitle="Interactive Learning"
-              image="/lovable-uploads/moon.png"
-              className="h-full"
-            />
+            <div 
+              onClick={() => setShowMoonGalleryDialog(true)}
+              className="cursor-pointer h-full"
+            >
+              <GalleryCard
+                subtitle="NASA Collection"
+                title="Moon Gallery"
+                image="/lovable-uploads/moon.png"
+                className="h-full"
+                isExpandable={true}
+              />
+            </div>
           </div>
         </div>
+
+        {/* Moon Gallery Dialog */}
+        <Dialog open={showMoonGalleryDialog} onOpenChange={setShowMoonGalleryDialog}>
+          <DialogContent className="sm:max-w-[90vw] sm:max-h-[90vh]">
+            <DialogHeader>
+              <DialogTitle>Moon Gallery | NASA</DialogTitle>
+              <DialogDescription>
+                Beautiful images of Earth's natural satellite
+              </DialogDescription>
+            </DialogHeader>
+            <div className="overflow-hidden rounded-lg">
+              <img 
+                src="/lovable-uploads/moon.png" 
+                alt="Moon" 
+                className="w-full h-auto object-contain max-h-[70vh]"
+              />
+              <div className="p-4 bg-white">
+                <h3 className="text-lg font-semibold">Our Moon</h3>
+                <p className="text-gray-600 mt-2">
+                  The Moon is Earth's only natural satellite and the fifth largest moon in the solar system. Its presence helps stabilize our planet's wobble and moderate our climate. The Moon's distance from Earth is about 238,855 miles (384,400 kilometers).
+                </p>
+                <a 
+                  href="https://moon.nasa.gov/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center mt-4 text-indigo-600 hover:underline"
+                >
+                  Learn more at NASA Moon <ExternalLink className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </>
     );
   }
