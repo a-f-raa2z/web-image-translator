@@ -113,7 +113,9 @@ const MoonContent: React.FC<MoonContentProps> = ({
               "🌘 Lunar Eclipse Simulator" : 
               "🌞 Solar Eclipse Simulator"}
             className="h-full"
-            image="/lovable-uploads/c7dd59b9-9959-4b74-9033-d5a95dc665d8.png"
+            image={selectedVideoTitle === 'Lunar Eclipse 101' ?
+              "/lovable-uploads/c7dd59b9-9959-4b74-9033-d5a95dc665d8.png" :
+              "/lovable-uploads/6df851e5-406c-47b1-a2bc-8c1619837a86.png"}
           />
         </div>
       </div>
