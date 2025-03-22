@@ -1,7 +1,9 @@
+
 import React from 'react';
 import { TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { VideoCategory, VideoItem } from './types';
+import { Trophy, PenTool, HelpCircle } from 'lucide-react';
 
 interface VideoTabsProps {
   selectedTab: string;
@@ -52,6 +54,70 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
     return `https://img.youtube.com/vi/${video.id}/mqdefault.jpg`;
   };
   
+  // Determine card type and icon for each video
+  const getCardDetails = (videoTitle: string, tabName: VideoCategory) => {
+    // For intro tab
+    if (tabName === 'intro') {
+      if (videoTitle === 'Solar System 101') {
+        return { 
+          type: 'challengecard', 
+          icon: <Trophy size={18} className="text-orange-500" />,
+          bgColor: 'bg-orange-500/10'
+        };
+      }
+      if (videoTitle === 'The Inner Planets') {
+        return { 
+          type: 'challengecard', 
+          icon: <Trophy size={18} className="text-orange-500" />,
+          bgColor: 'bg-orange-500/10'
+        };
+      }
+    }
+    
+    // For earth tab
+    if (tabName === 'earth') {
+      if (videoTitle === 'Earth 101') {
+        return { 
+          type: 'challengecard', 
+          icon: <Trophy size={18} className="text-orange-500" />,
+          bgColor: 'bg-orange-500/10'
+        };
+      }
+      if (videoTitle === 'What Earth') {
+        return { 
+          type: 'questioncard', 
+          icon: <HelpCircle size={18} className="text-blue-500" />,
+          bgColor: 'bg-blue-500/10'
+        };
+      }
+    }
+    
+    // For moon tab
+    if (tabName === 'moon') {
+      if (videoTitle === 'Moon 101' || videoTitle === 'Amazing Timelapse Supermoon') {
+        return { 
+          type: 'challengecard', 
+          icon: <Trophy size={18} className="text-orange-500" />,
+          bgColor: 'bg-orange-500/10'
+        };
+      }
+      if (videoTitle === 'Lunar Eclipse 101' || videoTitle === 'Solar Eclipse 101') {
+        return { 
+          type: 'playgroundcard', 
+          icon: <PenTool size={18} className="text-purple-500" />,
+          bgColor: 'bg-purple-500/10'
+        };
+      }
+    }
+    
+    // Default
+    return { 
+      type: 'playgroundcard', 
+      icon: <PenTool size={18} className="text-purple-500" />,
+      bgColor: 'bg-purple-500/10'
+    };
+  };
+  
   return (
     <TabsContent value={selectedTab} className="mt-0">
       <div className="grid grid-cols-12 gap-4">
@@ -67,28 +133,39 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
         <div className="col-span-12 md:col-span-9">
           <div className="relative">
             <div className="grid grid-cols-4 gap-2">
-              {videos.map((video, index) => (
-                <button
-                  key={video.id}
-                  onClick={() => onThumbnailClick(index, tabName)}
-                  className={cn(
-                    "relative rounded-lg overflow-hidden aspect-video bg-gray-100 transition-all",
-                    index === selectedVideoIndex 
-                      ? "ring-2 ring-purple-500" 
-                      : "hover:ring-2 hover:ring-purple-300"
-                  )}
-                >
-                  <img
-                    src={getThumbnail(video)}
-                    alt={video.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-black/80 to-transparent">
-                    <p className="text-white text-xs font-medium truncate">{video.title}</p>
-                    <p className="text-white/80 text-[10px]">{video.duration}</p>
-                  </div>
-                </button>
-              ))}
+              {videos.map((video, index) => {
+                const cardDetails = getCardDetails(video.title, tabName);
+                
+                return (
+                  <button
+                    key={video.id}
+                    onClick={() => onThumbnailClick(index, tabName)}
+                    className={cn(
+                      "relative rounded-lg overflow-hidden aspect-video bg-gray-100 transition-all",
+                      index === selectedVideoIndex 
+                        ? "ring-2 ring-purple-500" 
+                        : "hover:ring-2 hover:ring-purple-300"
+                    )}
+                  >
+                    <img
+                      src={getThumbnail(video)}
+                      alt={video.title}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Card type indicator */}
+                    <div className={cn(
+                      "absolute top-1 right-1 p-1 rounded-md",
+                      cardDetails.bgColor
+                    )}>
+                      {cardDetails.icon}
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-black/80 to-transparent">
+                      <p className="text-white text-xs font-medium truncate">{video.title}</p>
+                      <p className="text-white/80 text-[10px]">{video.duration}</p>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

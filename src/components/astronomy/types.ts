@@ -5,6 +5,7 @@ export interface VideoItem {
   duration: string;
   source?: 'youtube' | 'tiktok';
   tiktokUrl?: string;
+  cardType?: 'challengecard' | 'playgroundcard' | 'questioncard';
 }
 
 export type VideoCategory = 'intro' | 'earth' | 'moon';
