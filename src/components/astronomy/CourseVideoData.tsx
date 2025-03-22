@@ -6,7 +6,7 @@ export const useCourseVideoData = (): VideoData => {
   const videoData: VideoData = {
     intro: [
       { id: 'libKVRa01L8', title: 'Solar System 101', duration: '4:10', cardTypes: ['challengecard'] },
-      { id: '05E1uMh15QQ', title: 'The Inner Planets', duration: '2:12', cardTypes: ['challengecard'] },
+      { id: '05E1uMh15QQ', title: 'The Inner Planets', duration: '2:12', cardTypes: ['partycard'] },
     ],
     earth: [
       { id: 'HCDVN7DCzYE', title: 'Earth 101', duration: '3:32', cardTypes: ['challengecard'] },

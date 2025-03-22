@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { Trophy, PenTool, HelpCircle, Image } from 'lucide-react';
+import { Trophy, PenTool, HelpCircle, Image, Music } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
-export type CardType = 'challengecard' | 'questioncard' | 'playgroundcard' | 'gallerycard';
+export type CardType = 'challengecard' | 'questioncard' | 'playgroundcard' | 'gallerycard' | 'partycard';
 
 interface CardTypeIndicatorProps {
   type: CardType;
@@ -34,6 +34,12 @@ export const getCardDetails = (type: CardType) => {
         icon: <Image size={16} className="text-white" />,
         bgColor: 'bg-indigo-400',
         label: 'Gallery'
+      };
+    case 'partycard':
+      return { 
+        icon: <Music size={16} className="text-white" />,
+        bgColor: 'bg-yellow-400',
+        label: 'Party'
       };
     default:
       return null;

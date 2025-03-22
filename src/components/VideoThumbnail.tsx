@@ -2,14 +2,14 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Trophy, PenTool, HelpCircle } from 'lucide-react';
+import { Trophy, PenTool, HelpCircle, Music } from 'lucide-react';
 
 interface VideoThumbnailProps {
   videoId: string;
   title: string;
   isSelected?: boolean;
   onClick?: () => void;
-  cardTypes?: ('challengecard' | 'playgroundcard' | 'questioncard')[];
+  cardTypes?: ('challengecard' | 'playgroundcard' | 'questioncard' | 'partycard')[];
 }
 
 const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ 
@@ -42,6 +42,12 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
           icon: <PenTool size={16} className="text-white" />,
           bgColor: 'bg-purple-300',
           label: 'Playground'
+        };
+      case 'partycard':
+        return { 
+          icon: <Music size={16} className="text-white" />,
+          bgColor: 'bg-yellow-300',
+          label: 'Party'
         };
       default:
         return null;

@@ -4,8 +4,9 @@ import { cn } from "@/lib/utils";
 import AstronomyChallengeCard from '../../AstronomyChallengeCard';
 import GalleryCard from '../GalleryCard';
 import { Dialog, DialogContent, DialogTitle, DialogHeader } from "@/components/ui/dialog";
-import { PlayCircle, ExternalLink } from 'lucide-react';
+import { PlayCircle, ExternalLink, Music } from 'lucide-react';
 import VideoList from '../VideoList';
+import { Card, CardContent } from "@/components/ui/card";
 
 interface IntroContentProps {
   selectedVideoTitle: string;
@@ -18,6 +19,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
 }) => {
   const [showVideosDialog, setShowVideosDialog] = useState(false);
   const [showImageDialog, setShowImageDialog] = useState(false);
+  const [showMovieDialog, setShowMovieDialog] = useState(false);
   
   // Videos for the Solar System challenge card
   const solarSystemVideos = [
@@ -115,10 +117,69 @@ const IntroContent: React.FC<IntroContentProps> = ({
   if (selectedVideoTitle === 'The Inner Planets') {
     return (
       <div className="col-span-12 md:col-span-3">
-        <AstronomyChallengeCard 
-          title="🎬 Movie: Interstellar"
-          description="Hold a Movie Night and Dive deep into the Innerspace."
-        />
+        <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
+          <div 
+            onClick={() => setShowMovieDialog(true)}
+            className="cursor-pointer h-full"
+          >
+            <Card className="h-full overflow-hidden shadow-md hover:shadow-lg transition-all relative bg-yellow-100 border-yellow-300">
+              <div className="absolute top-2 left-3 z-10 bg-yellow-100 px-2 py-1 rounded text-xs font-semibold text-yellow-700 flex items-center gap-1">
+                <Music size={14} />
+                <span>Party</span>
+              </div>
+              
+              <div className="h-40 overflow-hidden">
+                <img 
+                  src="/lovable-uploads/interstellar.jpeg" 
+                  alt="Interstellar movie" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              <CardContent className="p-4">
+                <h3 className="text-lg font-semibold">🎬 Movie: Interstellar</h3>
+                <p className="text-sm text-gray-600 mt-2">
+                  Hold a Movie Night and Dive deep into the Innerspace.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+        
+        {/* Movie Dialog */}
+        <Dialog open={showMovieDialog} onOpenChange={setShowMovieDialog}>
+          <DialogContent className="sm:max-w-[680px]">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <Music className="h-5 w-5 text-yellow-500" />
+                <span>Movie Night: Interstellar</span>
+              </DialogTitle>
+            </DialogHeader>
+            <div className="p-4">
+              <img 
+                src="/lovable-uploads/interstellar.jpeg" 
+                alt="Interstellar movie" 
+                className="w-full h-auto rounded-lg mb-4"
+              />
+              <h3 className="text-lg font-semibold">About the Movie</h3>
+              <p className="text-gray-600 mt-2">
+                Interstellar is a 2014 epic science fiction film directed and produced by Christopher Nolan. 
+                It stars Matthew McConaughey, Anne Hathaway, Jessica Chastain, and Michael Caine. Set in a 
+                dystopian future where humanity is struggling to survive, the film follows a group of astronauts 
+                who travel through a wormhole near Saturn in search of a new home for mankind.
+              </p>
+              <div className="mt-4">
+                <h4 className="font-medium">Party Ideas:</h4>
+                <ul className="list-disc pl-5 mt-2 text-gray-600">
+                  <li>Make space-themed snacks</li>
+                  <li>Create a "space" atmosphere with dim lighting and star projectors</li>
+                  <li>Prepare discussion topics about space travel and relativity</li>
+                  <li>Have guests bring astronomy facts to share</li>
+                </ul>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }
