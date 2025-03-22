@@ -10,31 +10,31 @@ export function useKnowledgeMapElements() {
     const courseNodes: Node<KnowledgeMapNode>[] = [];
     const topicNodes: Node<KnowledgeMapNode>[] = [];
     
-    // Calculate base positions
-    const coursePositions = [
-      { x: 300, y: 100 },  // 0
-      { x: 800, y: 100 },  // 1
-      { x: 300, y: 400 },  // 2
-      { x: 800, y: 400 },  // 3
-      { x: 300, y: 700 },  // 4
-      { x: 800, y: 700 },  // 5
-      { x: 300, y: 1000 }, // 6
-      { x: 800, y: 1000 }, // 7
-    ];
+    // Calculate positions in a circle
+    const centerX = 550;
+    const centerY = 400;
+    const radius = 350;
+    const courseCount = courseShapes.length;
     
-    // Create course nodes
+    // Create course nodes in a circle
     courseShapes.forEach((course, index) => {
+      // Calculate angle and position for course node
+      const angle = (2 * Math.PI * index) / courseCount;
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
+      
       courseNodes.push({
         id: course.id,
         type: 'course',
-        position: coursePositions[index],
+        position: { x, y },
         data: { 
           id: course.id,
           label: course.label, 
           description: course.description,
           progress: course.progress,
           isCurrent: course.isCurrent,
-          color: course.color
+          color: course.color,
+          backgroundColor: course.backgroundColor
         },
         draggable: true,
       });
@@ -43,20 +43,16 @@ export function useKnowledgeMapElements() {
       if (course.topics) {
         const topicCount = course.topics.length;
         course.topics.forEach((topic, topicIndex) => {
-          // Position topics in a semicircle around the course
-          const angle = (Math.PI / (topicCount + 1)) * (topicIndex + 1);
-          const xOffset = Math.cos(angle) * 250;
-          const yOffset = Math.sin(angle) * 150;
-          
-          // Adjust based on which side of the screen we're on
-          const directionMultiplier = index % 2 === 0 ? -1 : 1;
+          // Position topics in a small arc around each course
+          const topicAngle = angle + ((Math.PI / 3) * (topicIndex - (topicCount - 1) / 2)) / topicCount;
+          const topicRadius = 150;
           
           topicNodes.push({
             id: `${course.id}-${topic}`,
             type: 'topic',
             position: { 
-              x: coursePositions[index].x + (directionMultiplier * xOffset), 
-              y: coursePositions[index].y + yOffset 
+              x: x + topicRadius * Math.cos(topicAngle), 
+              y: y + topicRadius * Math.sin(topicAngle)
             },
             data: { 
               id: `${course.id}-${topic}`,

@@ -7,7 +7,12 @@ import { KnowledgeMapNode } from '@/components/astronomy/types';
 
 const CourseNode = ({ data }: { data: KnowledgeMapNode }) => {
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md border border-gray-100 w-64">
+    <div 
+      className="p-4 rounded-lg shadow-md border border-gray-100 w-64"
+      style={{ 
+        backgroundColor: data.backgroundColor || '#ffffff',
+      }}
+    >
       <div className="flex items-center justify-between mb-2">
         <h3 className="font-semibold text-lg">{data.label}</h3>
         {data.isCurrent && <Star className="text-blue-500 fill-blue-500" size={18} />}

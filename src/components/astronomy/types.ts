@@ -41,5 +41,6 @@ export interface KnowledgeMapNode {
   icon?: React.FC<any>;
   shape?: 'circle' | 'hexagon' | 'diamond' | 'triangle' | 'rectangle' | 'square' | 'pentagon' | 'octagon';
   color?: string;
+  backgroundColor?: string;
   topics?: string[];
 }

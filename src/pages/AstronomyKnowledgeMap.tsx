@@ -3,7 +3,6 @@ import React from 'react';
 import Sidebar from '@/components/Sidebar';
 import AstronomyPageHeader from '@/components/AstronomyPageHeader';
 import { Star } from 'lucide-react';
-import TabNavigation from '@/components/astronomy/TabNavigation';
 import KnowledgeMapFlow from '@/components/astronomy/knowledge-map/KnowledgeMapFlow';
 
 const AstronomyKnowledgeMap = () => {
@@ -13,7 +12,6 @@ const AstronomyKnowledgeMap = () => {
       
       <div className="ml-16 p-6 animate-fade-in">
         <AstronomyPageHeader />
-        <TabNavigation />
         
         <div className="bg-white p-6 rounded-xl shadow-sm">
           <h2 className="text-xl font-bold mb-6 flex items-center gap-2">

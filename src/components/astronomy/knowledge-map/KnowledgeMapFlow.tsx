@@ -5,16 +5,13 @@ import ReactFlow, {
   Background,
   NodeTypes,
   useNodesState,
-  useEdgesState,
-  Panel
+  useEdgesState
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
 import { useKnowledgeMapElements } from './useKnowledgeMapElements';
 import CourseNode from './CourseNode';
 import TopicNode from './TopicNode';
-import ColorLegendPanel from './ColorLegendPanel';
-import { courseShapes } from './courseData';
 
 const nodeTypes: NodeTypes = {
   course: CourseNode,
@@ -42,7 +39,6 @@ const KnowledgeMapFlow = () => {
       >
         <Controls showInteractive={false} className="bg-white shadow-md rounded-md" />
         <Background color="#f1f5f9" gap={16} />
-        <ColorLegendPanel courseShapes={courseShapes} />
       </ReactFlow>
     </div>
   );
