@@ -71,7 +71,8 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
           animate && "transform scale-95"
         )}>
           <div className={cn(
-            "relative pb-[56.25%] h-0",
+            "relative pb-[56.25%] h-0", 
+            // Maintain the same height but make the width narrower for shorts
             selectedVideo.isShort && "flex justify-center items-center"
           )}>
             {renderVideo(selectedVideo)}

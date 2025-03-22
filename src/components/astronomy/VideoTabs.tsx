@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
@@ -74,7 +73,7 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
                   onClick={() => onThumbnailClick(index, tabName)}
                   className={cn(
                     "relative rounded-lg overflow-hidden aspect-video bg-gray-100 transition-all",
-                    video.isShort && "aspect-[9/16] w-[calc(100%-15px)] mx-auto",
+                    video.isShort && "mx-auto w-[calc(100%-25px)]",
                     index === selectedVideoIndex 
                       ? "ring-2 ring-purple-500" 
                       : "hover:ring-2 hover:ring-purple-300"
@@ -85,7 +84,7 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
                     alt={video.title}
                     className={cn(
                       "w-full h-full object-cover",
-                      video.isShort && "object-top"
+                      video.isShort && "object-center"
                     )}
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-black/80 to-transparent">
