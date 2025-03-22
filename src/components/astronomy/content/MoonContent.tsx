@@ -20,7 +20,7 @@ const MoonContent: React.FC<MoonContentProps> = ({
         <div className="col-span-12 md:col-span-3">
           <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
             <AstronomyChallengeCard 
-              title={<span className="text-sm">🌕 Explore the Moon!</span>}
+              title="🌕 Explore the Moon!"
               description="Learn about the Moon's phases and its impact on Earth."
               descriptionClassName="text-sm"
               className="h-full"
@@ -30,7 +30,7 @@ const MoonContent: React.FC<MoonContentProps> = ({
         <div className="col-span-12 md:col-span-3">
           <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
             <AstronomyPlaygroundCard
-              title={<span className="text-xs">Hold a movie night and dive deep into the innerspace</span>}
+              title="Hold a movie night and dive deep into the innerspace"
               subtitle="Interactive Learning"
               image="/lovable-uploads/moon.png"
               className="h-full"
