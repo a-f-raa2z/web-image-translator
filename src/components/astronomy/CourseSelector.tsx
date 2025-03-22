@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Progress } from "@/components/ui/progress";
-import { ArrowRightLeft } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { 
   Popover,
   PopoverContent,
@@ -31,7 +31,7 @@ const CourseSelector: React.FC<CourseSelectorProps> = ({ selectedTab }) => {
           >
             <span>The Neighbor Worlds</span>
             <Progress value={66} className="h-1.5 w-16" />
-            <ArrowRightLeft size={16} />
+            <ChevronDown size={16} />
           </button>
         </PopoverTrigger>
         <PopoverContent className="w-80 p-3">

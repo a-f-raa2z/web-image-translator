@@ -27,20 +27,20 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
     switch (type) {
       case 'challengecard':
         return { 
-          icon: <Trophy size={16} className="text-orange-500" />,
-          bgColor: 'bg-orange-500/20',
+          icon: <Trophy size={16} className="text-white" />,
+          bgColor: 'bg-orange-500',
           label: 'Challenge'
         };
       case 'questioncard':
         return { 
-          icon: <HelpCircle size={16} className="text-blue-500" />,
-          bgColor: 'bg-blue-500/20',
+          icon: <HelpCircle size={16} className="text-white" />,
+          bgColor: 'bg-blue-500',
           label: 'Question'
         };
       case 'playgroundcard':
         return { 
-          icon: <PenTool size={16} className="text-purple-500" />,
-          bgColor: 'bg-purple-500/20',
+          icon: <PenTool size={16} className="text-white" />,
+          bgColor: 'bg-purple-500',
           label: 'Playground'
         };
       default:
@@ -72,7 +72,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
           />
         </AspectRatio>
         
-        {/* Card type indicators */}
+        {/* Card type indicators - styled as solid circles */}
         <div className="absolute top-1 right-1 flex space-x-1">
           {cardTypes.map((type, index) => {
             const details = getCardDetails(type);
@@ -82,7 +82,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
               <div 
                 key={`${type}-${index}`} 
                 className={cn(
-                  "p-1 rounded-md transition-transform hover:scale-110",
+                  "w-6 h-6 rounded-full flex items-center justify-center transition-transform hover:scale-110",
                   details.bgColor
                 )}
                 title={details.label}

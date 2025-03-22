@@ -65,20 +65,23 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
           case 'challengecard':
             return { 
               type: 'challengecard', 
-              icon: <Trophy size={18} className="text-orange-500" />,
-              bgColor: 'bg-orange-500/10'
+              icon: <Trophy size={16} className="text-orange-500" />,
+              bgColor: 'bg-orange-500',
+              label: 'Challenge'
             };
           case 'questioncard':
             return { 
               type: 'questioncard', 
-              icon: <HelpCircle size={18} className="text-blue-500" />,
-              bgColor: 'bg-blue-500/10'
+              icon: <HelpCircle size={16} className="text-blue-500" />,
+              bgColor: 'bg-blue-500',
+              label: 'Question'
             };
           case 'playgroundcard':
             return { 
               type: 'playgroundcard', 
-              icon: <PenTool size={18} className="text-purple-500" />,
-              bgColor: 'bg-purple-500/10'
+              icon: <PenTool size={16} className="text-purple-500" />,
+              bgColor: 'bg-purple-500',
+              label: 'Playground'
             };
           default:
             return null;
@@ -92,8 +95,9 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
       if (video.title === 'Solar System 101' || video.title === 'The Inner Planets') {
         icons.push({ 
           type: 'challengecard', 
-          icon: <Trophy size={18} className="text-orange-500" />,
-          bgColor: 'bg-orange-500/10'
+          icon: <Trophy size={16} className="text-white" />,
+          bgColor: 'bg-orange-500',
+          label: 'Challenge'
         });
       }
     }
@@ -103,15 +107,17 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
       if (video.title === 'Earth 101') {
         icons.push({ 
           type: 'challengecard', 
-          icon: <Trophy size={18} className="text-orange-500" />,
-          bgColor: 'bg-orange-500/10'
+          icon: <Trophy size={16} className="text-white" />,
+          bgColor: 'bg-orange-500',
+          label: 'Challenge'
         });
       }
       if (video.title === 'What Earth') {
         icons.push({ 
           type: 'questioncard', 
-          icon: <HelpCircle size={18} className="text-blue-500" />,
-          bgColor: 'bg-blue-500/10'
+          icon: <HelpCircle size={16} className="text-white" />,
+          bgColor: 'bg-blue-500',
+          label: 'Question'
         });
       }
     }
@@ -121,15 +127,17 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
       if (video.title === 'Moon 101' || video.title === 'Amazing Timelapse Supermoon') {
         icons.push({ 
           type: 'challengecard', 
-          icon: <Trophy size={18} className="text-orange-500" />,
-          bgColor: 'bg-orange-500/10'
+          icon: <Trophy size={16} className="text-white" />,
+          bgColor: 'bg-orange-500',
+          label: 'Challenge'
         });
       }
       if (video.title === 'Lunar Eclipse 101' || video.title === 'Solar Eclipse 101') {
         icons.push({ 
           type: 'playgroundcard', 
-          icon: <PenTool size={18} className="text-purple-500" />,
-          bgColor: 'bg-purple-500/10'
+          icon: <PenTool size={16} className="text-white" />,
+          bgColor: 'bg-purple-500',
+          label: 'Playground'
         });
       }
     }
@@ -172,15 +180,16 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
                       className="w-full h-full object-cover"
                     />
                     
-                    {/* Card type indicators */}
+                    {/* Card type indicators - styled as solid circles */}
                     <div className="absolute top-1 right-1 flex space-x-1">
                       {cardIcons.map((card, i) => (
                         <div 
                           key={`${card.type}-${i}`}
                           className={cn(
-                            "p-1 rounded-md",
+                            "p-1 rounded-full w-6 h-6 flex items-center justify-center",
                             card.bgColor
                           )}
+                          title={card.label}
                         >
                           {card.icon}
                         </div>
