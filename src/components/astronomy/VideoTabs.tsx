@@ -73,7 +73,6 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
                   onClick={() => onThumbnailClick(index, tabName)}
                   className={cn(
                     "relative rounded-lg overflow-hidden aspect-video bg-gray-100 transition-all",
-                    video.isShort && "mx-auto w-[calc(100%-25px)]",
                     index === selectedVideoIndex 
                       ? "ring-2 ring-purple-500" 
                       : "hover:ring-2 hover:ring-purple-300"
@@ -82,10 +81,7 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
                   <img
                     src={getThumbnail(video)}
                     alt={video.title}
-                    className={cn(
-                      "w-full h-full object-cover",
-                      video.isShort && "object-center"
-                    )}
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-black/80 to-transparent">
                     <p className="text-white text-xs font-medium truncate">{video.title}</p>
