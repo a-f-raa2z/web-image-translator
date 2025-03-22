@@ -15,7 +15,7 @@ export const useCourseVideoData = (): VideoData => {
     moon: [
       { id: '6AviDjR9mmo', title: 'Moon 101', duration: '3:05' },
       { 
-        id: 'tiktok-supermoon', 
+        id: 'ZT2G7Vmyd',
         title: 'Amazing Timelapse Supermoon', 
         duration: '0:51',
         source: 'tiktok',

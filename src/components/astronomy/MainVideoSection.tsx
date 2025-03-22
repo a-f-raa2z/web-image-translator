@@ -22,14 +22,19 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
   
   const renderVideo = (video: VideoItem) => {
     if (video.source === 'tiktok' && video.tiktokUrl) {
+      // Extract the video ID from the TikTok URL (format: https://www.tiktok.com/t/ZT2G7Vmyd/)
+      const tiktokId = video.tiktokUrl.split('/t/')[1];
       return (
-        <div className="relative h-0 pb-[177.77%] overflow-hidden bg-black">
-          <iframe 
-            src={`https://www.tiktok.com/embed/v2/${video.tiktokUrl.split('/t/')[1]}`}
-            allowFullScreen 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            className="absolute top-0 left-0 w-full h-full"
-          ></iframe>
+        <div className="relative w-full h-full">
+          <blockquote 
+            className="tiktok-embed" 
+            cite={video.tiktokUrl}
+            data-video-id={tiktokId} 
+            style={{maxWidth: "100%", minWidth: "325px"}}
+          >
+            <section></section>
+          </blockquote>
+          <script async src="https://www.tiktok.com/embed.js"></script>
         </div>
       );
     }
@@ -52,7 +57,7 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
           "bg-black rounded-xl overflow-hidden transition-all duration-500",
           animate && "transform scale-95"
         )}>
-          <div className="relative pb-[56.25%] h-0">
+          <div className={`relative ${selectedVideo.source === 'tiktok' ? 'min-h-[500px]' : 'pb-[56.25%] h-0'}`}>
             {renderVideo(selectedVideo)}
           </div>
         </div>
