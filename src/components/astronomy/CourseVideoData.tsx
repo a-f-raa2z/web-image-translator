@@ -18,8 +18,7 @@ export const useCourseVideoData = (): VideoData => {
         id: 'TkBtN6jes8U', 
         title: 'Amazing Timelapse Supermoon', 
         duration: '0:51',
-        source: 'tiktok',
-        tiktokUrl: 'https://www.tiktok.com/t/ZT2G7Vmyd/',
+        source: 'youtube',
         cardTypes: ['challengecard']
       },
       { id: 'VW2xRR75lKE', title: 'Lunar Eclipse 101', duration: '2:14', cardTypes: ['playgroundcard'] },
