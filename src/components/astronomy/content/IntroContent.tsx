@@ -44,7 +44,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
               <AstronomyPlaygroundCard 
                 subtitle="NASA Interactive"
                 title="Eye on the Solar System"
-                image="/lovable-uploads/solar.png"
+                image="/lovable-uploads/ef87e2b6-d302-4d57-98ca-304b3afffe52.png"
                 isExpandable={true}
                 className="h-full"
               />
