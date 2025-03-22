@@ -5,6 +5,7 @@ export interface VideoItem {
   duration: string;
   source?: 'youtube' | 'tiktok';
   tiktokUrl?: string;
+  isShort?: boolean;
 }
 
 export type VideoCategory = 'intro' | 'earth' | 'moon';

@@ -34,6 +34,24 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
       );
     }
     
+    // Special case for YouTube Shorts (vertical videos)
+    if (video.isShort) {
+      return (
+        <div className="relative flex justify-center bg-black w-full h-full">
+          <div className="w-[min(100%,350px)] aspect-[9/16]">
+            <iframe 
+              src={`https://www.youtube.com/embed/${video.id}?autoplay=0`}
+              title={video.title} 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+              className="absolute top-0 left-0 w-full h-full"
+            ></iframe>
+          </div>
+        </div>
+      );
+    }
+    
+    // Regular YouTube videos
     return (
       <iframe 
         src={`https://www.youtube.com/embed/${video.id}?autoplay=0`}
@@ -52,7 +70,10 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
           "bg-black rounded-xl overflow-hidden transition-all duration-500",
           animate && "transform scale-95"
         )}>
-          <div className="relative pb-[56.25%] h-0">
+          <div className={cn(
+            "relative pb-[56.25%] h-0",
+            selectedVideo.isShort && "flex justify-center items-center"
+          )}>
             {renderVideo(selectedVideo)}
           </div>
         </div>
