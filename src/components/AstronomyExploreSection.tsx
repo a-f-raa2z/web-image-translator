@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Search, PlayCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -44,7 +45,7 @@ const AstronomyExploreSection: React.FC = () => {
       author: 'NASA',
       hasVideos: true,
       videos: [
-        { id: 'tnbSIbsF4t4', title: 'Webb's First Deep Field Image Explained', duration: '2:45' },
+        { id: 'tnbSIbsF4t4', title: "Webb's First Deep Field Image Explained", duration: '2:45' },
         { id: 'uUZUxTIwzh0', title: 'Webb Captures a Star Going Supernova', duration: '1:56' },
         { id: 'R1UhP_NJPFk', title: 'Webb Telescope Year One Discoveries', duration: '4:27' }
       ]
