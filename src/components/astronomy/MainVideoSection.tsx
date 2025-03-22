@@ -34,9 +34,14 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
       );
     }
     
+    // Handle YouTube shorts format
+    const videoUrl = video.id.startsWith('http') 
+      ? video.id 
+      : `https://www.youtube.com/embed/${video.id}?autoplay=0`;
+      
     return (
       <iframe 
-        src={`https://www.youtube.com/embed/${video.id}?autoplay=0`}
+        src={videoUrl}
         title={video.title} 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowFullScreen
