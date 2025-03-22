@@ -54,10 +54,10 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-white">{title}</h3>
+              <h3 className="font-semibold text-white text-xl">{title}</h3>
             </div>
             <p className={cn(
-              "text-white mt-2",
+              "text-white mt-2 text-2xl leading-relaxed",
               descriptionClassName
             )}>
               {description}
@@ -65,8 +65,8 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
           </div>
         </div>
         
-        <div className="mt-auto pt-4">
-          <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70">
+        <div className="mt-auto pt-4 w-fit">
+          <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto">
             {hasVideos ? (
               <>
                 <Play size={16} />

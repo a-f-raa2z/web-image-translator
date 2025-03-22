@@ -30,11 +30,11 @@ const ChallengeCard3: React.FC<ChallengeCard3Props> = ({ title, description, ima
       )}
       
       <div className="h-full flex flex-col justify-center mt-12">
-        <h3 className="text-lg font-semibold text-white">{title}</h3>
-        <p className="text-sm text-white">{description}</p>
+        <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
+        <p className="text-2xl text-white leading-relaxed">{description}</p>
         
-        <div className="mt-4">
-          <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-xs">
+        <div className="mt-4 w-fit">
+          <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-3 py-1 h-auto">
             <Award size={14} />
             <span>Earn Badge</span>
           </Button>
