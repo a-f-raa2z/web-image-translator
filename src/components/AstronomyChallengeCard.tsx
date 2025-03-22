@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Star, Award, Play } from 'lucide-react';
@@ -8,6 +9,7 @@ interface AstronomyChallengeCardProps {
   descriptionClassName?: string;
   className?: string;
   videoId?: string;
+  onClick?: () => void;
 }
 
 const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
@@ -15,13 +17,17 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
   description = "Explain the life cycle of a star from birth to death",
   descriptionClassName,
   className,
-  videoId = "lcZTcfdZ3Ow"
+  videoId = "lcZTcfdZ3Ow",
+  onClick
 }) => {
   return (
-    <div className={cn(
-      "bg-purple-50 rounded-xl shadow-md overflow-hidden h-full flex flex-col",
-      className
-    )}>
+    <div 
+      className={cn(
+        "bg-purple-50 rounded-xl shadow-md overflow-hidden h-full flex flex-col relative",
+        className
+      )}
+      onClick={onClick}
+    >
       <div className="w-full aspect-video relative group cursor-pointer">
         <img 
           src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
@@ -40,7 +46,6 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h3 className="font-semibold text-gray-900">{title}</h3>
-
             </div>
             <p className={cn(
               "text-gray-600 mt-2",
@@ -55,8 +60,6 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
           <div className="flex items-center gap-2">
             <Award size={16} className="text-purple-600" />
             <span className="text-sm text-purple-600">Earn Space Explorer Badge</span>
-          </div>
-          <div className="mt-2 flex items-center gap-2">
           </div>
         </div>
       </div>

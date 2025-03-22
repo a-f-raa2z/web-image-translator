@@ -1,15 +1,30 @@
+
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 interface AstronomyPlaygroundCardProps {
   subtitle: string;
   title: string;
   className?: string;
   image: string;
+  onClick?: () => void;
 }
 
-const AstronomyPlaygroundCard: React.FC<AstronomyPlaygroundCardProps> = ({ subtitle, title, className, image }) => {
+const AstronomyPlaygroundCard: React.FC<AstronomyPlaygroundCardProps> = ({ 
+  subtitle, 
+  title, 
+  className, 
+  image,
+  onClick
+}) => {
   return (
-    <div className={`relative rounded-lg overflow-hidden shadow-md ${className}`}>
+    <div 
+      className={cn(
+        "relative rounded-lg overflow-hidden shadow-md cursor-pointer",
+        className
+      )}
+      onClick={onClick}
+    >
       <img
         src={image}
         alt={title}
