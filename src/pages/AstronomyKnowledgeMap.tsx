@@ -118,30 +118,54 @@ const AstronomyKnowledgeMap = () => {
       draggable: true,
     },
     
-    // Topic nodes
+    // Topic nodes with all required fields to match the course nodes type
     {
       id: 'earth',
       type: 'topic',
       position: { x: 100, y: 50 },
-      data: { label: 'Earth', icon: Globe },
+      data: { 
+        label: 'Earth', 
+        icon: Globe,
+        description: '',
+        progress: 0,
+        isCurrent: false
+      },
     },
     {
       id: 'moon',
       type: 'topic',
       position: { x: 100, y: 120 },
-      data: { label: 'Moon', icon: Moon },
+      data: { 
+        label: 'Moon', 
+        icon: Moon,
+        description: '',
+        progress: 0,
+        isCurrent: false
+      },
     },
     {
       id: 'mars',
       type: 'topic',
       position: { x: 100, y: 190 },
-      data: { label: 'Mars', icon: MapPin },
+      data: { 
+        label: 'Mars', 
+        icon: MapPin,
+        description: '',
+        progress: 0,
+        isCurrent: false
+      },
     },
     {
       id: 'sun',
       type: 'topic',
       position: { x: 100, y: 300 },
-      data: { label: 'The Sun', icon: Sun },
+      data: { 
+        label: 'The Sun', 
+        icon: Sun,
+        description: '',
+        progress: 0,
+        isCurrent: false
+      },
     },
   ];
 
