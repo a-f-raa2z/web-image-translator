@@ -28,6 +28,10 @@ const AstronomyPlaygroundCard: React.FC<AstronomyPlaygroundCardProps> = ({
       )}
       onClick={onClick}
     >
+      <div className="absolute top-2 left-3 z-10 bg-blue-100 px-2 py-1 rounded text-xs font-semibold text-blue-700">
+        Playground
+      </div>
+      
       <div className="h-full">
         <img
           src={image}

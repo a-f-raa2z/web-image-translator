@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 interface QuestionCardProps {
@@ -21,6 +22,10 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ option1, option2, option3, 
 
   return (
     <div className={`relative rounded-lg overflow-hidden shadow-md ${className}`}>
+      <div className="absolute top-2 left-3 z-10 bg-green-100 px-2 py-1 rounded text-xs font-semibold text-green-700">
+        Question
+      </div>
+      
       <img
         src={image}
         alt={title}

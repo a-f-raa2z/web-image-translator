@@ -30,6 +30,10 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
       )}
       onClick={onClick}
     >
+      <div className="absolute top-2 left-3 z-10 bg-purple-100 px-2 py-1 rounded text-xs font-semibold text-purple-700">
+        Challenge
+      </div>
+      
       <div className="w-full aspect-video relative group cursor-pointer">
         <img 
           src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
