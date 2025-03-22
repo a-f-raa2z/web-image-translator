@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Edit, Diamond, Award } from 'lucide-react';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
@@ -9,14 +10,15 @@ interface BreadcrumbItem {
 
 interface AstronomyPageHeaderProps {
   title?: string;
+  courseName?: string;
   breadcrumbs?: BreadcrumbItem[];
 }
 
 const AstronomyPageHeader: React.FC<AstronomyPageHeaderProps> = ({ 
-  title = "Intro to Astronomy",
+  title = "The Neighbor Worlds",
+  courseName = "Current Course",
   breadcrumbs = [
-    { label: "Astronomy", href: "#" },
-    { label: "Intro to Astronomy", href: "#" }
+    { label: "Astronomy", href: "#" }
   ]
 }) => {
   return (
@@ -28,7 +30,7 @@ const AstronomyPageHeader: React.FC<AstronomyPageHeaderProps> = ({
               <BreadcrumbItem>
                 <BreadcrumbLink 
                   href={item.href} 
-                  className={index === breadcrumbs.length - 1 ? "font-medium" : "text-gray-500 hover:text-gray-700"}
+                  className="text-gray-500 hover:text-gray-700"
                 >
                   {item.label}
                 </BreadcrumbLink>
@@ -58,7 +60,7 @@ const AstronomyPageHeader: React.FC<AstronomyPageHeaderProps> = ({
               </svg>
             </span>
             <h1 className="text-2xl font-bold flex items-center">
-              {title}
+              <span className="text-gray-600 text-lg mr-2">{courseName}:</span> {title}
               <button className="ml-2 text-gray-400 hover:text-gray-600">
                 <Edit size={14} />
               </button>
