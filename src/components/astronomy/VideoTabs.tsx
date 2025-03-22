@@ -39,8 +39,10 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
                   key={video.id}
                   onClick={() => onThumbnailClick(index, tabName)}
                   className={cn(
-                    "relative rounded-lg overflow-hidden aspect-video bg-gray-100 hover:ring-2 hover:ring-purple-400 transition-all",
-                    index === selectedVideoIndex && "ring-2 ring-purple-500"
+                    "relative rounded-lg overflow-hidden aspect-video bg-gray-100 transition-all",
+                    index === selectedVideoIndex 
+                      ? "ring-2 ring-purple-500" 
+                      : "hover:ring-2 hover:ring-purple-300"
                   )}
                 >
                   <img
