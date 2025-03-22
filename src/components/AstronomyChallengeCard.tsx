@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Star, Award, Play, Trophy } from 'lucide-react';
+import { Trophy, Award, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface AstronomyChallengeCardProps {
@@ -74,12 +74,12 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
             <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto">
               {hasVideos ? (
                 <>
-                  <Play size={16} />
+                  <Play size={16} className="mr-2" />
                   <span>Watch Video Series</span>
                 </>
               ) : (
                 <>
-                  <Award size={16} />
+                  <Award size={16} className="mr-2" />
                   <span>Earn Space Explorer Badge</span>
                 </>
               )}

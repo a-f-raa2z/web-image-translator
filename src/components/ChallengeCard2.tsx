@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Star, Award, Play, Trophy } from 'lucide-react';
+import { Trophy, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface ChallengeCard2Props {
@@ -11,6 +11,8 @@ interface ChallengeCard2Props {
   className?: string;
   videoId?: string;
   image?: string;
+  children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
@@ -19,15 +21,20 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
   descriptionClassName,
   className,
   videoId = "lcZTcfdZ3Ow",
-  image
+  image,
+  children,
+  onClick
 }) => {
   return (
-    <div className={cn(
-      "bg-orange-500 rounded-xl shadow-md overflow-hidden h-full flex flex-col border border-orange-600",
-      className
-    )}>
+    <div 
+      className={cn(
+        "bg-orange-500 rounded-xl shadow-md overflow-hidden h-full flex flex-col border border-orange-600 relative",
+        className
+      )}
+      onClick={onClick}
+    >
       <div className="absolute top-2 left-3 z-10 bg-orange-100 px-2 py-1 rounded text-xs font-semibold text-orange-700 flex items-center gap-1">
-        <Trophy size={14} />
+        <Trophy size={14} className="mr-1" />
         <span>Challenge</span>
       </div>
 
@@ -43,7 +50,7 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
         </div>
       )}
       
-      <div className="p-6 flex-1 flex flex-col justify-center pt-14">
+      <div className="p-6 flex-1 flex flex-col justify-between pt-14">
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
@@ -58,12 +65,16 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
           </div>
         </div>
         
-        <div className="mt-auto pt-4 w-fit">
-          <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto">
-            <Award size={16} />
-            <span>Earn Space Explorer Badge</span>
-          </Button>
-        </div>
+        {children}
+        
+        {!children && (
+          <div className="mt-auto pt-4 w-fit">
+            <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto">
+              <Award size={16} className="mr-2" />
+              <span>Earn Space Explorer Badge</span>
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

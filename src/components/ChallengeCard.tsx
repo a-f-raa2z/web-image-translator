@@ -12,6 +12,8 @@ interface ChallengeCardProps {
   color?: string;
   className?: string;
   descriptionClassName?: string;
+  children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 const ChallengeCard: React.FC<ChallengeCardProps> = ({
@@ -20,16 +22,21 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
   image,
   color = "bg-orange-500",
   className,
-  descriptionClassName
+  descriptionClassName,
+  children,
+  onClick
 }) => {
   return (
-    <div className={cn(
-      "art-card overflow-hidden h-full relative",
-      color,
-      className
-    )}>
+    <div 
+      className={cn(
+        "art-card rounded-xl shadow-md overflow-hidden h-full relative",
+        color,
+        className
+      )}
+      onClick={onClick}
+    >
       <div className="absolute top-2 left-3 z-10 bg-orange-100 px-2 py-1 rounded text-xs font-semibold text-orange-700 flex items-center gap-1">
-        <Trophy size={14} />
+        <Trophy size={14} className="mr-1" />
         <span>Challenge</span>
       </div>
       
@@ -45,32 +52,36 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         </div>
       )}
       
-      <div className="p-6 h-full flex flex-col justify-center relative z-10 pt-16">
-        <h3 className="text-xl font-medium text-black/70 mb-2">{title}</h3>
-
-        <div className="flex-grow flex flex-col justify-center w-full">
+      <div className="p-6 h-full flex flex-col justify-between relative z-10 pt-14">
+        <div>
+          <h3 className="text-xl font-medium text-black/70 mb-2">{title}</h3>
           <p 
-            className={cn("text-4xl font-semibold text-black mb-4 text-left leading-normal", descriptionClassName)} 
-            style={{ fontSize: '3rem', lineHeight: '1.4' }}
+            className={cn("text-2xl font-semibold text-black mb-4 text-left leading-relaxed", descriptionClassName)} 
           >
             {description}
           </p>
-
-          <div className="w-4/5 self-start mt-4">
-            <Input
-              type="text"
-              placeholder="Answer..."
-              className="w-full py-3 px-4 bg-white/80 backdrop-blur-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-black/10"
-            />
-          </div>
-
-          <div className="mt-6 w-fit">
-            <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto">
-              <Award size={16} />
-              <span>Earn Challenge Badge</span>
-            </Button>
-          </div>
         </div>
+
+        {children}
+        
+        {!children && (
+          <div className="flex-grow flex flex-col justify-center w-full">
+            <div className="w-4/5 self-start mt-4">
+              <Input
+                type="text"
+                placeholder="Answer..."
+                className="w-full py-3 px-4 bg-white/80 backdrop-blur-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-black/10"
+              />
+            </div>
+
+            <div className="mt-6 w-fit">
+              <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto">
+                <Award size={16} className="mr-2" />
+                <span>Earn Challenge Badge</span>
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
