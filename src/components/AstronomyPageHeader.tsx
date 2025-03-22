@@ -60,7 +60,7 @@ const AstronomyPageHeader: React.FC<AstronomyPageHeaderProps> = ({
               </svg>
             </span>
             <h1 className="text-2xl font-bold flex items-center">
-              <span className="text-gray-600 text-lg mr-2">{courseName}:</span> {title}
+              {title}
               <button className="ml-2 text-gray-400 hover:text-gray-600">
                 <Edit size={14} />
               </button>
