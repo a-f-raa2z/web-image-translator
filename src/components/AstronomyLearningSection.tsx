@@ -7,6 +7,8 @@ import AstronomyCommunitySection from './AstronomyCommunitySection';
 import MainVideoSection from './astronomy/MainVideoSection';
 import VideoTabs from './astronomy/VideoTabs';
 import { VideoCategory, VideoData } from './astronomy/types';
+import { Progress } from "@/components/ui/progress";
+import { ArrowRight } from "lucide-react";
 
 const AstronomyLearningSection: React.FC = () => {
   const [selectedIntroVideoIndex, setSelectedIntroVideoIndex] = useState(0);
@@ -56,9 +58,25 @@ const AstronomyLearningSection: React.FC = () => {
     setSelectedTab(value as VideoCategory); 
   };
 
+  // Calculate progress based on selected tab
+  const getProgressValue = () => {
+    switch(selectedTab) {
+      case 'intro': return 33;
+      case 'earth': return 66;
+      case 'moon': return 100;
+      default: return 33;
+    }
+  };
+
   return (
     <section className="mb-10">
-      <h2 className="text-xl font-semibold mb-4">My Learning</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold">My Learning</h2>
+        <div className="flex items-center gap-2 w-48">
+          <Progress value={getProgressValue()} className="h-2" />
+          <span className="text-sm text-gray-500">{getProgressValue()}%</span>
+        </div>
+      </div>
       
       <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl p-6 shadow-md border border-purple-300">
         <MainVideoSection 
@@ -69,24 +87,39 @@ const AstronomyLearningSection: React.FC = () => {
         />
 
         <Tabs defaultValue="intro" onValueChange={handleTabChange} className="w-full">
-          <TabsList className="mb-4 bg-transparent p-0 shadow-none space-x-4">
+          <TabsList className="mb-4 bg-white p-1 rounded-lg border border-purple-200 shadow-sm space-x-1 flex w-full">
             <TabsTrigger 
               value="intro" 
-              className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+              className="flex-1 bg-transparent data-[state=active]:bg-purple-500 data-[state=active]:text-white text-gray-600 focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
             >
-              Intro to the Neighbors
+              <span className="flex items-center justify-center">
+                <span className="w-6 h-6 rounded-full bg-purple-100 text-purple-700 inline-flex items-center justify-center mr-2 font-semibold data-[state=active]:bg-white data-[state=active]:text-purple-700">1</span>
+                Intro to the Neighbors
+              </span>
             </TabsTrigger>
+            <span className="text-gray-300 flex items-center">
+              <ArrowRight size={16} />
+            </span>
             <TabsTrigger 
               value="earth" 
-              className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+              className="flex-1 bg-transparent data-[state=active]:bg-purple-500 data-[state=active]:text-white text-gray-600 focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
             >
-              Earth
+              <span className="flex items-center justify-center">
+                <span className="w-6 h-6 rounded-full bg-purple-100 text-purple-700 inline-flex items-center justify-center mr-2 font-semibold data-[state=active]:bg-white data-[state=active]:text-purple-700">2</span>
+                Earth
+              </span>
             </TabsTrigger>
+            <span className="text-gray-300 flex items-center">
+              <ArrowRight size={16} />
+            </span>
             <TabsTrigger 
               value="moon" 
-              className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+              className="flex-1 bg-transparent data-[state=active]:bg-purple-500 data-[state=active]:text-white text-gray-600 focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
             >
-              Moon
+              <span className="flex items-center justify-center">
+                <span className="w-6 h-6 rounded-full bg-purple-100 text-purple-700 inline-flex items-center justify-center mr-2 font-semibold data-[state=active]:bg-white data-[state=active]:text-purple-700">3</span>
+                Moon
+              </span>
             </TabsTrigger>
           </TabsList>
 
