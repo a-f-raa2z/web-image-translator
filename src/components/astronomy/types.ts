@@ -20,6 +20,7 @@ export interface ExploreContentItem {
   imageUrl: string;
   source: 'xiaohongshu' | 'astronomy' | 'tiktok' | 'nasa';
   sourceUrl: string;
+  sourceFavicon?: string;
   likes?: number;
   saves?: number;
   author?: string;

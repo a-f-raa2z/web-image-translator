@@ -9,13 +9,13 @@ import { ExploreContentItem } from './astronomy/types';
 const AstronomyExploreSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Sample data based on the provided links
+  // Sample data with added favicon/domain images
   const exploreItems: ExploreContentItem[] = [
     {
       id: '1',
       title: 'The Sky This Week from March 21 to 28, 2025',
       description: 'Discover what celestial events will be visible in the coming week',
-      imageUrl: '/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg',
+      imageUrl: 'https://astronomy.com/favicon.ico',
       source: 'astronomy',
       sourceUrl: 'https://www.astronomy.com/observing/the-sky-this-week-from-march-21-to-28-2025/',
       author: 'Astronomy.com'
@@ -24,7 +24,7 @@ const AstronomyExploreSection: React.FC = () => {
       id: '2',
       title: 'Our Near-Galactic Neighbor Might Have a Supermassive Black Hole',
       description: 'New research suggests the presence of a supermassive black hole in our galactic neighborhood',
-      imageUrl: '/lovable-uploads/interstellar.jpeg',
+      imageUrl: 'https://astronomy.com/favicon.ico',
       source: 'astronomy',
       sourceUrl: 'https://www.astronomy.com/science/our-near-galactic-neighbor-might-have-a-supermassive-black-hole/',
       author: 'Astronomy.com'
@@ -33,7 +33,7 @@ const AstronomyExploreSection: React.FC = () => {
       id: '3',
       title: 'NASA Launches James Webb Space Telescope',
       description: 'The most powerful telescope ever built to study the early universe',
-      imageUrl: '/lovable-uploads/solar.png',
+      imageUrl: 'https://www.nasa.gov/wp-content/themes/nasa/assets/images/favicon-192.png',
       source: 'nasa',
       sourceUrl: 'https://plus.nasa.gov/playlist/nasa-chill/',
       author: 'NASA'
@@ -42,7 +42,7 @@ const AstronomyExploreSection: React.FC = () => {
       id: '4',
       title: 'Stunning Timelapse of Earth from Space',
       description: 'Watch our beautiful planet from the International Space Station',
-      imageUrl: '/lovable-uploads/earth.gif',
+      imageUrl: 'https://www.nasa.gov/wp-content/themes/nasa/assets/images/favicon-192.png',
       source: 'nasa',
       sourceUrl: 'https://plus.nasa.gov/playlist/nasa-chill/',
       author: 'NASA'
@@ -51,7 +51,7 @@ const AstronomyExploreSection: React.FC = () => {
       id: '5',
       title: 'Astronomers Discover New Exoplanet in Habitable Zone',
       description: 'This rocky planet could potentially support life',
-      imageUrl: '/lovable-uploads/earth2.jpeg',
+      imageUrl: 'https://sf16-scmcdn-sg.ibytedtos.com/goofy/tiktok/web/node/_next/static/images/logo-7328701c.svg',
       source: 'tiktok',
       sourceUrl: 'https://www.tiktok.com/@cbsmornings/video/7421637215782112558',
       author: 'CBS Mornings'
@@ -60,7 +60,7 @@ const AstronomyExploreSection: React.FC = () => {
       id: '6',
       title: 'Meteor Shower Peaks This Weekend',
       description: 'Don\'t miss this spectacular celestial show',
-      imageUrl: '/lovable-uploads/world-game.png',
+      imageUrl: 'https://ci.xiaohongshu.com/favicon.ico',
       source: 'xiaohongshu',
       sourceUrl: 'https://www.xiaohongshu.com/user/profile/6789c9a6000000000a03d857',
       author: 'AstroEnthusiast'
@@ -69,7 +69,7 @@ const AstronomyExploreSection: React.FC = () => {
       id: '7',
       title: 'Solar Eclipse 2025: Everything You Need to Know',
       description: 'Prepare for the upcoming total solar eclipse',
-      imageUrl: '/lovable-uploads/3dc8af34-b172-4695-9e52-39b72b959ce2.png',
+      imageUrl: 'https://sf16-scmcdn-sg.ibytedtos.com/goofy/tiktok/web/node/_next/static/images/logo-7328701c.svg',
       source: 'tiktok',
       sourceUrl: 'https://www.tiktok.com/@cbsmornings/video/7411542419512053022',
       author: 'CBS Mornings'
@@ -78,7 +78,7 @@ const AstronomyExploreSection: React.FC = () => {
       id: '8',
       title: 'Astronomy Photography Tips for Beginners',
       description: 'Capture stunning night sky photos with basic equipment',
-      imageUrl: '/lovable-uploads/5af8b6f3-9d9a-421c-b233-3c4dee64857d.png',
+      imageUrl: 'https://ci.xiaohongshu.com/favicon.ico',
       source: 'xiaohongshu',
       sourceUrl: 'https://www.xiaohongshu.com/user/profile/6784edf4000000000803fba4',
       author: 'StarGazer'
@@ -87,7 +87,7 @@ const AstronomyExploreSection: React.FC = () => {
       id: '9',
       title: 'The Mysteries of Saturn\'s Rings',
       description: 'New discoveries about the iconic planetary feature',
-      imageUrl: '/lovable-uploads/c4500211-2818-4d37-bb9c-aee9fd4c7e9c.png',
+      imageUrl: 'https://ci.xiaohongshu.com/favicon.ico',
       source: 'xiaohongshu',
       sourceUrl: 'https://www.xiaohongshu.com/user/profile/67857599000000000803e1c5',
       author: 'CosmicWanderer'

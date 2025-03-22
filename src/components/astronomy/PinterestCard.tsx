@@ -3,6 +3,7 @@ import React from 'react';
 import { ExternalLink, Heart, Bookmark } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import { ExploreContentItem } from './types';
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface PinterestCardProps {
   item: ExploreContentItem;
@@ -22,11 +23,18 @@ const PinterestCard: React.FC<PinterestCardProps> = ({ item, className }) => {
       )}
     >
       <div className="aspect-auto overflow-hidden cursor-pointer" onClick={handleCardClick}>
-        <img 
-          src={item.imageUrl} 
-          alt={item.title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+        <AspectRatio ratio={1/1} className="bg-gray-100">
+          <img 
+            src={item.imageUrl} 
+            alt={item.title}
+            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            onError={(e) => {
+              // Fallback to a default image if the website image fails to load
+              const target = e.target as HTMLImageElement;
+              target.src = `/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg`;
+            }}
+          />
+        </AspectRatio>
       </div>
       
       <div className="p-3 bg-white">
