@@ -28,7 +28,7 @@ const ChallengeCard3: React.FC<ChallengeCard3Props> = ({ title, description, ima
         </div>
       )}
       
-      <div className="mt-8">
+      <div className="h-full flex flex-col justify-center mt-8">
         <h3 className="text-lg font-semibold text-white">{title}</h3>
         <p className="text-sm text-white">{description}</p>
       </div>

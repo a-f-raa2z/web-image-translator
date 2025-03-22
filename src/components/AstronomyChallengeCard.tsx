@@ -49,7 +49,7 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
         </div>
       )}
       
-      <div className="p-6 flex-1 flex flex-col">
+      <div className="p-6 flex-1 flex flex-col justify-center">
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">

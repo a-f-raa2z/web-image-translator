@@ -44,21 +44,18 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         </div>
       )}
       
-      <div className="p-6 h-full flex flex-col relative z-10">
+      <div className="p-6 h-full flex flex-col justify-center relative z-10">
         <h3 className="text-lg font-medium text-black/70 mb-1">{title}</h3>
 
-        <div className="flex-grow flex flex-col justify-between w-full">
-          <div>
-            <br></br>
-            <p 
-              className={cn("text-4xl font-semibold text-black mb-3 text-left leading-normal", descriptionClassName)} 
-              style={{ fontSize: '1.5rem', lineHeight: '1.5' }}
-            >
-              {description}
-            </p>
-          </div>
+        <div className="flex-grow flex flex-col justify-center w-full">
+          <p 
+            className={cn("text-4xl font-semibold text-black mb-3 text-left leading-normal", descriptionClassName)} 
+            style={{ fontSize: '1.5rem', lineHeight: '1.5' }}
+          >
+            {description}
+          </p>
 
-          <div className="w-4/5 self-start">
+          <div className="w-4/5 self-start mt-4">
             <Input
               type="text"
               placeholder="Answer..."

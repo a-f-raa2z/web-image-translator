@@ -42,7 +42,7 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
         </div>
       )}
       
-      <div className="p-6 flex-1 flex flex-col">
+      <div className="p-6 flex-1 flex flex-col justify-center">
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
@@ -61,8 +61,6 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
           <div className="flex items-center gap-2">
             <Award size={16} className="text-white" />
             <span className="text-sm text-white">Earn Space Explorer Badge</span>
-          </div>
-          <div className="mt-2 flex items-center gap-2">
           </div>
         </div>
       </div>
