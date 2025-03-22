@@ -55,18 +55,16 @@ const PinterestCard: React.FC<PinterestCardProps> = ({ item, className, onClick 
     >
       <div className="flex flex-col h-full">
         <div className="cursor-pointer flex-grow" onClick={handleCardClick}>
-          <AspectRatio ratio={aspectRatio} className="bg-gray-100">
-            <img 
-              src={getPlaceholderImage(item.id)} 
-              alt={item.title}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              onError={(e) => {
-                // Fallback to a default image if the image fails to load
-                const target = e.target as HTMLImageElement;
-                target.src = "/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg";
-              }}
-            />
-          </AspectRatio>
+          <img 
+            src={getPlaceholderImage(item.id)} 
+            alt={item.title}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            onError={(e) => {
+              // Fallback to a default image if the image fails to load
+              const target = e.target as HTMLImageElement;
+              target.src = "/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg";
+            }}
+          />
         </div>
         
         <div className="p-3 bg-white">
