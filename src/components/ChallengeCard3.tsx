@@ -1,8 +1,12 @@
 
 import React from 'react';
-import { Trophy, Award } from 'lucide-react';
+import { Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Textarea } from '@/components/ui/textarea';
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
+import { Send } from 'lucide-react';
 
 interface ChallengeCard3Props {
   title: string; 
@@ -23,6 +27,16 @@ const ChallengeCard3: React.FC<ChallengeCard3Props> = ({
   children,
   onClick
 }) => {
+  const form = useForm({
+    defaultValues: {
+      answer: ''
+    }
+  });
+
+  const onSubmit = (data: { answer: string }) => {
+    console.log('Submitted answer:', data.answer);
+  };
+
   return (
     <div 
       className={cn(
@@ -62,11 +76,33 @@ const ChallengeCard3: React.FC<ChallengeCard3Props> = ({
         {children}
         
         {!children && (
-          <div className="mt-auto pt-4 w-fit">
-            <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto">
-              <Award size={16} className="mr-2" />
-              <span>Earn Badge</span>
-            </Button>
+          <div className="mt-4">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+                <FormField
+                  control={form.control}
+                  name="answer"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Textarea 
+                          placeholder="Write your answer here..." 
+                          className="bg-orange-100 min-h-[60px] text-black"
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <Button 
+                  type="submit" 
+                  className="bg-orange-300 hover:bg-orange-400 text-black/80 w-full"
+                >
+                  <Send size={16} className="mr-2" />
+                  Submit Answer
+                </Button>
+              </form>
+            </Form>
           </div>
         )}
       </div>

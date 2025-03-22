@@ -2,8 +2,12 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
-import { Trophy, Award } from 'lucide-react';
+import { Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
+import { Send } from 'lucide-react';
 
 interface ChallengeCardProps {
   title: string;
@@ -26,6 +30,16 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
   children,
   onClick
 }) => {
+  const form = useForm({
+    defaultValues: {
+      answer: ''
+    }
+  });
+
+  const onSubmit = (data: { answer: string }) => {
+    console.log('Submitted answer:', data.answer);
+  };
+
   return (
     <div 
       className={cn(
@@ -66,20 +80,32 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         
         {!children && (
           <div className="flex-grow flex flex-col justify-center w-full">
-            <div className="w-4/5 self-start mt-4">
-              <Input
-                type="text"
-                placeholder="Answer..."
-                className="w-full py-3 px-4 bg-white/80 backdrop-blur-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-black/10"
-              />
-            </div>
-
-            <div className="mt-6 w-fit">
-              <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto">
-                <Award size={16} className="mr-2" />
-                <span>Earn Challenge Badge</span>
-              </Button>
-            </div>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 w-full">
+                <FormField
+                  control={form.control}
+                  name="answer"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Textarea 
+                          placeholder="Write your answer here..." 
+                          className="bg-orange-100 min-h-[60px] text-black"
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <Button 
+                  type="submit" 
+                  className="bg-orange-300 hover:bg-orange-400 text-black/80 w-full"
+                >
+                  <Send size={16} className="mr-2" />
+                  Submit Answer
+                </Button>
+              </form>
+            </Form>
           </div>
         )}
       </div>
