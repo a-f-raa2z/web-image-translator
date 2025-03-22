@@ -2,7 +2,7 @@
 import React from 'react';
 import Sidebar from '@/components/Sidebar';
 import AstronomyPageHeader from '@/components/AstronomyPageHeader';
-import { Gamepad, Planet, Sparkles, Moon } from 'lucide-react';
+import { Gamepad, Globe, Sparkles, Moon } from 'lucide-react';
 
 const AstronomyPlayground = () => {
   return (
@@ -22,7 +22,7 @@ const AstronomyPlayground = () => {
             <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-5 rounded-xl border border-blue-200 hover:shadow-md transition-all cursor-pointer group">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Planet className="text-white" size={24} />
+                  <Globe className="text-white" size={24} />
                 </div>
                 <h3 className="text-lg font-bold text-blue-700">Solar System Explorer</h3>
               </div>

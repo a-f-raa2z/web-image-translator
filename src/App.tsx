@@ -15,6 +15,7 @@ import PageHeader from "@/components/PageHeader";
 import AIPageHeader from "@/components/AIPageHeader";
 import AILearningSection from "@/components/AILearningSection";
 import AstronomyLearningSection from "@/components/AstronomyLearningSection";
+import AstronomyPageHeader from "@/components/AstronomyPageHeader";
 
 const queryClient = new QueryClient();
 
