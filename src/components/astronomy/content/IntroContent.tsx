@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { cn } from "@/lib/utils";
 import AstronomyChallengeCard from '../../AstronomyChallengeCard';
-import AstronomyPlaygroundCard from '../../AstronomyPlaygroundCard';
+import GalleryCard from '../GalleryCard';
 import { Dialog, DialogContent, DialogTitle, DialogHeader } from "@/components/ui/dialog";
 import { PlayCircle, ExternalLink } from 'lucide-react';
 import VideoList from '../VideoList';
@@ -67,8 +67,8 @@ const IntroContent: React.FC<IntroContentProps> = ({
               onClick={() => setShowImageDialog(true)}
               className="cursor-pointer h-full"
             >
-              <AstronomyPlaygroundCard
-                subtitle="Sneak Peak"
+              <GalleryCard
+                subtitle="NASA Collection"
                 title="Solar System | NASA"
                 className="h-full"
                 image="/lovable-uploads/solar.png"
@@ -98,7 +98,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
                     href="https://solarsystem.nasa.gov/solar-system/our-solar-system/overview/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="inline-flex items-center mt-4 text-purple-600 hover:underline"
+                    className="inline-flex items-center mt-4 text-indigo-600 hover:underline"
                   >
                     Learn more at NASA <ExternalLink className="ml-1 h-4 w-4" />
                   </a>

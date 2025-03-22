@@ -19,8 +19,17 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
+// Define a consistent NodeData type to avoid TypeScript errors
+interface NodeData {
+  label: string;
+  description?: string;
+  progress?: number;
+  isCurrent?: boolean;
+  icon?: React.FC<any>;
+}
+
 // Custom node component for course cards with progress bars
-const CourseNode = ({ data }) => {
+const CourseNode = ({ data }: { data: NodeData }) => {
   return (
     <div className={`w-64 bg-white rounded-xl shadow-md overflow-hidden border ${data.isCurrent ? 'border-blue-500 border-2' : 'border-gray-200'}`}>
       <div className="p-4">
@@ -51,23 +60,24 @@ const CourseNode = ({ data }) => {
 };
 
 // Custom node component for topic nodes
-const TopicNode = ({ data }) => {
+const TopicNode = ({ data }: { data: NodeData }) => {
+  const IconComponent = data.icon;
   return (
     <div className="bg-blue-50 px-3 py-2 rounded-lg text-center font-medium border border-blue-200 min-w-32">
-      {data.icon && <data.icon className="inline mr-1.5 text-blue-500" size={16} />}
+      {IconComponent && <IconComponent className="inline mr-1.5 text-blue-500" size={16} />}
       <span>{data.label}</span>
     </div>
   );
 };
 
-const nodeTypes = {
+const nodeTypes: NodeTypes = {
   course: CourseNode,
   topic: TopicNode,
 };
 
 const AstronomyKnowledgeMap = () => {
   // Initial nodes including courses and topics
-  const initialNodes = [
+  const initialNodes: Node<NodeData>[] = [
     // Course nodes
     {
       id: 'neighbor-worlds',
@@ -118,7 +128,7 @@ const AstronomyKnowledgeMap = () => {
       draggable: true,
     },
     
-    // Topic nodes with all required fields to match the course nodes type
+    // Topic nodes
     {
       id: 'earth',
       type: 'topic',
@@ -126,7 +136,7 @@ const AstronomyKnowledgeMap = () => {
       data: { 
         label: 'Earth', 
         icon: Globe,
-        description: '',
+        description: 'Our home planet',
         progress: 0,
         isCurrent: false
       },
@@ -138,7 +148,7 @@ const AstronomyKnowledgeMap = () => {
       data: { 
         label: 'Moon', 
         icon: Moon,
-        description: '',
+        description: 'Earth\'s natural satellite',
         progress: 0,
         isCurrent: false
       },
@@ -150,7 +160,7 @@ const AstronomyKnowledgeMap = () => {
       data: { 
         label: 'Mars', 
         icon: MapPin,
-        description: '',
+        description: 'The Red Planet',
         progress: 0,
         isCurrent: false
       },
@@ -162,7 +172,7 @@ const AstronomyKnowledgeMap = () => {
       data: { 
         label: 'The Sun', 
         icon: Sun,
-        description: '',
+        description: 'Our star',
         progress: 0,
         isCurrent: false
       },
@@ -170,7 +180,7 @@ const AstronomyKnowledgeMap = () => {
   ];
 
   // Initial edges connecting courses to topics
-  const initialEdges = [
+  const initialEdges: Edge[] = [
     // Edges from Neighbor Worlds to its topics
     { 
       id: 'nw-to-earth', 
