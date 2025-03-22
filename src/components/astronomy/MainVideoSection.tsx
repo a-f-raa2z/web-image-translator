@@ -61,7 +61,7 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
             {renderVideo(selectedVideo)}
           </div>
         </div>
-        <h3 className="mt-3 text-lg font-semibold">{selectedVideo.title}</h3>
+        {/* Removed the h3 tag that displayed the video title */}
       </div>
       
       <VideoContentCards 
