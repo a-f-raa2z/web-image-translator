@@ -25,7 +25,7 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
   return (
     <div 
       className={cn(
-        "bg-purple-50 rounded-xl shadow-md overflow-hidden h-full flex flex-col relative",
+        "bg-orange-500 rounded-xl shadow-md overflow-hidden h-full flex flex-col relative", // Changed from bg-purple-50 to bg-orange-500
         className
       )}
       onClick={onClick}
@@ -51,10 +51,10 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-gray-900">{title}</h3>
+              <h3 className="font-semibold text-white">{title}</h3> {/* Changed from text-gray-900 to text-white */}
             </div>
             <p className={cn(
-              "text-gray-600 mt-2",
+              "text-white mt-2", // Changed from text-gray-600 to text-white
               descriptionClassName
             )}>
               {description}
@@ -66,13 +66,13 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
           <div className="flex items-center gap-2">
             {hasVideos ? (
               <>
-                <Play size={16} className="text-orange-600" />
-                <span className="text-sm text-orange-600">Watch Video Series</span>
+                <Play size={16} className="text-white" /> {/* Changed from text-orange-600 to text-white */}
+                <span className="text-sm text-white">Watch Video Series</span> {/* Changed from text-orange-600 to text-white */}
               </>
             ) : (
               <>
-                <Award size={16} className="text-orange-600" />
-                <span className="text-sm text-orange-600">Earn Space Explorer Badge</span>
+                <Award size={16} className="text-white" /> {/* Changed from text-orange-600 to text-white */}
+                <span className="text-sm text-white">Earn Space Explorer Badge</span> {/* Changed from text-orange-600 to text-white */}
               </>
             )}
           </div>

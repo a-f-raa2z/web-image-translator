@@ -20,10 +20,10 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
 }) => {
   return (
     <div className={cn(
-      "bg-purple-50 rounded-xl shadow-md overflow-hidden h-full flex flex-col border border-purple-200",
+      "bg-orange-500 rounded-xl shadow-md overflow-hidden h-full flex flex-col border border-orange-600", // Changed from purple-50 to orange-500
       className
     )}>
-      <div className="absolute top-2 left-3 z-10 bg-yellow-100 px-2 py-1 rounded text-xs font-semibold text-yellow-700 flex items-center gap-1">
+      <div className="absolute top-2 left-3 z-10 bg-orange-100 px-2 py-1 rounded text-xs font-semibold text-orange-700 flex items-center gap-1">
         <Trophy size={14} />
         <span>Challenge</span>
       </div>
@@ -45,11 +45,10 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-gray-900">{title}</h3>
-
+              <h3 className="font-semibold text-white">{title}</h3> {/* Changed text-gray-900 to text-white */}
             </div>
             <p className={cn(
-              "text-gray-600 mt-2",
+              "text-white mt-2", // Changed from text-gray-600 to text-white
               descriptionClassName
             )}>
               {description}
@@ -59,8 +58,8 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
         
         <div className="mt-auto pt-4">
           <div className="flex items-center gap-2">
-            <Award size={16} className="text-purple-600" />
-            <span className="text-sm text-purple-600">Earn Space Explorer Badge</span>
+            <Award size={16} className="text-white" /> {/* Changed from text-purple-600 to text-white */}
+            <span className="text-sm text-white">Earn Space Explorer Badge</span> {/* Changed from text-purple-600 to text-white */}
           </div>
           <div className="mt-2 flex items-center gap-2">
           </div>

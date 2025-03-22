@@ -14,7 +14,7 @@ export const getCardDetails = (type: CardType) => {
     case 'challengecard':
       return { 
         icon: <Trophy size={16} className="text-white" />,
-        bgColor: 'bg-orange-300',
+        bgColor: 'bg-orange-500', // Changed from bg-orange-300 to bg-orange-500
         label: 'Challenge'
       };
     case 'questioncard':

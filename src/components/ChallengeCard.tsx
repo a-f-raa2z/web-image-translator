@@ -17,7 +17,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
   title,
   description,
   image,
-  color = "bg-art-yellow",
+  color = "bg-orange-500", // Changed from "bg-art-yellow" to "bg-orange-500"
   className,
   descriptionClassName
 }) => {
