@@ -59,8 +59,9 @@ const LearningSection: React.FC = () => {
     <section className="mb-10">
       <h2 className="text-xl font-bold mb-4">My Learning</h2>
       
-      <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 shadow-md">
+        {/* Combined video and cards into one section */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
           <div className="col-span-1 md:col-span-6">
             <div className="h-full rounded-xl overflow-hidden shadow-md bg-black transition-all duration-300 animate-scale-in">
               <VideoPlayer videoId={videos[selectedVideoIndex].id} />
@@ -84,8 +85,9 @@ const LearningSection: React.FC = () => {
           </div>
         </div>
         
-        <div className="flex justify-between items-center mt-5">
-          <div className="flex items-center gap-2">
+        {/* Tags and map button */}
+        <div className="flex justify-between items-center mb-5">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className="px-3 py-1 bg-gray-800 text-white text-xs rounded-full">Intro to Fine Art</span>
             <span className="text-sm text-gray-500">5 Sections | 12 Points</span>
             <span className="px-3 py-1 bg-white border border-gray-200 text-xs rounded-full">Mysteries of Art</span>
@@ -97,7 +99,8 @@ const LearningSection: React.FC = () => {
           </button>
         </div>
         
-        <div className="mt-6 bg-white rounded-xl p-4">
+        {/* Video thumbnails carousel in same color block */}
+        <div className="bg-white rounded-xl p-4">
           <Carousel className="w-full">
             <CarouselContent className="-ml-2 md:-ml-4">
               {videos.map((video, index) => (
