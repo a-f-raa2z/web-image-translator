@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
-import { send, check } from 'lucide-react';
+import { Send, Check } from 'lucide-react';
 
 interface EarthContentProps {
   selectedVideoTitle: string;
@@ -72,12 +72,12 @@ const EarthContent: React.FC<EarthContentProps> = ({
                           type="submit" 
                           className="bg-orange-200 hover:bg-orange-300 text-black/80 w-full"
                         >
-                          <send size={16} className="mr-2" />
+                          <Send size={16} className="mr-2" />
                           Submit Answer
                         </Button>
                       ) : (
                         <div className="bg-green-100 p-2 rounded-md text-xs text-green-800 flex items-center">
-                          <check size={14} className="mr-1" />
+                          <Check size={14} className="mr-1" />
                           Answer submitted successfully!
                         </div>
                       )}
