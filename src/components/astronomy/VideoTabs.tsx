@@ -23,17 +23,17 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
     <TabsContent value={selectedTab} className="mt-0">
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-12 md:col-span-3">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          <h3 className="text-lg font-semibold text-gray-900 mb-1">
             Hello, Neighbors!
           </h3>
-          <p className="text-gray-600 text-sm">
+          <p className="text-gray-600 text-xs">
             Embark on a cosmic journey through the wonders of space. Learn about stars, planets, galaxies, and the mysteries of our universe.
           </p>
         </div>
 
         <div className="col-span-12 md:col-span-9">
           <div className="relative">
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-2">
               {videos.map((video, index) => (
                 <button
                   key={video.id}
@@ -48,9 +48,9 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
                     alt={video.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+                  <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-black/80 to-transparent">
                     <p className="text-white text-xs font-medium truncate">{video.title}</p>
-                    <p className="text-white/80 text-xs">{video.duration}</p>
+                    <p className="text-white/80 text-[10px]">{video.duration}</p>
                   </div>
                 </button>
               ))}
