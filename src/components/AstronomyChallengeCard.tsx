@@ -2,6 +2,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Star, Award, Play, Trophy } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface AstronomyChallengeCardProps {
   title?: string;
@@ -49,7 +50,7 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
         </div>
       )}
       
-      <div className="p-6 flex-1 flex flex-col justify-center">
+      <div className="p-6 flex-1 flex flex-col justify-center pt-14">
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
@@ -65,19 +66,19 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
         </div>
         
         <div className="mt-auto pt-4">
-          <div className="flex items-center gap-2">
+          <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70">
             {hasVideos ? (
               <>
-                <Play size={16} className="text-white" />
-                <span className="text-sm text-white">Watch Video Series</span>
+                <Play size={16} />
+                <span>Watch Video Series</span>
               </>
             ) : (
               <>
-                <Award size={16} className="text-white" />
-                <span className="text-sm text-white">Earn Space Explorer Badge</span>
+                <Award size={16} />
+                <span>Earn Space Explorer Badge</span>
               </>
             )}
-          </div>
+          </Button>
         </div>
       </div>
     </div>

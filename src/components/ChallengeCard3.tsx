@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Trophy } from 'lucide-react';
+import { Trophy, Award } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface ChallengeCard3Props {
   title: string; 
@@ -28,9 +29,16 @@ const ChallengeCard3: React.FC<ChallengeCard3Props> = ({ title, description, ima
         </div>
       )}
       
-      <div className="h-full flex flex-col justify-center mt-8">
+      <div className="h-full flex flex-col justify-center mt-12">
         <h3 className="text-lg font-semibold text-white">{title}</h3>
         <p className="text-sm text-white">{description}</p>
+        
+        <div className="mt-4">
+          <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-xs">
+            <Award size={14} />
+            <span>Earn Badge</span>
+          </Button>
+        </div>
       </div>
     </div>
   );

@@ -2,7 +2,8 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
-import { Trophy } from 'lucide-react';
+import { Trophy, Award } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface ChallengeCardProps {
   title: string;
@@ -44,7 +45,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         </div>
       )}
       
-      <div className="p-6 h-full flex flex-col justify-center relative z-10">
+      <div className="p-6 h-full flex flex-col justify-center relative z-10 pt-16">
         <h3 className="text-lg font-medium text-black/70 mb-1">{title}</h3>
 
         <div className="flex-grow flex flex-col justify-center w-full">
@@ -61,6 +62,13 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
               placeholder="Answer..."
               className="w-full py-3 px-4 bg-white/80 backdrop-blur-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-black/10"
             />
+          </div>
+
+          <div className="mt-6">
+            <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70">
+              <Award size={16} />
+              <span>Earn Challenge Badge</span>
+            </Button>
           </div>
         </div>
       </div>
