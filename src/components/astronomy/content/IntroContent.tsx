@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { cn } from "@/lib/utils";
 import AstronomyChallengeCard from '../../AstronomyChallengeCard';
 import GalleryCard from '../GalleryCard';
-import { Dialog, DialogContent, DialogTitle, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogHeader, DialogDescription } from "@/components/ui/dialog";
 import { PlayCircle, ExternalLink, Music, PenTool } from 'lucide-react';
 import VideoList from '../VideoList';
 import { Card, CardContent } from "@/components/ui/card";
@@ -162,9 +163,6 @@ const IntroContent: React.FC<IntroContentProps> = ({
                 <Music className="h-5 w-5 text-yellow-500" />
                 <span>Movie Night: Interstellar</span>
               </DialogTitle>
-              <DialogDescription>
-                Organize a space-themed movie night with friends
-              </DialogDescription>
             </DialogHeader>
             <div className="p-4">
               <img 
