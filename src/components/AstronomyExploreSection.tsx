@@ -94,8 +94,8 @@ const AstronomyExploreSection: React.FC = () => {
     },
     {
       id: '10',
-      title: 'Jupiter's Great Red Spot: A Shrinking Giant',
-      description: 'Latest observations show changes in Jupiter's famous storm',
+      title: 'Jupiter\'s Great Red Spot: A Shrinking Giant',
+      description: 'Latest observations show changes in Jupiter\'s famous storm',
       imageUrl: 'https://astronomy.com/favicon.ico',
       source: 'astronomy',
       sourceUrl: 'https://www.astronomy.com/science/jupiters-great-red-spot-update/',
@@ -104,7 +104,7 @@ const AstronomyExploreSection: React.FC = () => {
     {
       id: '11',
       title: 'Perseid Meteor Shower: Peak Viewing Times',
-      description: 'How to catch one of the year's most spectacular meteor showers',
+      description: 'How to catch one of the year\'s most spectacular meteor showers',
       imageUrl: 'https://www.nasa.gov/wp-content/themes/nasa/assets/images/favicon-192.png',
       source: 'nasa',
       sourceUrl: 'https://science.nasa.gov/solar-system/meteors-meteorites/perseids/',
@@ -122,7 +122,7 @@ const AstronomyExploreSection: React.FC = () => {
     {
       id: '13',
       title: 'Astronaut Shows Daily Life on the ISS',
-      description: 'See what it's like to live in space through astronaut vlogs',
+      description: 'See what it\'s like to live in space through astronaut vlogs',
       imageUrl: 'https://sf16-scmcdn-sg.ibytedtos.com/goofy/tiktok/web/node/_next/static/images/logo-7328701c.svg',
       source: 'tiktok',
       sourceUrl: 'https://www.tiktok.com/@nasa/video/7341048538294916398',
