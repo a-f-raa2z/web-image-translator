@@ -10,7 +10,28 @@ interface PinterestCardProps {
   className?: string;
 }
 
+// Astronomy placeholder images
+const placeholderImages = [
+  "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Starry night
+  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Mountain summit
+  "https://images.unsplash.com/photo-1458668383970-8ddd3927deed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Mountain alps
+  "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Green mountains
+  "https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Building under stars
+  "/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg", // Mars sunrise (from your uploads)
+  "/lovable-uploads/interstellar.jpeg", // Interstellar (from your uploads)
+  "/lovable-uploads/earth2.jpeg", // Earth (from your uploads)
+  "/lovable-uploads/solar.png" // Solar system (from your uploads)
+];
+
 const PinterestCard: React.FC<PinterestCardProps> = ({ item, className }) => {
+  // Get a deterministic but seemingly random placeholder image based on the item id
+  const getPlaceholderImage = (id: string) => {
+    // Simple hash function to convert id string to a number
+    const hash = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const index = hash % placeholderImages.length;
+    return placeholderImages[index];
+  };
+
   const handleCardClick = () => {
     window.open(item.sourceUrl, '_blank');
   };
@@ -25,13 +46,13 @@ const PinterestCard: React.FC<PinterestCardProps> = ({ item, className }) => {
       <div className="aspect-auto overflow-hidden cursor-pointer" onClick={handleCardClick}>
         <AspectRatio ratio={1/1} className="bg-gray-100">
           <img 
-            src={item.imageUrl} 
+            src={getPlaceholderImage(item.id)} 
             alt={item.title}
-            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             onError={(e) => {
-              // Fallback to a default image if the website image fails to load
+              // Fallback to a default image if the image fails to load
               const target = e.target as HTMLImageElement;
-              target.src = `/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg`;
+              target.src = "/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg";
             }}
           />
         </AspectRatio>
