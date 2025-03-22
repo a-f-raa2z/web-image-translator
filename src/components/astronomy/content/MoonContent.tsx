@@ -41,7 +41,7 @@ const MoonContent: React.FC<MoonContentProps> = ({
               <GalleryCard
                 subtitle="NASA Collection"
                 title="Moon Gallery"
-                image="/lovable-uploads/moon.png"
+                image="/lovable-uploads/c7dd59b9-9959-4b74-9033-d5a95dc665d8.png"
                 className="h-full"
                 isExpandable={true}
               />
@@ -60,7 +60,7 @@ const MoonContent: React.FC<MoonContentProps> = ({
             </DialogHeader>
             <div className="overflow-hidden rounded-lg">
               <img 
-                src="/lovable-uploads/moon.png" 
+                src="/lovable-uploads/c7dd59b9-9959-4b74-9033-d5a95dc665d8.png" 
                 alt="Moon" 
                 className="w-full h-auto object-contain max-h-[70vh]"
               />
@@ -113,7 +113,7 @@ const MoonContent: React.FC<MoonContentProps> = ({
               "🌘 Lunar Eclipse Simulator" : 
               "🌞 Solar Eclipse Simulator"}
             className="h-full"
-            image="/lovable-uploads/moon.png"
+            image="/lovable-uploads/c7dd59b9-9959-4b74-9033-d5a95dc665d8.png"
           />
         </div>
       </div>
