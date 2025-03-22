@@ -42,7 +42,13 @@ const AstronomyLearningSection: React.FC = () => {
     ],
     moon: [
       { id: '6AviDjR9mmo', title: 'Moon 101', duration: '3:05' },
-      { id: 'lhKMQIRdaeo', title: 'What is a Supermoon', duration: '2:14' },
+      { 
+        id: 'tiktok-supermoon', 
+        title: 'Amazing Timelapse Supermoon', 
+        duration: '0:51',
+        source: 'tiktok',
+        tiktokUrl: 'https://www.tiktok.com/t/ZT2G7Vmyd/'
+      },
       { id: 'VW2xRR75lKE', title: 'Lunar Eclipse 101', duration: '2:14' },
       { id: 'cxrLRbkOwKs', title: 'Solar Eclipse 101', duration: '2:14' }
     ]

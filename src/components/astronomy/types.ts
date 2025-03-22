@@ -3,6 +3,8 @@ export interface VideoItem {
   id: string;
   title: string;
   duration: string;
+  source?: 'youtube' | 'tiktok';
+  tiktokUrl?: string;
 }
 
 export type VideoCategory = 'intro' | 'earth' | 'moon';

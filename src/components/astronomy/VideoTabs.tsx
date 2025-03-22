@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
@@ -19,7 +18,6 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
 }) => {
   const tabName = selectedTab as VideoCategory;
   
-  // Custom content based on the selected tab
   const getTabContent = () => {
     switch(selectedTab) {
       case 'intro':
@@ -46,6 +44,13 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
   };
 
   const content = getTabContent();
+  
+  const getThumbnail = (video: VideoItem) => {
+    if (video.source === 'tiktok') {
+      return '/lovable-uploads/earth.gif'; // Placeholder for TikTok videos
+    }
+    return `https://img.youtube.com/vi/${video.id}/mqdefault.jpg`;
+  };
   
   return (
     <TabsContent value={selectedTab} className="mt-0">
@@ -74,7 +79,7 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
                   )}
                 >
                   <img
-                    src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
+                    src={getThumbnail(video)}
                     alt={video.title}
                     className="w-full h-full object-cover"
                   />
