@@ -13,6 +13,7 @@ interface AstronomyChallengeCardProps {
   onClick?: () => void;
   hasVideos?: boolean;
   image?: string;
+  children?: React.ReactNode;
 }
 
 const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
@@ -23,7 +24,8 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
   videoId = "lcZTcfdZ3Ow",
   onClick,
   hasVideos,
-  image
+  image,
+  children
 }) => {
   return (
     <div 
@@ -50,7 +52,7 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
         </div>
       )}
       
-      <div className="p-6 flex-1 flex flex-col justify-center pt-14">
+      <div className="p-6 flex-1 flex flex-col justify-between pt-14">
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
@@ -65,21 +67,25 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
           </div>
         </div>
         
-        <div className="mt-auto pt-4 w-fit">
-          <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto">
-            {hasVideos ? (
-              <>
-                <Play size={16} />
-                <span>Watch Video Series</span>
-              </>
-            ) : (
-              <>
-                <Award size={16} />
-                <span>Earn Space Explorer Badge</span>
-              </>
-            )}
-          </Button>
-        </div>
+        {children}
+        
+        {!children && (
+          <div className="mt-auto pt-4 w-fit">
+            <Button variant="secondary" className="bg-orange-300 hover:bg-orange-400 text-black/70 text-sm px-4 py-2 h-auto">
+              {hasVideos ? (
+                <>
+                  <Play size={16} />
+                  <span>Watch Video Series</span>
+                </>
+              ) : (
+                <>
+                  <Award size={16} />
+                  <span>Earn Space Explorer Badge</span>
+                </>
+              )}
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
