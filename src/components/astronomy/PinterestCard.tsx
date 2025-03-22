@@ -33,6 +33,11 @@ const PinterestCard: React.FC<PinterestCardProps> = ({ item, className, onClick 
     return placeholderImages[index];
   };
 
+  // Determine if the card should be displayed in landscape mode based on the className
+  const isLandscape = className?.includes('col-span-2');
+  
+  const aspectRatio = isLandscape ? 16/9 : 1;
+
   const handleCardClick = () => {
     if (onClick && (item.hasVideos || item.isExpandable)) {
       onClick(item);
@@ -44,75 +49,77 @@ const PinterestCard: React.FC<PinterestCardProps> = ({ item, className, onClick 
   return (
     <div 
       className={cn(
-        "group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300",
+        "group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 h-full",
         className
       )}
     >
-      <div className="aspect-auto overflow-hidden cursor-pointer" onClick={handleCardClick}>
-        <AspectRatio ratio={1/1} className="bg-gray-100">
-          <img 
-            src={getPlaceholderImage(item.id)} 
-            alt={item.title}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            onError={(e) => {
-              // Fallback to a default image if the image fails to load
-              const target = e.target as HTMLImageElement;
-              target.src = "/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg";
-            }}
-          />
-        </AspectRatio>
+      <div className="flex flex-col h-full">
+        <div className="cursor-pointer flex-grow" onClick={handleCardClick}>
+          <AspectRatio ratio={aspectRatio} className="bg-gray-100">
+            <img 
+              src={getPlaceholderImage(item.id)} 
+              alt={item.title}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              onError={(e) => {
+                // Fallback to a default image if the image fails to load
+                const target = e.target as HTMLImageElement;
+                target.src = "/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg";
+              }}
+            />
+          </AspectRatio>
+        </div>
+        
+        <div className="p-3 bg-white">
+          <h3 className="font-medium text-sm line-clamp-2 mb-1">{item.title}</h3>
+          {item.description && (
+            <p className="text-xs text-gray-600 line-clamp-2 mb-2">{item.description}</p>
+          )}
+          
+          <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center space-x-2">
+              {item.author && (
+                <span className="text-xs text-gray-500">{item.author}</span>
+              )}
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <button className="text-gray-500 hover:text-red-500 transition-colors">
+                <Heart size={16} />
+              </button>
+              <button className="text-gray-500 hover:text-blue-500 transition-colors">
+                <Bookmark size={16} />
+              </button>
+              <a 
+                href={item.sourceUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-500 hover:text-purple-500 transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
       
-      <div className="p-3 bg-white">
-        <h3 className="font-medium text-sm line-clamp-2 mb-1">{item.title}</h3>
-        {item.description && (
-          <p className="text-xs text-gray-600 line-clamp-2 mb-2">{item.description}</p>
-        )}
-        
-        <div className="flex items-center justify-between mt-2">
-          <div className="flex items-center space-x-2">
-            {item.author && (
-              <span className="text-xs text-gray-500">{item.author}</span>
-            )}
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <button className="text-gray-500 hover:text-red-500 transition-colors">
-              <Heart size={16} />
-            </button>
-            <button className="text-gray-500 hover:text-blue-500 transition-colors">
-              <Bookmark size={16} />
-            </button>
-            <a 
-              href={item.sourceUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-gray-500 hover:text-purple-500 transition-colors"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <ExternalLink size={16} />
-            </a>
-          </div>
-        </div>
-        
-        <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded-full">
-          {item.source}
-        </div>
-
-        {item.hasVideos && (
-          <div className="absolute top-2 left-2 bg-blue-500 bg-opacity-75 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
-            <Film size={12} />
-            <span>Videos</span>
-          </div>
-        )}
-
-        {item.isExpandable && (
-          <div className="absolute top-2 left-2 bg-purple-500 bg-opacity-75 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
-            <Maximize size={12} />
-            <span>Expand</span>
-          </div>
-        )}
+      <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded-full">
+        {item.source}
       </div>
+
+      {item.hasVideos && (
+        <div className="absolute top-2 left-2 bg-blue-500 bg-opacity-75 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+          <Film size={12} />
+          <span>Videos</span>
+        </div>
+      )}
+
+      {item.isExpandable && (
+        <div className="absolute top-2 left-2 bg-purple-500 bg-opacity-75 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+          <Maximize size={12} />
+          <span>Expand</span>
+        </div>
+      )}
     </div>
   );
 };

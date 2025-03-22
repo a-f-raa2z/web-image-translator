@@ -14,6 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger 
 } from "@/components/ui/popover";
+import { Badge } from "@/components/ui/badge";
 
 const AstronomyLearningSection: React.FC = () => {
   const [selectedIntroVideoIndex, setSelectedIntroVideoIndex] = useState(0);
@@ -131,12 +132,20 @@ const AstronomyLearningSection: React.FC = () => {
       </div>
       
       <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-200">
-        <MainVideoSection 
-          selectedTab={selectedTab}
-          videoData={videoData}
-          selectedIndices={selectedIndices}
-          animate={animate}
-        />
+        <div className="relative">
+          <MainVideoSection 
+            selectedTab={selectedTab}
+            videoData={videoData}
+            selectedIndices={selectedIndices}
+            animate={animate}
+          />
+          <Badge 
+            variant="default" 
+            className="absolute top-3 left-3 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-xs rounded-full"
+          >
+            Learning
+          </Badge>
+        </div>
 
         <Tabs defaultValue="intro" onValueChange={handleTabChange} className="w-full">
           <TabsList className="mb-4 bg-transparent p-0 border-b border-gray-200 flex flex-wrap w-full justify-start">
