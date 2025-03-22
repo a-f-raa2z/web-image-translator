@@ -59,7 +59,7 @@ const LearningSection: React.FC = () => {
     <section className="mb-10">
       <h2 className="text-xl font-bold mb-4">My Learning</h2>
       
-      <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 shadow-md">
+      <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl p-6 shadow-md border border-purple-300">
         {/* Combined video and cards into one section */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
           <div className="col-span-1 md:col-span-6">
@@ -100,7 +100,7 @@ const LearningSection: React.FC = () => {
         </div>
         
         {/* Video thumbnails carousel in same color block */}
-        <div className="bg-white rounded-xl p-4">
+        <div className="bg-white rounded-xl p-4 border border-purple-200">
           <Carousel className="w-full">
             <CarouselContent className="-ml-2 md:-ml-4">
               {videos.map((video, index) => (

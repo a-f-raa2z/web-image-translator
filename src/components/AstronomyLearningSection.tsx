@@ -60,7 +60,7 @@ const AstronomyLearningSection: React.FC = () => {
     <section className="mb-10">
       <h2 className="text-xl font-semibold mb-4">My Learning</h2>
       
-      <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 shadow-md">
+      <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl p-6 shadow-md border border-purple-300">
         <MainVideoSection 
           selectedTab={selectedTab}
           videoData={videoData}
@@ -90,7 +90,7 @@ const AstronomyLearningSection: React.FC = () => {
             </TabsTrigger>
           </TabsList>
 
-          <div className="bg-white rounded-xl p-4">
+          <div className="bg-white rounded-xl p-4 border border-purple-200">
             <VideoTabs 
               selectedTab={selectedTab}
               videos={videoData[selectedTab]}

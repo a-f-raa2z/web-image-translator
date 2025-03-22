@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Star, Award, Play } from 'lucide-react';
@@ -19,9 +20,13 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
 }) => {
   return (
     <div className={cn(
-      "bg-purple-50 rounded-xl shadow-md overflow-hidden h-full flex flex-col",
+      "bg-purple-50 rounded-xl shadow-md overflow-hidden h-full flex flex-col border border-purple-200",
       className
     )}>
+      <div className="absolute top-2 left-3 z-10 bg-yellow-100 px-2 py-1 rounded text-xs font-semibold text-yellow-700">
+        Challenge
+      </div>
+
       <div className="w-full aspect-video relative group cursor-pointer">
         <img 
           src={`https://img.youtube.com/vi/uaSYEUugnzE/maxresdefault.jpg`}
@@ -64,4 +69,4 @@ const ChallengeCard2: React.FC<ChallengeCard2Props> = ({
   );
 };
 
-export default ChallengeCard2; 
+export default ChallengeCard2;

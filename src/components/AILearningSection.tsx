@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import AIActivitiesSection from './AIActivitiesSection';
 import AICommunitiesSection from './AICommunitiesSection';
-import AIExploreSection from './AIExploreSection';
+import AIExploreSection;
 
 const AILearningSection: React.FC = () => {
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
@@ -126,35 +126,35 @@ const AILearningSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-6 bg-purple-100 rounded-2xl p-0 md:p-0">
+      <div className="mt-6 bg-purple-100 rounded-2xl p-0 md:p-0 border border-purple-300">
         <div className="p-6">
           <Tabs defaultValue="intro">
           <TabsList className="mb-4 bg-transparent p-0 shadow-none space-x-4">
-  <TabsTrigger 
-    value="intro" 
-    className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
-  >
-    Intro to Gen AI
-  </TabsTrigger>
-  <TabsTrigger 
-    value="chatbots" 
-    className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
-  >
-    Chatbots
-  </TabsTrigger>
-  <TabsTrigger 
-    value="chatbots-ai" 
-    className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
-  >
-    Do Chatbots Need AI?
-  </TabsTrigger>
-  <TabsTrigger 
-    value="Chatbot in the World LLM" 
-    className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
-  >
-    Chatbot in LLM
-  </TabsTrigger>
-</TabsList>
+            <TabsTrigger 
+              value="intro" 
+              className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+            >
+              Intro to Gen AI
+            </TabsTrigger>
+            <TabsTrigger 
+              value="chatbots" 
+              className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+            >
+              Chatbots
+            </TabsTrigger>
+            <TabsTrigger 
+              value="chatbots-ai" 
+              className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+            >
+              Do Chatbots Need AI?
+            </TabsTrigger>
+            <TabsTrigger 
+              value="Chatbot in the World LLM" 
+              className="bg-transparent hover:bg-purple-50 text-gray-600 data-[state=active]:bg-purple-500 data-[state=active]:text-white focus:outline-none focus:ring-0 rounded-md px-3 py-2 transition-colors"
+            >
+              Chatbot in LLM
+            </TabsTrigger>
+          </TabsList>
 
             <TabsContent value="intro" className="mt-0">
               <div className="grid grid-cols-12 gap-4">
@@ -292,7 +292,7 @@ const AILearningSection: React.FC = () => {
           </Tabs>
         </div>
       </div>
-<br></br>
+      <br></br>
       <div className="col-span-1 md:col-span-12">
         <AIActivitiesSection />
       </div>
@@ -306,4 +306,4 @@ const AILearningSection: React.FC = () => {
   );
 };
 
-export default AILearningSection; 
+export default AILearningSection;
