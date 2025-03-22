@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useRef, useEffect, useState } from 'react';
 import { ExploreContentItem } from './types';
 import PinterestCard from './PinterestCard';
 
@@ -8,14 +9,46 @@ interface PinterestLayoutProps {
 }
 
 const PinterestLayout: React.FC<PinterestLayoutProps> = ({ items, onCardClick }) => {
-  // Calculate the number of columns based on screen size
-  const getColumnClass = () => {
-    return "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
+  const [columns, setColumns] = useState(4);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Update columns based on container width
+  useEffect(() => {
+    const updateColumns = () => {
+      if (containerRef.current) {
+        const width = containerRef.current.clientWidth;
+        if (width < 640) {
+          setColumns(1);
+        } else if (width < 768) {
+          setColumns(2);
+        } else if (width < 1024) {
+          setColumns(3);
+        } else {
+          setColumns(4);
+        }
+      }
+    };
+
+    updateColumns();
+    window.addEventListener('resize', updateColumns);
+    return () => window.removeEventListener('resize', updateColumns);
+  }, []);
+
+  // Create column arrays
+  const createColumnArrays = () => {
+    const columnArrays: ExploreContentItem[][] = Array.from({ length: columns }, () => []);
+    
+    // Distribute items across columns
+    items.forEach((item, index) => {
+      const columnIndex = index % columns;
+      columnArrays[columnIndex].push(item);
+    });
+    
+    return columnArrays;
   };
 
-  // Assign varied heights to cards but keep the same width
-  const getCardClass = (index: number) => {
-    // Create varied heights based on item index
+  // Assign varied heights to cards
+  const getCardHeight = (index: number) => {
     if (index % 5 === 0) {
       return "h-[250px]"; // shorter card
     } else if (index % 3 === 0) {
@@ -26,15 +59,24 @@ const PinterestLayout: React.FC<PinterestLayoutProps> = ({ items, onCardClick })
     return "h-[300px]"; // standard card
   };
 
+  const columnArrays = createColumnArrays();
+
   return (
-    <div className={`grid ${getColumnClass()} gap-4`}>
-      {items.map((item, index) => (
-        <div key={item.id} className="col-span-1">
-          <PinterestCard 
-            item={item} 
-            onClick={onCardClick}
-            className={`${getCardClass(index)} w-full`}
-          />
+    <div 
+      ref={containerRef} 
+      className="w-full flex gap-4"
+    >
+      {columnArrays.map((column, columnIndex) => (
+        <div key={columnIndex} className="flex-1 flex flex-col gap-4">
+          {column.map((item, itemIndex) => (
+            <div key={item.id} className="w-full">
+              <PinterestCard 
+                item={item} 
+                onClick={onCardClick}
+                className={`${getCardHeight(columnIndex * items.length / columns + itemIndex)} w-full`}
+              />
+            </div>
+          ))}
         </div>
       ))}
     </div>
