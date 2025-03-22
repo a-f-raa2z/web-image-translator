@@ -9,7 +9,7 @@ interface PinterestLayoutProps {
 }
 
 const PinterestLayout: React.FC<PinterestLayoutProps> = ({ items, onCardClick }) => {
-  const [columns, setColumns] = useState(5); // Default to 5 columns for web
+  const [columns, setColumns] = useState(4);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Update columns based on container width
@@ -23,10 +23,8 @@ const PinterestLayout: React.FC<PinterestLayoutProps> = ({ items, onCardClick })
           setColumns(2);
         } else if (width < 1024) {
           setColumns(3);
-        } else if (width < 1280) {
-          setColumns(4);
         } else {
-          setColumns(5); // 5 columns for larger screens
+          setColumns(4);
         }
       }
     };
@@ -66,10 +64,10 @@ const PinterestLayout: React.FC<PinterestLayoutProps> = ({ items, onCardClick })
   return (
     <div 
       ref={containerRef} 
-      className="w-full flex gap-3" // Reduced gap for more space efficiency
+      className="w-full flex gap-4"
     >
       {columnArrays.map((column, columnIndex) => (
-        <div key={columnIndex} className="flex-1 flex flex-col gap-3">
+        <div key={columnIndex} className="flex-1 flex flex-col gap-4">
           {column.map((item, itemIndex) => (
             <div key={item.id} className="w-full">
               <PinterestCard 

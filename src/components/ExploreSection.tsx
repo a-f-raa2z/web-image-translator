@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Hash, Book, Gamepad, MapPin, Heart, User } from 'lucide-react';
@@ -62,7 +61,7 @@ const ExploreSection: React.FC<ExploreSectionProps> = ({ defaultTab = "channel" 
         </TabsList>
 
         <TabsContent value="channel" className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <ExploreCard
               title="Machine Learning Basics"
               description="Learn the fundamentals of Machine Learning"
@@ -78,12 +77,11 @@ const ExploreSection: React.FC<ExploreSectionProps> = ({ defaultTab = "channel" 
               description="Dive into Deep Learning concepts"
               image="/path/to/dl-image.jpg"
             />
-            {/* Add more cards if needed */}
           </div>
         </TabsContent>
 
         <TabsContent value="astronomy" className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <ExploreCard
               title="Solar System Exploration"
               description="Journey through our cosmic neighborhood"
@@ -99,12 +97,11 @@ const ExploreSection: React.FC<ExploreSectionProps> = ({ defaultTab = "channel" 
               description="Learn about telescopes and space missions"
               image="/path/to/telescope.jpg"
             />
-            {/* Add more cards if needed */}
           </div>
         </TabsContent>
 
         <TabsContent value="resource" className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
             <ExploreCard 
               title="Art History Resources"
               image="https://images.unsplash.com/photo-1544967082-d9d25d86be57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
@@ -125,17 +122,11 @@ const ExploreSection: React.FC<ExploreSectionProps> = ({ defaultTab = "channel" 
               title="Museums Online Collections"
               image="https://images.unsplash.com/photo-1518998053901-5348d3961a04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
             />
-            
-            <ExploreCard 
-              title="Art Analysis Techniques"
-              image="https://images.unsplash.com/photo-1518998053901-5348d3961a04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-            />
-            {/* Add more cards if needed */}
           </div>
         </TabsContent>
 
         <TabsContent value="playground" className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
             <ExploreCard 
               title="Virtual Painting Studio"
               image="https://images.unsplash.com/photo-1615184697985-c9bde1b07da7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
@@ -156,17 +147,11 @@ const ExploreSection: React.FC<ExploreSectionProps> = ({ defaultTab = "channel" 
               title="Perspective Drawing Simulator"
               image="https://images.unsplash.com/photo-1607934045356-8115ebe7c348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
             />
-            
-            <ExploreCard 
-              title="3D Modeling Workshop"
-              image="https://images.unsplash.com/photo-1607934045356-8115ebe7c348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-            />
-            {/* Add more cards if needed */}
           </div>
         </TabsContent>
 
         <TabsContent value="map" className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
             <ExploreCard 
               title="Art Movements Timeline"
               image="https://images.unsplash.com/photo-1535016120720-40c646be5580?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
@@ -187,12 +172,6 @@ const ExploreSection: React.FC<ExploreSectionProps> = ({ defaultTab = "channel" 
               title="Technique Evolution Map"
               image="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
             />
-            
-            <ExploreCard 
-              title="Historical Art Periods"
-              image="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-            />
-            {/* Add more cards if needed */}
           </div>
         </TabsContent>
       </Tabs>

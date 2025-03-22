@@ -62,20 +62,22 @@ const LearningSection: React.FC = () => {
       <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl p-6 shadow-md border border-purple-300">
         {/* Combined video and cards into one section */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
-          <div className="col-span-1 md:col-span-7">
+          <div className="col-span-1 md:col-span-6">
             <div className="h-full rounded-xl overflow-hidden shadow-md bg-black transition-all duration-300 animate-scale-in">
               <VideoPlayer videoId={videos[selectedVideoIndex].id} />
             </div>
           </div>
           
-          <div className="col-span-1 md:col-span-5 grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="col-span-1 md:col-span-3">
             <ChallengeCard 
               title="Challenge" 
               description="Explain AI in your own words"
               image="/lovable-uploads/476601ed-362d-4cd8-8c62-4b8047535094.png"
               descriptionClassName="text-sm" // Keeping the smaller text class
             />
-            
+          </div>
+          
+          <div className="col-span-1 md:col-span-3">
             <PlaygroundCard
               subtitle="You've unlocked"
               title="Whisk"
