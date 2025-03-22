@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import AstronomyChallengeCard from '../../AstronomyChallengeCard';
 import GalleryCard from '../GalleryCard';
 import { Dialog, DialogContent, DialogTitle, DialogHeader, DialogDescription } from "@/components/ui/dialog";
-import { PlayCircle, ExternalLink, Music, PenTool } from 'lucide-react';
+import { PlayCircle, ExternalLink, Music, PenTool, Image } from 'lucide-react';
 import VideoList from '../VideoList';
 import { Card, CardContent } from "@/components/ui/card";
 import AstronomyPlaygroundCard from '../../AstronomyPlaygroundCard';
@@ -22,6 +22,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
   const [showImageDialog, setShowImageDialog] = useState(false);
   const [showMovieDialog, setShowMovieDialog] = useState(false);
   const [showNasaSimulator, setShowNasaSimulator] = useState(false);
+  const [showMoonGallery, setShowMoonGallery] = useState(false);
   
   // Videos for the Solar System challenge card
   const solarSystemVideos = [
@@ -134,66 +135,57 @@ const IntroContent: React.FC<IntroContentProps> = ({
       <div className="col-span-12 md:col-span-3 h-full">
         <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
           <div 
-            onClick={() => setShowMovieDialog(true)}
+            onClick={() => setShowMoonGallery(true)}
             className="cursor-pointer h-full"
           >
-            <Card className="h-full overflow-hidden shadow-md hover:shadow-lg transition-all relative bg-yellow-100 border-yellow-300">
-              <div className="absolute top-2 left-3 z-10 bg-yellow-100 px-2 py-1 rounded text-xs font-semibold text-yellow-700 flex items-center gap-1">
-                <Music size={14} />
-                <span>Party</span>
-              </div>
-              
-              <div className="h-40 overflow-hidden">
-                <img 
-                  src="/lovable-uploads/interstellar.jpeg" 
-                  alt="Interstellar movie" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold">🎬 Movie: Interstellar</h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  Hold a Movie Night and Dive deep into the Innerspace.
-                </p>
-              </CardContent>
-            </Card>
+            <GalleryCard
+              subtitle="Earth's Natural Satellite"
+              title="Moon Gallery"
+              className="h-full"
+              image="/lovable-uploads/earth2.jpeg"
+              isExpandable={true}
+            />
           </div>
         </div>
         
-        {/* Movie Dialog */}
-        <Dialog open={showMovieDialog} onOpenChange={setShowMovieDialog}>
-          <DialogContent className="sm:max-w-[680px]">
+        {/* Moon Gallery Dialog */}
+        <Dialog open={showMoonGallery} onOpenChange={setShowMoonGallery}>
+          <DialogContent className="sm:max-w-[90vw] sm:max-h-[90vh]">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <Music className="h-5 w-5 text-yellow-500" />
-                <span>Movie Night: Interstellar</span>
+                <Image className="h-5 w-5 text-indigo-500" />
+                <span>Moon Gallery</span>
               </DialogTitle>
               <DialogDescription>
-                Organize a space-themed movie night with friends
+                Explore fascinating images and facts about Earth's moon
               </DialogDescription>
             </DialogHeader>
-            <div className="p-4">
+            <div className="overflow-hidden rounded-lg">
               <img 
-                src="/lovable-uploads/interstellar.jpeg" 
-                alt="Interstellar movie" 
-                className="w-full h-auto rounded-lg mb-4"
+                src="/lovable-uploads/earth2.jpeg" 
+                alt="Moon" 
+                className="w-full h-auto object-contain max-h-[70vh]"
               />
-              <h3 className="text-lg font-semibold">About the Movie</h3>
-              <p className="text-gray-600 mt-2">
-                Interstellar is a 2014 epic science fiction film directed and produced by Christopher Nolan. 
-                It stars Matthew McConaughey, Anne Hathaway, Jessica Chastain, and Michael Caine. Set in a 
-                dystopian future where humanity is struggling to survive, the film follows a group of astronauts 
-                who travel through a wormhole near Saturn in search of a new home for mankind.
-              </p>
-              <div className="mt-4">
-                <h4 className="font-medium">Party Ideas:</h4>
-                <ul className="list-disc pl-5 mt-2 text-gray-600">
-                  <li>Make space-themed snacks</li>
-                  <li>Create a "space" atmosphere with dim lighting and star projectors</li>
-                  <li>Prepare discussion topics about space travel and relativity</li>
-                  <li>Have guests bring astronomy facts to share</li>
-                </ul>
+              <div className="p-4 bg-white">
+                <h3 className="text-lg font-semibold">Earth's Moon</h3>
+                <p className="text-gray-600 mt-2">
+                  The Moon is Earth's only natural satellite and the fifth largest moon in the solar system. 
+                  Its presence helps stabilize our planet's wobble and moderate our climate. The Moon's distance 
+                  from Earth is about 240,000 miles (385,000km). The Moon has a very thin atmosphere called an exosphere.
+                </p>
+                <p className="text-gray-600 mt-2">
+                  The Moon's surface is cratered and pitted from comet and asteroid impacts. The Moon has no active 
+                  tectonic plates, and no active volcanoes. It has a solid, iron-rich inner core, and a somewhat fluid 
+                  outer core, which is primarily liquid iron.
+                </p>
+                <a 
+                  href="https://moon.nasa.gov/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center mt-4 text-indigo-600 hover:underline"
+                >
+                  Learn more at NASA <ExternalLink className="ml-1 h-4 w-4" />
+                </a>
               </div>
             </div>
           </DialogContent>
