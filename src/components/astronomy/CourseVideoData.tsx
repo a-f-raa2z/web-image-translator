@@ -15,7 +15,7 @@ export const useCourseVideoData = (): VideoData => {
     moon: [
       { id: '6AviDjR9mmo', title: 'Moon 101', duration: '3:05', cardTypes: ['challengecard'] },
       { 
-        id: 'tiktok-supermoon', 
+        id: 'TkBtN6jes8U', 
         title: 'Amazing Timelapse Supermoon', 
         duration: '0:51',
         source: 'tiktok',
