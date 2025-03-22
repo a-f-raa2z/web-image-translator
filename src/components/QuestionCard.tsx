@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { HelpCircle } from 'lucide-react';
 
@@ -8,7 +9,7 @@ interface QuestionCardProps {
   option4: string;
   title: string;
   className?: string;
-  image: string;
+  image?: string;
 }
 
 const QuestionCard: React.FC<QuestionCardProps> = ({ option1, option2, option3, option4, title, className, image }) => {
@@ -21,21 +22,15 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ option1, option2, option3, 
   };
 
   return (
-    <div className={`relative rounded-lg overflow-hidden shadow-md ${className}`}>
-      <div className="absolute top-2 left-3 z-10 bg-green-100 px-2 py-1 rounded text-xs font-semibold text-green-700 flex items-center gap-1">
+    <div className={`relative rounded-lg overflow-hidden shadow-md bg-green-500 text-white ${className}`}>
+      <div className="absolute top-2 left-3 z-10 bg-blue-100 px-2 py-1 rounded text-xs font-semibold text-blue-700 flex items-center gap-1">
         <HelpCircle size={14} />
         <span>Question</span>
       </div>
       
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-full object-cover transition-transform duration-300 transform hover:scale-105"
-      />
-      <div className="absolute bottom-0 left-0 right-0 px-8 py-4 bg-gradient-to-t from-black to-transparent">
-        <h3 className="text-white text-lg font-semibold">{title}</h3>
-        <br></br>
-        <div className="text-white text-sm space-y-2">
+      <div className="px-8 py-6">
+        <h3 className="text-white text-lg font-semibold mb-4">{title}</h3>
+        <div className="text-white text-sm space-y-3">
           <label className="flex items-center">
             <input
               type="checkbox"
@@ -72,8 +67,6 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ option1, option2, option3, 
             />
             {option4}
           </label>
-          <br></br>
-          <br></br>
         </div>
       </div>
     </div>
