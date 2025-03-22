@@ -28,17 +28,20 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
       case 'challengecard':
         return { 
           icon: <Trophy size={16} className="text-orange-500" />,
-          bgColor: 'bg-orange-500/10'
+          bgColor: 'bg-orange-500/20',
+          label: 'Challenge'
         };
       case 'questioncard':
         return { 
           icon: <HelpCircle size={16} className="text-blue-500" />,
-          bgColor: 'bg-blue-500/10'
+          bgColor: 'bg-blue-500/20',
+          label: 'Question'
         };
       case 'playgroundcard':
         return { 
           icon: <PenTool size={16} className="text-purple-500" />,
-          bgColor: 'bg-purple-500/10'
+          bgColor: 'bg-purple-500/20',
+          label: 'Playground'
         };
       default:
         return null;
@@ -79,9 +82,10 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
               <div 
                 key={`${type}-${index}`} 
                 className={cn(
-                  "p-1 rounded-md",
+                  "p-1 rounded-md transition-transform hover:scale-110",
                   details.bgColor
                 )}
+                title={details.label}
               >
                 {details.icon}
               </div>
