@@ -28,7 +28,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({ defaultValue = "course" }
           className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-blue-500 rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
           onClick={() => navigate('/')}
         >
-          Current Course
+          {/* "Current Course" text removed */}
         </TabsTrigger>
         
         <TabsTrigger 
