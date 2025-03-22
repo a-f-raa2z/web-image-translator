@@ -65,22 +65,22 @@ const VideoTabs: React.FC<VideoTabsProps> = ({
           case 'challengecard':
             return { 
               type: 'challengecard', 
-              icon: <Trophy size={16} className="text-orange-500" />,
-              bgColor: 'bg-orange-500',
+              icon: <Trophy size={16} className="text-white" />,
+              bgColor: 'bg-orange-300',
               label: 'Challenge'
             };
           case 'questioncard':
             return { 
               type: 'questioncard', 
-              icon: <HelpCircle size={16} className="text-blue-500" />,
-              bgColor: 'bg-blue-500',
+              icon: <HelpCircle size={16} className="text-white" />,
+              bgColor: 'bg-blue-300',
               label: 'Question'
             };
           case 'playgroundcard':
             return { 
               type: 'playgroundcard', 
-              icon: <PenTool size={16} className="text-purple-500" />,
-              bgColor: 'bg-purple-500',
+              icon: <PenTool size={16} className="text-white" />,
+              bgColor: 'bg-purple-300',
               label: 'Playground'
             };
           default:

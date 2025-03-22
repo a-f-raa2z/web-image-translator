@@ -28,19 +28,19 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
       case 'challengecard':
         return { 
           icon: <Trophy size={16} className="text-white" />,
-          bgColor: 'bg-orange-500',
+          bgColor: 'bg-orange-300',
           label: 'Challenge'
         };
       case 'questioncard':
         return { 
           icon: <HelpCircle size={16} className="text-white" />,
-          bgColor: 'bg-blue-500',
+          bgColor: 'bg-blue-300',
           label: 'Question'
         };
       case 'playgroundcard':
         return { 
           icon: <PenTool size={16} className="text-white" />,
-          bgColor: 'bg-purple-500',
+          bgColor: 'bg-purple-300',
           label: 'Playground'
         };
       default:
@@ -72,7 +72,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
           />
         </AspectRatio>
         
-        {/* Card type indicators - styled as solid circles */}
+        {/* Card type indicators - styled as solid circles with lighter colors */}
         <div className="absolute top-1 right-1 flex space-x-1">
           {cardTypes.map((type, index) => {
             const details = getCardDetails(type);
