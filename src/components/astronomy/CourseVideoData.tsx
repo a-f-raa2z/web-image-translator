@@ -5,7 +5,7 @@ import { VideoData } from './types';
 export const useCourseVideoData = (): VideoData => {
   const videoData: VideoData = {
     intro: [
-      { id: 'libKVRa01L8', title: 'Solar System 101', duration: '4:10', cardTypes: ['challengecard'] },
+      { id: 'libKVRa01L8', title: 'Solar System 101', duration: '4:10', cardTypes: ['playgroundcard'] },
       { id: '05E1uMh15QQ', title: 'The Inner Planets', duration: '2:12', cardTypes: ['partycard'] },
     ],
     earth: [

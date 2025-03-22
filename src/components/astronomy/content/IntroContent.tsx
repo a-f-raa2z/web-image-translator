@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 import AstronomyChallengeCard from '../../AstronomyChallengeCard';
 import GalleryCard from '../GalleryCard';
 import { Dialog, DialogContent, DialogTitle, DialogHeader } from "@/components/ui/dialog";
-import { PlayCircle, ExternalLink, Music } from 'lucide-react';
+import { PlayCircle, ExternalLink, Music, PenTool } from 'lucide-react';
 import VideoList from '../VideoList';
 import { Card, CardContent } from "@/components/ui/card";
+import AstronomyPlaygroundCard from '../../AstronomyPlaygroundCard';
 
 interface IntroContentProps {
   selectedVideoTitle: string;
@@ -20,6 +21,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
   const [showVideosDialog, setShowVideosDialog] = useState(false);
   const [showImageDialog, setShowImageDialog] = useState(false);
   const [showMovieDialog, setShowMovieDialog] = useState(false);
+  const [showNasaSimulator, setShowNasaSimulator] = useState(false);
   
   // Videos for the Solar System challenge card
   const solarSystemVideos = [
@@ -36,29 +38,36 @@ const IntroContent: React.FC<IntroContentProps> = ({
         <div className="col-span-12 md:col-span-3">
           <div className={cn("h-full transition-all duration-500", animate && "animate-bounce-in")}>
             <div 
-              onClick={() => setShowVideosDialog(true)}
+              onClick={() => setShowNasaSimulator(true)}
               className="cursor-pointer h-full"
             >
-              <AstronomyChallengeCard 
-                title="🎬 The Planets In Our Solar System"
-                description="Watch this playlist to learn about all planets in our solar system"
-                descriptionClassName="text-sm"
+              <AstronomyPlaygroundCard 
+                subtitle="NASA Interactive"
+                title="Eye on the Solar System"
+                image="/lovable-uploads/solar.png"
+                isExpandable={true}
                 className="h-full"
-                hasVideos={true}
               />
             </div>
           </div>
           
-          {/* Videos Dialog */}
-          <Dialog open={showVideosDialog} onOpenChange={setShowVideosDialog}>
-            <DialogContent className="sm:max-w-[680px]">
-              <DialogHeader>
+          {/* NASA Simulator Dialog */}
+          <Dialog open={showNasaSimulator} onOpenChange={setShowNasaSimulator}>
+            <DialogContent className="sm:max-w-[90vw] sm:max-h-[90vh] p-0">
+              <DialogHeader className="p-4">
                 <DialogTitle className="flex items-center gap-2">
-                  <PlayCircle className="h-5 w-5 text-purple-500" />
-                  <span>Planets In Our Solar System</span>
+                  <PenTool className="h-5 w-5 text-purple-500" />
+                  <span>NASA's Eye on the Solar System</span>
                 </DialogTitle>
               </DialogHeader>
-              <VideoList videos={solarSystemVideos} />
+              <div className="w-full h-[80vh]">
+                <iframe 
+                  src="https://eyes.nasa.gov/apps/solar-system/#/earth/moons/moon" 
+                  title="NASA's Eye on the Solar System"
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                ></iframe>
+              </div>
             </DialogContent>
           </Dialog>
         </div>
