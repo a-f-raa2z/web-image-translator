@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Map } from 'lucide-react';
 import ChallengeCard from '@/components/ChallengeCard';
@@ -58,60 +59,62 @@ const LearningSection: React.FC = () => {
     <section className="mb-10">
       <h2 className="text-xl font-bold mb-4">My Learning</h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-        <div className="col-span-1 md:col-span-6">
-          <div className="h-full rounded-xl overflow-hidden shadow-md bg-black transition-all duration-300 animate-scale-in">
-            <VideoPlayer videoId={videos[selectedVideoIndex].id} />
+      <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <div className="col-span-1 md:col-span-6">
+            <div className="h-full rounded-xl overflow-hidden shadow-md bg-black transition-all duration-300 animate-scale-in">
+              <VideoPlayer videoId={videos[selectedVideoIndex].id} />
+            </div>
+          </div>
+          
+          <div className="col-span-1 md:col-span-3">
+            <ChallengeCard 
+              title="Challenge" 
+              description="Explain AI in your own words"
+              image="/lovable-uploads/476601ed-362d-4cd8-8c62-4b8047535094.png"
+              descriptionClassName="text-sm" // Keeping the smaller text class
+            />
+          </div>
+          
+          <div className="col-span-1 md:col-span-3">
+            <PlaygroundCard
+              subtitle="You've unlocked"
+              title="Whisk"
+            />
           </div>
         </div>
         
-        <div className="col-span-1 md:col-span-3">
-          <ChallengeCard 
-            title="Challenge" 
-            description="Explain AI in your own words"
-            image="/lovable-uploads/476601ed-362d-4cd8-8c62-4b8047535094.png"
-            descriptionClassName="text-sm" // Keeping the smaller text class
-          />
+        <div className="flex justify-between items-center mt-5">
+          <div className="flex items-center gap-2">
+            <span className="px-3 py-1 bg-gray-800 text-white text-xs rounded-full">Intro to Fine Art</span>
+            <span className="text-sm text-gray-500">5 Sections | 12 Points</span>
+            <span className="px-3 py-1 bg-white border border-gray-200 text-xs rounded-full">Mysteries of Art</span>
+            <span className="px-3 py-1 bg-white border border-gray-200 text-xs rounded-full">Advancing with The Masters</span>
+          </div>
+          
+          <button className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900">
+            <Map size={14} /> Map
+          </button>
         </div>
         
-        <div className="col-span-1 md:col-span-3">
-          <PlaygroundCard
-            subtitle="You've unlocked"
-            title="Whisk"
-          />
+        <div className="mt-6 bg-white rounded-xl p-4">
+          <Carousel className="w-full">
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {videos.map((video, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/5 md:basis-1/5">
+                  <VideoThumbnail
+                    videoId={video.id}
+                    title={video.title}
+                    isSelected={selectedVideoIndex === index}
+                    onClick={() => handleThumbnailClick(index)}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0 bg-white" />
+            <CarouselNext className="right-0 bg-white" />
+          </Carousel>
         </div>
-      </div>
-      
-      <div className="flex justify-between items-center mt-5">
-        <div className="flex items-center gap-2">
-          <span className="px-3 py-1 bg-gray-800 text-white text-xs rounded-full">Intro to Fine Art</span>
-          <span className="text-sm text-gray-500">5 Sections | 12 Points</span>
-          <span className="px-3 py-1 bg-white border border-gray-200 text-xs rounded-full">Mysteries of Art</span>
-          <span className="px-3 py-1 bg-white border border-gray-200 text-xs rounded-full">Advancing with The Masters</span>
-        </div>
-        
-        <button className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900">
-          <Map size={14} /> Map
-        </button>
-      </div>
-      
-      <div className="mt-6">
-        <Carousel className="w-full">
-          <CarouselContent className="-ml-2 md:-ml-4">
-            {videos.map((video, index) => (
-              <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/5 md:basis-1/5">
-                <VideoThumbnail
-                  videoId={video.id}
-                  title={video.title}
-                  isSelected={selectedVideoIndex === index}
-                  onClick={() => handleThumbnailClick(index)}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="left-0 bg-white" />
-          <CarouselNext className="right-0 bg-white" />
-        </Carousel>
       </div>
     </section>
   );
