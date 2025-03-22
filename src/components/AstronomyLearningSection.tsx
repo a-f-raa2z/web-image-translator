@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AstronomyActivitiesSection from './AstronomyActivitiesSection';
@@ -58,7 +57,6 @@ const AstronomyLearningSection: React.FC = () => {
     setSelectedTab(value as VideoCategory); 
   };
 
-  // Calculate progress based on selected tab
   const getProgressValue = () => {
     switch(selectedTab) {
       case 'intro': return 33;
@@ -72,8 +70,7 @@ const AstronomyLearningSection: React.FC = () => {
     <section className="mb-10">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-4">
-          <h2 className="text-xl font-semibold">My Learning</h2>
-          <span className="text-gray-600 font-medium">Current Course: The Neighbor Worlds</span>
+          <h2 className="text-xl font-semibold">Current Course: The Neighbor Worlds</h2>
         </div>
         <div className="flex items-center gap-2 w-48">
           <Progress value={getProgressValue()} className="h-2" />
