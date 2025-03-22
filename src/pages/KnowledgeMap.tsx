@@ -1,3 +1,4 @@
+
 import { useCallback, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ReactFlow, {
@@ -11,6 +12,7 @@ import ReactFlow, {
   NodeTypes,
   NodeProps,
   MarkerType,
+  BackgroundVariant,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -23,12 +25,12 @@ import Sidebar from '@/components/Sidebar';
 const TopicNode = ({ data, isConnectable }: NodeProps) => {
   return (
     <div className={cn(
-      "px-4 py-2 rounded-lg text-center font-medium shadow-lg border-2 min-w-40 max-w-56",
-      data.type === 'main' ? "bg-purple-200 border-purple-400 text-purple-900" : 
-      data.type === 'course' ? "bg-blue-100 border-blue-300 text-blue-800" : 
-      "bg-green-100 border-green-300 text-green-800"
+      "px-4 py-2 rounded-lg text-center font-medium shadow-lg border-2",
+      data.type === 'main' ? "bg-purple-200 border-purple-400 text-purple-900 min-w-48 max-w-56" : 
+      data.type === 'course' ? `${data.color} border-none text-white min-w-40 max-w-50` : 
+      "bg-gray-700 border-none w-3 h-3 rounded-full"
     )}>
-      {data.label}
+      {data.type !== 'node' && data.label}
     </div>
   );
 };
@@ -38,312 +40,281 @@ const nodeTypes: NodeTypes = {
   topic: TopicNode,
 };
 
-// Initial nodes data
-const initialNodes: Node[] = [
-  // Main AI node (purple)
-  {
-    id: 'ai',
-    type: 'topic',
-    position: { x: 400, y: 5 },
-    data: { label: 'Artificial Intelligence', type: 'main' },
-  },
-  
-  // Course nodes (blue)
-  {
-    id: 'ai-intro',
-    type: 'topic',
-    position: { x: 100, y: 100 },
-    data: { label: 'AI Introduction', type: 'course' },
-  },
-  {
-    id: 'generative-ai',
-    type: 'topic',
-    position: { x: 300, y: 100 },
-    data: { label: 'Generative AI', type: 'course' },
-  },
-  {
-    id: 'chatbots',
-    type: 'topic',
-    position: { x: 500, y: 100 },
-    data: { label: 'Chatbots', type: 'course' },
-  },
-  {
-    id: 'robots',
-    type: 'topic',
-    position: { x: 700, y: 100 },
-    data: { label: 'Robots', type: 'course' },
-  },
-  {
-    id: 'automation',
-    type: 'topic',
-    position: { x: 200, y: 200 },
-    data: { label: 'Automation', type: 'course' },
-  },
-  {
-    id: 'emerging-industries',
-    type: 'topic',
-    position: { x: 400, y: 200 },
-    data: { label: 'Emerging Industries', type: 'course' },
-  },
-  {
-    id: 'ai-for-x',
-    type: 'topic',
-    position: { x: 600, y: 200 },
-    data: { label: 'AI for X', type: 'course' },
-  },
-  
-  // Topic nodes (green) for AI Intro
-  {
-    id: 'what-is-ai',
-    type: 'topic',
-    position: { x: 50, y: 180 },
-    data: { label: 'What is AI?', type: 'topic' },
-  },
-  {
-    id: 'how-ai-works',
-    type: 'topic',
-    position: { x: 100, y: 250 },
-    data: { label: 'How AI Works', type: 'topic' },
-  },
-  {
-    id: 'machine-learning',
-    type: 'topic',
-    position: { x: 150, y: 180 },
-    data: { label: 'Machine Learning', type: 'topic' },
-  },
-  
-  // Topic nodes for Generative AI
-  {
-    id: 'gen-ai-intro',
-    type: 'topic',
-    position: { x: 300, y: 180 },
-    data: { label: 'Generative AI Intro', type: 'topic' },
-  },
-  
-  // Topic nodes for Chatbots
-  {
-    id: 'chatbots-intro',
-    type: 'topic',
-    position: { x: 500, y: 180 },
-    data: { label: 'Chatbots Intro', type: 'topic' },
-  },
-  
-  // Topic nodes for Robots
-  {
-    id: 'nvidia-robot',
-    type: 'topic',
-    position: { x: 650, y: 180 },
-    data: { label: 'Nvidia CEO Unveils Robot', type: 'topic' },
-  },
-  {
-    id: 'advanced-robots',
-    type: 'topic',
-    position: { x: 750, y: 180 },
-    data: { label: '9 Most Advanced AI Robots', type: 'topic' },
-  },
-  
-  // Topic nodes for Automation
-  {
-    id: 'automation-intro',
-    type: 'topic',
-    position: { x: 200, y: 280 },
-    data: { label: 'Automation Intro', type: 'topic' },
-  },
-  
-  // Topic nodes for Emerging Industries
-  {
-    id: 'ai-emerging-industry',
-    type: 'topic',
-    position: { x: 400, y: 280 },
-    data: { label: 'AI in Emerging Industries', type: 'topic' },
-  },
-  
-  // Topic nodes for AI for X
-  {
-    id: 'ai-ocean',
-    type: 'topic',
-    position: { x: 550, y: 280 },
-    data: { label: 'AI for Ocean', type: 'topic' },
-  },
-  {
-    id: 'ai-music',
-    type: 'topic',
-    position: { x: 600, y: 350 },
-    data: { label: 'AI + Music', type: 'topic' },
-  },
-  {
-    id: 'ai-arts',
-    type: 'topic',
-    position: { x: 650, y: 280 },
-    data: { label: 'AI + Arts', type: 'topic' },
-  },
-  {
-    id: 'ai-art-explained',
-    type: 'topic',
-    position: { x: 650, y: 350 },
-    data: { label: 'AI Art Explained', type: 'topic' },
-  },
-];
-
-// Initial edges connecting nodes with enhanced styling
-const initialEdges: Edge[] = [
-  // Connect main AI node to course nodes with more visible edges
-  { id: 'ai-to-intro', source: 'ai', target: 'ai-intro', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-gen', source: 'ai', target: 'generative-ai', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-chatbots', source: 'ai', target: 'chatbots', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-robots', source: 'ai', target: 'robots', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-automation', source: 'ai', target: 'automation', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-emerging', source: 'ai', target: 'emerging-industries', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'ai-to-for-x', source: 'ai', target: 'ai-for-x', type: 'smoothstep', animated: true, style: { strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed } },
-  
-  // Connect course nodes to their topics with more visible edges
-  { id: 'intro-to-what', source: 'ai-intro', target: 'what-is-ai', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'intro-to-how', source: 'ai-intro', target: 'how-ai-works', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'intro-to-ml', source: 'ai-intro', target: 'machine-learning', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  
-  // Connect Generative AI to its topics
-  { id: 'gen-to-intro', source: 'generative-ai', target: 'gen-ai-intro', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  
-  // Connect Chatbots to its topics
-  { id: 'chatbots-to-intro', source: 'chatbots', target: 'chatbots-intro', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  
-  // Connect Robots to its topics
-  { id: 'robots-to-nvidia', source: 'robots', target: 'nvidia-robot', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'robots-to-advanced', source: 'robots', target: 'advanced-robots', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  
-  // Connect Automation to its topics
-  { id: 'automation-to-intro', source: 'automation', target: 'automation-intro', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  
-  // Connect Emerging Industries to its topics
-  { id: 'emerging-to-industry', source: 'emerging-industries', target: 'ai-emerging-industry', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  
-  // Connect AI for X to its topics
-  { id: 'for-x-to-ocean', source: 'ai-for-x', target: 'ai-ocean', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'for-x-to-music', source: 'ai-for-x', target: 'ai-music', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'for-x-to-arts', source: 'ai-for-x', target: 'ai-arts', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'arts-to-explained', source: 'ai-arts', target: 'ai-art-explained', type: 'smoothstep', style: { strokeWidth: 1.5, stroke: '#4CAF50' }, markerEnd: { type: MarkerType.ArrowClosed } },
-];
-
-type NodeData = {
-  id: string;
-  title: string;
-  description: string;
-  duration?: string;
+// Course colors
+const courseColors = {
+  'psychology': 'bg-purple-500',
+  'physical-sciences': 'bg-blue-400',
+  'social-sciences': 'bg-lime-500',
+  'professional-skills': 'bg-blue-300',
+  'life-skills': 'bg-red-400',
+  'history': 'bg-amber-500',
+  'philosophy': 'bg-purple-400',
+  'technology': 'bg-blue-500',
+  'religion': 'bg-amber-400',
+  'literature': 'bg-purple-500',
+  'mental-wellbeing': 'bg-pink-500',
+  'geography': 'bg-stone-500',
+  'mathematics': 'bg-teal-500',
+  'physical-health': 'bg-emerald-500',
+  'art-media': 'bg-orange-500',
+  'life-sciences': 'bg-lime-500',
 };
 
+// Create nodes for each section
+const generateSectionNodes = () => {
+  const nodes: Node[] = [];
+  const edgesList: Edge[] = [];
+  
+  // Section centers
+  const sections = [
+    { id: 'psychology', label: 'Psychology', x: 150, y: 350, color: courseColors['psychology'] },
+    { id: 'physical-sciences', label: 'Physical Sciences', x: 140, y: 550, color: courseColors['physical-sciences'] },
+    { id: 'social-sciences', label: 'Social Sciences', x: 170, y: 800, color: courseColors['social-sciences'] },
+    { id: 'professional-skills', label: 'Professional Skills', x: 300, y: 900, color: courseColors['professional-skills'] },
+    { id: 'life-skills', label: 'Life Skills', x: 380, y: 480, color: courseColors['life-skills'] },
+    { id: 'history', label: 'History', x: 480, y: 780, color: courseColors['history'] },
+    { id: 'philosophy', label: 'Philosophy', x: 650, y: 950, color: courseColors['philosophy'] },
+    { id: 'technology', label: 'Technology', x: 850, y: 900, color: courseColors['technology'] },
+    { id: 'religion', label: 'Religion', x: 300, y: 220, color: courseColors['religion'] },
+    { id: 'literature', label: 'Literature', x: 520, y: 250, color: courseColors['literature'] },
+    { id: 'mental-wellbeing', label: 'Mental Wellbeing', x: 770, y: 240, color: courseColors['mental-wellbeing'] },
+    { id: 'geography', label: 'Geography', x: 620, y: 370, color: courseColors['geography'] },
+    { id: 'mathematics', label: 'Mathematics', x: 800, y: 400, color: courseColors['mathematics'] },
+    { id: 'physical-health', label: 'Physical Health', x: 960, y: 500, color: courseColors['physical-health'] },
+    { id: 'art-media', label: 'Art & Media', x: 590, y: 580, color: courseColors['art-media'] },
+    { id: 'life-sciences', label: 'Life Sciences', x: 780, y: 650, color: courseColors['life-sciences'] },
+  ];
+
+  // Add section nodes
+  sections.forEach(section => {
+    nodes.push({
+      id: section.id,
+      type: 'topic',
+      position: { x: section.x, y: section.y },
+      data: { 
+        label: section.label, 
+        type: 'course',
+        color: section.color
+      },
+    });
+    
+    // Add small nodes around each section
+    const nodeCount = Math.floor(Math.random() * 20) + 15; // 15-35 nodes per section
+    for (let i = 0; i < nodeCount; i++) {
+      const angle = (Math.PI * 2 * i) / nodeCount;
+      const radius = Math.random() * 80 + 40; // Random radius between 40-120
+      const x = section.x + Math.cos(angle) * radius;
+      const y = section.y + Math.sin(angle) * radius;
+      
+      const nodeId = `${section.id}-node-${i}`;
+      nodes.push({
+        id: nodeId,
+        type: 'topic',
+        position: { x, y },
+        data: { 
+          label: '', 
+          type: 'node'
+        },
+      });
+      
+      // Connect node to its section
+      edgesList.push({
+        id: `${section.id}-to-${nodeId}`,
+        source: section.id,
+        target: nodeId,
+        type: 'straight',
+        style: { 
+          stroke: '#444',
+          strokeWidth: 1,
+          opacity: 0.3
+        },
+      });
+    }
+  });
+
+  return { nodes, edges: edgesList };
+};
+
+const { nodes: initialNodes, edges: initialEdges } = generateSectionNodes();
+
 // Course content data for details panel
-const courseData: Record<string, NodeData> = {
-  'ai': {
-    id: 'ai',
-    title: 'Artificial Intelligence',
-    description: 'Explore the world of Artificial Intelligence through various courses and topics.'
+const courseData: Record<string, any> = {
+  'psychology': {
+    title: 'Psychology',
+    description: 'The scientific study of the human mind and behavior, exploring how we think, feel, and act.',
+    topics: [
+      'Cognitive Psychology',
+      'Developmental Psychology',
+      'Social Psychology',
+      'Clinical Psychology',
+      'Evolutionary Psychology'
+    ]
   },
-  'ai-intro': {
-    id: 'ai-intro',
-    title: 'Artificial Intelligence Introduction',
-    description: 'A comprehensive introduction to the field of Artificial Intelligence.'
+  'physical-sciences': {
+    title: 'Physical Sciences',
+    description: 'Disciplines that study non-living systems including physics, chemistry, astronomy, and earth sciences.',
+    topics: [
+      'Physics',
+      'Chemistry',
+      'Astronomy',
+      'Earth Science',
+      'Materials Science'
+    ]
   },
-  'what-is-ai': {
-    id: 'what-is-ai',
-    title: 'What is AI',
-    description: 'An introduction to Artificial Intelligence concepts and terminology.',
-    duration: '10 minutes'
+  'social-sciences': {
+    title: 'Social Sciences',
+    description: 'The study of human society and social relationships, including economics, politics, and sociology.',
+    topics: [
+      'Economics',
+      'Political Science',
+      'Sociology',
+      'Anthropology',
+      'International Relations'
+    ]
   },
-  'how-ai-works': {
-    id: 'how-ai-works',
-    title: 'How AI Works',
-    description: 'Understand the fundamental principles behind AI systems.',
-    duration: '40 minutes'
+  'professional-skills': {
+    title: 'Professional Skills',
+    description: 'Abilities needed to succeed in workplace environments and career settings.',
+    topics: [
+      'Leadership',
+      'Communication',
+      'Project Management',
+      'Negotiation',
+      'Critical Thinking'
+    ]
   },
-  'machine-learning': {
-    id: 'machine-learning',
-    title: 'Machine Learning',
-    description: 'Learn about machine learning algorithms and applications.',
-    duration: '25 minutes'
+  'life-skills': {
+    title: 'Life Skills',
+    description: 'Fundamental abilities for navigating daily life and society effectively.',
+    topics: [
+      'Financial Literacy',
+      'Time Management',
+      'Emotional Intelligence',
+      'Decision Making',
+      'Conflict Resolution'
+    ]
   },
-  'generative-ai': {
-    id: 'generative-ai',
-    title: 'Generative AI',
-    description: 'Explore generative AI models and their capabilities.'
+  'history': {
+    title: 'History',
+    description: 'The study of past events, particularly human affairs, based on documentation and interpretation.',
+    topics: [
+      'Ancient History',
+      'Medieval History',
+      'Modern History',
+      'World History',
+      'Art History'
+    ]
   },
-  'gen-ai-intro': {
-    id: 'gen-ai-intro',
-    title: 'Generative AI Introduction',
-    description: 'An introduction to generative models like GANs, VAEs, and diffusion models.',
-    duration: '15 minutes'
+  'philosophy': {
+    title: 'Philosophy',
+    description: 'The study of fundamental questions about existence, knowledge, ethics, reason, mind, and language.',
+    topics: [
+      'Ethics',
+      'Logic',
+      'Metaphysics',
+      'Epistemology',
+      'Philosophy of Mind'
+    ]
   },
-  'chatbots': {
-    id: 'chatbots',
-    title: 'Chatbots',
-    description: 'Learn about AI-powered conversational agents.'
+  'technology': {
+    title: 'Technology',
+    description: 'The application of scientific knowledge for practical purposes, especially in industry.',
+    topics: [
+      'Computer Science',
+      'Artificial Intelligence',
+      'Robotics',
+      'Biotechnology',
+      'Information Technology'
+    ]
   },
-  'chatbots-intro': {
-    id: 'chatbots-intro',
-    title: 'Chatbots Introduction',
-    description: 'Understanding how AI chatbots work and their applications.',
-    duration: '15 minutes'
+  'religion': {
+    title: 'Religion',
+    description: 'Systems of faith and worship, and the exploration of divine or spiritual belief systems.',
+    topics: [
+      'World Religions',
+      'Religious History',
+      'Theology',
+      'Comparative Religion',
+      'Religious Practices'
+    ]
   },
-  'robots': {
-    id: 'robots',
-    title: 'Robots',
-    description: 'Discover the latest advancements in robotics powered by AI.'
+  'literature': {
+    title: 'Literature',
+    description: 'Written works, especially those considered of superior or lasting artistic merit.',
+    topics: [
+      'Fiction',
+      'Poetry',
+      'Drama',
+      'Literary Criticism',
+      'World Literature'
+    ]
   },
-  'nvidia-robot': {
-    id: 'nvidia-robot',
-    title: 'Nvidia CEO Unveils Robot',
-    description: 'Watch Nvidia CEO present robots powered by new AI chips at GTC.',
-    duration: '5 minutes'
+  'mental-wellbeing': {
+    title: 'Mental Wellbeing',
+    description: 'The state of psychological and emotional health, and practices to maintain it.',
+    topics: [
+      'Stress Management',
+      'Mindfulness',
+      'Mental Health',
+      'Positive Psychology',
+      'Resilience'
+    ]
   },
-  'advanced-robots': {
-    id: 'advanced-robots',
-    title: '9 Most Advanced AI Robots',
-    description: 'A showcase of the nine most advanced AI-powered robots in the world.'
+  'geography': {
+    title: 'Geography',
+    description: 'The study of physical features of the earth and its atmosphere, and human activity as it affects and is affected by these.',
+    topics: [
+      'Physical Geography',
+      'Human Geography',
+      'Cartography',
+      'Geographic Information Systems',
+      'Environmental Geography'
+    ]
   },
-  'automation': {
-    id: 'automation',
-    title: 'Automation',
-    description: 'Learn how AI is transforming automation across industries.'
+  'mathematics': {
+    title: 'Mathematics',
+    description: 'The abstract science of number, quantity, and space, either as abstract concepts or as applied to other disciplines.',
+    topics: [
+      'Algebra',
+      'Geometry',
+      'Calculus',
+      'Statistics',
+      'Number Theory'
+    ]
   },
-  'automation-intro': {
-    id: 'automation-intro',
-    title: 'Automation Introduction',
-    description: 'An overview of AI-powered automation technologies and use cases.'
+  'physical-health': {
+    title: 'Physical Health',
+    description: 'The condition of the body and the degree to which it is free from illness, and the capacity to perform daily tasks.',
+    topics: [
+      'Nutrition',
+      'Exercise Science',
+      'Disease Prevention',
+      'Sleep Health',
+      'Aging and Longevity'
+    ]
   },
-  'emerging-industries': {
-    id: 'emerging-industries',
-    title: 'Emerging Industries',
-    description: 'Explore how AI is shaping emerging industries and creating new opportunities.'
+  'art-media': {
+    title: 'Art & Media',
+    description: 'Creative expression through various forms and the means of communication that reaches large audiences.',
+    topics: [
+      'Visual Arts',
+      'Film Studies',
+      'Media Literacy',
+      'Digital Arts',
+      'Music Theory'
+    ]
   },
-  'ai-emerging-industry': {
-    id: 'ai-emerging-industry',
-    title: 'AI in Emerging Industries',
-    description: 'The role of Artificial Intelligence in transforming emerging sectors.'
-  },
-  'ai-for-x': {
-    id: 'ai-for-x',
-    title: 'AI for X',
-    description: 'Applications of AI across different domains and industries.'
-  },
-  'ai-ocean': {
-    id: 'ai-ocean',
-    title: 'AI for Ocean',
-    description: 'How AI is revolutionizing deep ocean research and exploration.'
-  },
-  'ai-music': {
-    id: 'ai-music',
-    title: 'AI + Music',
-    description: 'AI Music simply explained, featuring perspectives from Grimes and Spotify\'s CEO.'
-  },
-  'ai-arts': {
-    id: 'ai-arts',
-    title: 'AI + Arts',
-    description: 'The impact of AI on the arts and creative industries.'
-  },
-  'ai-art-explained': {
-    id: 'ai-art-explained',
-    title: 'AI Art Explained',
-    description: 'A comprehensive explanation of AI-generated art and its implications.'
-  },
+  'life-sciences': {
+    title: 'Life Sciences',
+    description: 'The study of living organisms and their interactions with each other and the environment.',
+    topics: [
+      'Biology',
+      'Ecology',
+      'Genetics',
+      'Botany',
+      'Zoology'
+    ]
+  }
 };
 
 const KnowledgeMap = () => {
@@ -351,50 +322,16 @@ const KnowledgeMap = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
 
-  // Initialize the flow with only main AI node and course nodes visible
-  useEffect(() => {
-    const updatedNodes = initialNodes.map(node => {
-      // Show the main AI node and course nodes initially
-      // Hide all green topic nodes initially
-      if (node.data.type === 'main' || node.data.type === 'course') {
-        return { ...node, hidden: false };
-      } else {
-        return { ...node, hidden: true };
-      }
-    });
-    setNodes(updatedNodes);
-  }, [setNodes]);
-
-  // Handle node click to show details and toggle child nodes
+  // Handle node click to show details
   const onNodeClick = useCallback((event: React.MouseEvent, node: Node) => {
-    setSelectedNode(node.id);
-    
-    // If a course node is clicked, show its child nodes
+    // Only set selected node for course nodes, not the small decorative ones
     if (node.data.type === 'course') {
-      // Find all edges that have this node as source
-      const connectedEdges = edges.filter(edge => edge.source === node.id);
-      const childNodeIds = connectedEdges.map(edge => edge.target);
-      
-      setNodes(nds => nds.map(n => {
-        // If the node is a child of the selected course, show it
-        if (childNodeIds.includes(n.id)) {
-          return { ...n, hidden: false };
-        }
-        // For non-child nodes that are not main or course nodes, check if they should be hidden
-        if (n.data.type !== 'main' && n.data.type !== 'course') {
-          // If they're not children of the currently selected node, hide them
-          const shouldHide = !childNodeIds.includes(n.id);
-          return { ...n, hidden: shouldHide };
-        }
-        // Keep main and course nodes visible
-        return n;
-      }));
+      setSelectedNode(node.id);
     }
-  }, [edges, setNodes]);
+  }, []);
   
   return (
     <div className="w-full h-screen flex">
-      {/* Add Sidebar back */}
       <Sidebar />
       
       <div className="flex-1 flex flex-col ml-16">
@@ -409,50 +346,55 @@ const KnowledgeMap = () => {
               onNodeClick={onNodeClick}
               nodeTypes={nodeTypes}
               fitView
+              minZoom={0.5}
+              maxZoom={1.5}
               connectionLineType={ConnectionLineType.SmoothStep}
-              defaultViewport={{ x: 0, y: 0, zoom: 1 }}
+              defaultViewport={{ x: 0, y: 0, zoom: 0.8 }}
             >
-              <Controls />
-              <Background color="#f5f5f5" gap={16} />
+              <Controls className="bg-gray-800 bg-opacity-50 text-white rounded-lg border-none" />
+              <Background variant={BackgroundVariant.Dots} gap={12} size={1} color="#444" className="bg-gray-900" />
             </ReactFlow>
           </div>
           
           {/* Content panel takes 30% width */}
-          <div className="w-[30%] h-full border-l border-gray-200 p-4 overflow-y-auto">
-            {selectedNode ? (
-              <Card>
-                <CardHeader>
-                  <CardTitle>{courseData[selectedNode]?.title || 'Select a topic'}</CardTitle>
-                  {courseData[selectedNode]?.duration && (
-                    <CardDescription>Duration: {courseData[selectedNode].duration}</CardDescription>
-                  )}
+          <div className="w-[30%] h-full border-l border-gray-700 p-4 overflow-y-auto bg-gray-800 text-white">
+            {selectedNode && courseData[selectedNode] ? (
+              <Card className="bg-gray-800 border-gray-700 text-white">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-2xl">{courseData[selectedNode].title}</CardTitle>
+                  <CardDescription className="text-gray-300">{courseData[selectedNode].description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>{courseData[selectedNode]?.description || 'No description available'}</p>
-                  <div className="mt-4">
-                    <p className="text-sm text-muted-foreground">
-                      Click on different nodes in the knowledge map to explore AI topics and courses.
+                  <h3 className="text-lg font-medium mb-2">Key Topics</h3>
+                  <ul className="list-disc pl-5 space-y-1">
+                    {courseData[selectedNode].topics.map((topic: string, index: number) => (
+                      <li key={index} className="text-gray-300">{topic}</li>
+                    ))}
+                  </ul>
+                  <div className="mt-6">
+                    <p className="text-sm text-gray-400">
+                      Click on different subject areas in the knowledge map to explore topics and courses.
                     </p>
                   </div>
                 </CardContent>
               </Card>
             ) : (
-              <Card>
+              <Card className="bg-gray-800 border-gray-700 text-white">
                 <CardHeader>
-                  <CardTitle>AI Knowledge Map</CardTitle>
-                  <CardDescription>Explore AI topics and courses</CardDescription>
+                  <CardTitle>Knowledge Map</CardTitle>
+                  <CardDescription className="text-gray-300">Explore subjects and their interconnections</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Click on any node in the knowledge map to view details about that topic or course.</p>
+                  <p>Click on any subject node to view details about that knowledge area.</p>
                 </CardContent>
               </Card>
             )}
           </div>
         </div>
         
-        <div className="p-4 flex justify-center">
+        <div className="p-4 flex justify-center bg-gray-800">
           <Link to="/">
-            <Button size="lg" variant="default">Enter Channel</Button>
+            <Button size="lg" variant="default" className="bg-blue-600 hover:bg-blue-700">Enter Channel</Button>
           </Link>
         </div>
       </div>
