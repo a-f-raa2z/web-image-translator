@@ -63,9 +63,33 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
     );
   };
 
+  // Create VideoCard component specifically for the highlighted YouTube Short
+  const ShortVideoCard = () => (
+    <div className="bg-white rounded-xl shadow-md overflow-hidden h-full">
+      <div className="relative aspect-[9/16] max-h-48 bg-black flex items-center justify-center">
+        <img 
+          src={`https://img.youtube.com/vi/0GZTVDM3b3M/mqdefault.jpg`}
+          alt="Amazing Night Sky Short" 
+          className="h-full w-auto object-cover"
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="bg-white/80 rounded-full p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-600">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div className="p-3">
+        <h3 className="font-medium text-sm">Amazing Night Sky Short</h3>
+        <p className="text-xs text-gray-500 mt-1">YouTube Short • 0:15</p>
+      </div>
+    </div>
+  );
+
   return (
     <div className="grid grid-cols-12 gap-4 mb-6">
-      <div className="col-span-12 md:col-span-6">
+      <div className="col-span-12 md:col-span-5">
         <div className={cn(
           "bg-black rounded-xl overflow-hidden transition-all duration-500",
           animate && "transform scale-95"
@@ -75,6 +99,12 @@ const MainVideoSection: React.FC<MainVideoSectionProps> = ({
           </div>
         </div>
         <h3 className="mt-3 text-lg font-semibold">{selectedVideo.title}</h3>
+      </div>
+      
+      <div className="col-span-12 md:col-span-1">
+        {selectedTab === 'moon' && (
+          <ShortVideoCard />
+        )}
       </div>
       
       <VideoContentCards 
