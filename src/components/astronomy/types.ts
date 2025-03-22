@@ -12,3 +12,15 @@ export interface VideoData {
   earth: VideoItem[];
   moon: VideoItem[];
 }
+
+export interface ExploreContentItem {
+  id: string;
+  title: string;
+  description?: string;
+  imageUrl: string;
+  source: 'xiaohongshu' | 'astronomy' | 'tiktok' | 'nasa';
+  sourceUrl: string;
+  likes?: number;
+  saves?: number;
+  author?: string;
+}

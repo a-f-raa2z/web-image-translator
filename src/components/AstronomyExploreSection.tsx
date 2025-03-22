@@ -1,114 +1,138 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Hash, Book, Gamepad, MapPin, Heart, User } from 'lucide-react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import ExploreCard from '@/components/ExploreCard';
+
+import React, { useState } from 'react';
+import { Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import PinterestLayout from './astronomy/PinterestLayout';
+import { ExploreContentItem } from './astronomy/types';
 
 const AstronomyExploreSection: React.FC = () => {
-  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Sample data based on the provided links
+  const exploreItems: ExploreContentItem[] = [
+    {
+      id: '1',
+      title: 'The Sky This Week from March 21 to 28, 2025',
+      description: 'Discover what celestial events will be visible in the coming week',
+      imageUrl: '/lovable-uploads/sunrise-on-mars-detlev-van-ravenswaay.jpg',
+      source: 'astronomy',
+      sourceUrl: 'https://www.astronomy.com/observing/the-sky-this-week-from-march-21-to-28-2025/',
+      author: 'Astronomy.com'
+    },
+    {
+      id: '2',
+      title: 'Our Near-Galactic Neighbor Might Have a Supermassive Black Hole',
+      description: 'New research suggests the presence of a supermassive black hole in our galactic neighborhood',
+      imageUrl: '/lovable-uploads/interstellar.jpeg',
+      source: 'astronomy',
+      sourceUrl: 'https://www.astronomy.com/science/our-near-galactic-neighbor-might-have-a-supermassive-black-hole/',
+      author: 'Astronomy.com'
+    },
+    {
+      id: '3',
+      title: 'NASA Launches James Webb Space Telescope',
+      description: 'The most powerful telescope ever built to study the early universe',
+      imageUrl: '/lovable-uploads/solar.png',
+      source: 'nasa',
+      sourceUrl: 'https://plus.nasa.gov/playlist/nasa-chill/',
+      author: 'NASA'
+    },
+    {
+      id: '4',
+      title: 'Stunning Timelapse of Earth from Space',
+      description: 'Watch our beautiful planet from the International Space Station',
+      imageUrl: '/lovable-uploads/earth.gif',
+      source: 'nasa',
+      sourceUrl: 'https://plus.nasa.gov/playlist/nasa-chill/',
+      author: 'NASA'
+    },
+    {
+      id: '5',
+      title: 'Astronomers Discover New Exoplanet in Habitable Zone',
+      description: 'This rocky planet could potentially support life',
+      imageUrl: '/lovable-uploads/earth2.jpeg',
+      source: 'tiktok',
+      sourceUrl: 'https://www.tiktok.com/@cbsmornings/video/7421637215782112558',
+      author: 'CBS Mornings'
+    },
+    {
+      id: '6',
+      title: 'Meteor Shower Peaks This Weekend',
+      description: 'Don\'t miss this spectacular celestial show',
+      imageUrl: '/lovable-uploads/world-game.png',
+      source: 'xiaohongshu',
+      sourceUrl: 'https://www.xiaohongshu.com/user/profile/6789c9a6000000000a03d857',
+      author: 'AstroEnthusiast'
+    },
+    {
+      id: '7',
+      title: 'Solar Eclipse 2025: Everything You Need to Know',
+      description: 'Prepare for the upcoming total solar eclipse',
+      imageUrl: '/lovable-uploads/3dc8af34-b172-4695-9e52-39b72b959ce2.png',
+      source: 'tiktok',
+      sourceUrl: 'https://www.tiktok.com/@cbsmornings/video/7411542419512053022',
+      author: 'CBS Mornings'
+    },
+    {
+      id: '8',
+      title: 'Astronomy Photography Tips for Beginners',
+      description: 'Capture stunning night sky photos with basic equipment',
+      imageUrl: '/lovable-uploads/5af8b6f3-9d9a-421c-b233-3c4dee64857d.png',
+      source: 'xiaohongshu',
+      sourceUrl: 'https://www.xiaohongshu.com/user/profile/6784edf4000000000803fba4',
+      author: 'StarGazer'
+    },
+    {
+      id: '9',
+      title: 'The Mysteries of Saturn\'s Rings',
+      description: 'New discoveries about the iconic planetary feature',
+      imageUrl: '/lovable-uploads/c4500211-2818-4d37-bb9c-aee9fd4c7e9c.png',
+      source: 'xiaohongshu',
+      sourceUrl: 'https://www.xiaohongshu.com/user/profile/67857599000000000803e1c5',
+      author: 'CosmicWanderer'
+    }
+  ];
+
+  // Filter items based on search query
+  const filteredItems = searchQuery 
+    ? exploreItems.filter(item => 
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        item.author?.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : exploreItems;
 
   return (
     <section>
       <h2 className="text-xl font-bold mb-4">Explore More</h2>
       
-      <Tabs defaultValue="astronomy" className="w-full">
-        <TabsList className="mb-4 bg-transparent h-auto p-0 w-full flex justify-start border-b">
-          <TabsTrigger 
-            value="channel" 
-            className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-            onClick={() => navigate('/')}
-          >
-            <Hash size={16} />
-            AI
-          </TabsTrigger>
-          
-          <TabsTrigger 
-            value="astronomy" 
-            className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-          >
-            <Hash size={16} />
-            Astronomy
-          </TabsTrigger>
-
-          <TabsTrigger 
-            value="resource" 
-            className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-          >
-            <Book size={16} />
-            Resource
-          </TabsTrigger>
-          
-          <TabsTrigger 
-            value="playground" 
-            className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-          >
-            <Gamepad size={16} />
-            Playground
-          </TabsTrigger>
-          
-          <TabsTrigger 
-            value="map" 
-            className="flex items-center gap-2 px-4 py-2.5 data-[state=active]:border-b-2 data-[state=active]:border-black rounded-none data-[state=active]:shadow-none data-[state=active]:bg-transparent h-auto"
-          >
-            <MapPin size={16} />
-            Knowledge Map
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="astronomy" className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <ExploreCard
-              title="Solar System Exploration"
-              description="Journey through our cosmic neighborhood"
-              image="/path/to/solar-system.jpg"
-            />
-            <ExploreCard
-              title="Stars and Galaxies"
-              description="Discover the wonders of deep space"
-              image="/path/to/galaxy.jpg"
-            />
-            <ExploreCard
-              title="Space Technology"
-              description="Learn about telescopes and space missions"
-              image="/path/to/telescope.jpg"
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="channel" className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <ExploreCard
-              title="Machine Learning Basics"
-              description="Learn the fundamentals of Machine Learning"
-              image="/path/to/ml-image.jpg"
-            />
-            <ExploreCard
-              title="Neural Networks"
-              description="Understanding Neural Networks"
-              image="/path/to/nn-image.jpg"
-            />
-            <ExploreCard
-              title="Deep Learning"
-              description="Dive into Deep Learning concepts"
-              image="/path/to/dl-image.jpg"
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="resource" className="mt-6">
-          {/* Resource content */}
-        </TabsContent>
-
-        <TabsContent value="playground" className="mt-6">
-          {/* Playground content */}
-        </TabsContent>
-
-        <TabsContent value="map" className="mt-6">
-          {/* Map content */}
-        </TabsContent>
-      </Tabs>
+      <div className="mb-6">
+        <div className="relative">
+          <Input
+            type="text"
+            placeholder="Search astronomy content..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+          {searchQuery && (
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 h-7 px-2" 
+              onClick={() => setSearchQuery('')}
+            >
+              Clear
+            </Button>
+          )}
+        </div>
+      </div>
+      
+      <PinterestLayout items={filteredItems} />
     </section>
   );
 };
 
-export default AstronomyExploreSection; 
+export default AstronomyExploreSection;
