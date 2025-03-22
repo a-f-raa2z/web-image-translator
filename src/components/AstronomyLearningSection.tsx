@@ -70,7 +70,7 @@ const AstronomyLearningSection: React.FC = () => {
     <section className="mb-10">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-4">
-          <h2 className="text-xl font-semibold">Current Course: The Neighbor Worlds</h2>
+          <h2 className="text-xl font-semibold">Current Course: Astronomy</h2>
         </div>
         <div className="flex items-center gap-2 w-48">
           <Progress value={getProgressValue()} className="h-2" />
