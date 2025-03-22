@@ -31,3 +31,15 @@ export interface ExploreContentItem {
   isExpandable?: boolean;
   videos?: VideoItem[];
 }
+
+export interface KnowledgeMapNode {
+  id: string;
+  label: string;
+  description?: string;
+  progress?: number;
+  isCurrent?: boolean;
+  icon?: React.FC<any>;
+  shape?: 'circle' | 'hexagon' | 'diamond' | 'triangle' | 'rectangle' | 'square' | 'pentagon' | 'octagon';
+  color?: string;
+}
+
