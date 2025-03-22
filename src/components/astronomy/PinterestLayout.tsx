@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ExploreContentItem } from './types';
 import PinterestCard from './PinterestCard';
@@ -14,27 +13,27 @@ const PinterestLayout: React.FC<PinterestLayoutProps> = ({ items, onCardClick })
     return "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
   };
 
-  // Assign varied sizes to cards for more interest
+  // Assign varied heights to cards but keep the same width
   const getCardClass = (index: number) => {
-    // Create some landscape cards by changing aspect ratio
+    // Create varied heights based on item index
     if (index % 5 === 0) {
-      return "col-span-1 sm:col-span-2 row-span-1"; // landscape card
+      return "h-[250px]"; // shorter card
+    } else if (index % 3 === 0) {
+      return "h-[350px]"; // medium card
     } else if (index % 7 === 0) {
-      return "col-span-1 row-span-2"; // tall card
-    } else if (index % 11 === 0) {
-      return "col-span-1 sm:col-span-2 row-span-2"; // large card
+      return "h-[400px]"; // taller card
     }
-    return "col-span-1"; // standard card
+    return "h-[300px]"; // standard card
   };
 
   return (
-    <div className={`grid ${getColumnClass()} gap-4 auto-rows-auto`}>
+    <div className={`grid ${getColumnClass()} gap-4`}>
       {items.map((item, index) => (
-        <div key={item.id} className={getCardClass(index)}>
+        <div key={item.id} className="col-span-1">
           <PinterestCard 
             item={item} 
             onClick={onCardClick}
-            className="h-full"
+            className={`${getCardClass(index)} w-full`}
           />
         </div>
       ))}
