@@ -26,7 +26,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
       color,
       className
     )}>
-      <div className="absolute top-2 left-3 z-10 bg-yellow-100 px-2 py-1 rounded text-xs font-semibold text-yellow-700">
+      <div className="absolute top-2 left-3 z-10 bg-orange-100 px-2 py-1 rounded text-xs font-semibold text-orange-700">
         Challenge
       </div>
       

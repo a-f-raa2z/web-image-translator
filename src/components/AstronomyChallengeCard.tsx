@@ -30,7 +30,7 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
       )}
       onClick={onClick}
     >
-      <div className="absolute top-2 left-3 z-10 bg-purple-100 px-2 py-1 rounded text-xs font-semibold text-purple-700">
+      <div className="absolute top-2 left-3 z-10 bg-orange-100 px-2 py-1 rounded text-xs font-semibold text-orange-700">
         Challenge
       </div>
       
@@ -66,13 +66,13 @@ const AstronomyChallengeCard: React.FC<AstronomyChallengeCardProps> = ({
           <div className="flex items-center gap-2">
             {hasVideos ? (
               <>
-                <Play size={16} className="text-purple-600" />
-                <span className="text-sm text-purple-600">Watch Video Series</span>
+                <Play size={16} className="text-orange-600" />
+                <span className="text-sm text-orange-600">Watch Video Series</span>
               </>
             ) : (
               <>
-                <Award size={16} className="text-purple-600" />
-                <span className="text-sm text-purple-600">Earn Space Explorer Badge</span>
+                <Award size={16} className="text-orange-600" />
+                <span className="text-sm text-orange-600">Earn Space Explorer Badge</span>
               </>
             )}
           </div>
